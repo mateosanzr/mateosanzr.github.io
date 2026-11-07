@@ -764,6 +764,7 @@ L.querySelector('#vX').onclick=cierraVivo;
 document.addEventListener('keydown',function(e){if(L.hidden)return;if(e.key==='Escape'){cierraVivo();e.stopImmediatePropagation()}},true);
 document.getElementById('bSala').addEventListener('click',function(){setTimeout(color,50)});
 var r=document.createElement('div');r.className='row si';r.innerHTML='<div class="l"><span class="n">∿</span><span class="t">archivo vivo</span><span class="a">live a/v</span></div>';r.querySelector('.l').onclick=abreVivo;idx.appendChild(r);
+ var rt=document.createElement('div');rt.className='row si';rt.innerHTML='<div class="l"><span class="n">ϟ</span><span class="t">tormenta</span><span class="a">live a/v</span></div>';rt.querySelector('.l').onclick=function(){if(window.abreTormenta)return abreTormenta();var sc=document.createElement('script');sc.src='tormenta/tormenta.js';sc.onload=function(){abreTormenta()};document.head.appendChild(sc)};idx.appendChild(rt);
 
 document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.vivoBtn'))abreVivo()});
 })();
