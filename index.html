@@ -239,6 +239,9 @@ body:not(.enpj) .zona.k1{display:none}
 .fr.a43 .pl{aspect-ratio:4/3;overflow:hidden;position:relative}
 .fr.a43 .pl img,.fr.a43 .pl video,.fr.a43 .pl canvas{width:100%!important;height:100%!important;object-fit:cover!important}
 .fr.a43 .pl img.mv{filter:blur(1.6px);transform:scale(1.02)}
+/* piezas en vivo en móvil */
+#mVivos{display:none}
+@media(max-width:820px){#mVivos{display:block;order:4;padding:0 0 30px}#fotos[hidden]+#mVivos,body.enpj #mVivos{display:none}#mVivos .fr{position:relative;margin:0 0 14px;cursor:pointer}#mVivos .fr figcaption{position:absolute;left:10px;right:10px;bottom:8px;margin:0;font-size:14px;color:#fff;text-shadow:0 0 6px rgba(0,0,0,.55);pointer-events:none}#mVivos .fr figcaption.sol{position:static;color:inherit;text-shadow:none;font-size:16px;padding:6px 0;border-top:1px solid currentColor;opacity:.8}#mVivos .pl img{filter:grayscale(1) contrast(1.15)}}
 /* sin botón cv */
 #mInfo,#bCV{display:none!important}
 </style></head><body>
@@ -248,7 +251,7 @@ body:not(.enpj) .zona.k1{display:none}
 <div class="cab k2"><span id="now"></span><span class="der2"><a id="ver" target="_blank" rel="noopener"></a><button id="bSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
 <div class="cab k3"><span class="g" id="hT">info</span><span class="der2" id="hInfo"><button id="bTodo" title="desplegar todo" aria-label="desplegar todo"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 2v10M2 7h10" stroke="currentColor" fill="none"/></svg></button><button id="bCV" class="tx">cv</button></span><span class="der2" id="hPj" hidden><button id="bVolver" title="volver a info" aria-label="volver a info"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button></span></div>
 <div class="zona k1"><nav class="fil" id="fil"></nav><div id="idx"></div></div>
-<div class="zona k2" id="fotos"></div>
+<div class="zona k2" id="fotos"></div><div class="zona k2" id="mVivos"><figure class="fr a43" data-v="t"><div class="pl"><img src="tormenta/f/7213.jpg" alt="tormenta" loading="lazy"></div><figcaption><span class="t">ϟ tormenta</span> <i>live a/v</i></figcaption></figure><figure class="fr" data-v="a"><figcaption class="sol"><span class="t">∿ archivo vivo</span> <i>live a/v</i></figcaption></figure></div>
 <div class="zona k2" id="proy" hidden></div>
 <div class="zona k3 info" id="info"></div>
 <div class="zona k3" id="pj" hidden></div>
@@ -769,6 +772,7 @@ var r=document.createElement('div');r.className='row si';r.innerHTML='<div class
  var rt=document.createElement('div');rt.className='row si';rt.innerHTML='<div class="l"><span class="n">ϟ</span><span class="t">tormenta</span><span class="a">live a/v</span></div>';rt.querySelector('.l').onclick=function(){if(window.abreTormenta)return abreTormenta();var sc=document.createElement('script');sc.src='tormenta/tormenta.js';sc.onload=function(){abreTormenta()};document.head.appendChild(sc)};idx.appendChild(rt);
 
 document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.vivoBtn'))abreVivo()});
+document.querySelectorAll('#mVivos .fr').forEach(function(f){f.onclick=function(){var q=f.dataset.v==="t"?rt:r;q.querySelector('.l').onclick()}});
 })();
 function logo(){var n=(S&&S.nombre)||'mateo sanz román',ini=n.split(/\s+/).map(function(w){return w[0]}).join('');document.querySelectorAll('a.logo').forEach(function(a){a.innerHTML='<span>'+n+'</span>';a.setAttribute('aria-label',n)})}
 if(S.nombre){document.title=S.nombre;document.getElementById('mHome').textContent=S.nombre;document.querySelectorAll('#home').forEach(function(e){e.textContent=S.nombre});;var cvt=document.querySelector('#cvx .cab2 span');if(cvt)cvt.textContent=S.nombre+' · cv'}
