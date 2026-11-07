@@ -242,11 +242,20 @@ body:not(.enpj) .zona.k1{display:none}
 /* piezas en vivo en móvil */
 #mVivos{display:none}
 @media(max-width:820px){#mVivos{display:block;order:4;padding:0 0 30px}#fotos[hidden]+#mVivos,body.enpj #mVivos{display:none}#mVivos .fr{position:relative;margin:0 0 14px;cursor:pointer}#mVivos .fr figcaption{position:absolute;left:10px;right:10px;bottom:8px;margin:0;font-size:14px;color:#fff;text-shadow:0 0 6px rgba(0,0,0,.55);pointer-events:none}#mVivos .fr figcaption.sol{position:static;color:inherit;text-shadow:none;font-size:16px;padding:6px 0;border-top:1px solid currentColor;opacity:.8}#mVivos .pl img{filter:grayscale(1) contrast(1.15)}}
+/* menú de proyectos (móvil) */
+#mVivos{display:none!important}
+#mMenuL{position:fixed;inset:0;z-index:60;background:var(--papel);overflow-y:auto;padding:env(safe-area-inset-top,0px) max(16px,env(safe-area-inset-right,0px)) 40px max(16px,env(safe-area-inset-left,0px));font-size:17px}
+#mMenuL[hidden]{display:none}
+#mMenuL .mmc{display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--papel);padding:14px 0 10px;border-bottom:1px solid var(--linea);color:var(--gris)}
+#mMenuL .mmc button{color:var(--gris);min-width:22px;min-height:22px;display:inline-flex;align-items:center;justify-content:center}
+#mMenuL .row .l{padding:9px 0}
+body.menu{overflow:hidden}
+@media(min-width:821px){#mMenuL{display:none!important}}
 /* sin botón cv */
 #mInfo,#bCV{display:none!important}
 </style></head><body>
 <div id="cur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-<div class="mbar"><a href="#" id="mHome" class="logo">mateo sanz román</a><span><button id="mVolver" hidden title="volver" aria-label="volver"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button><button id="mInfo" class="tx">cv</button><button id="mSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
+<div class="mbar"><a href="#" id="mHome" class="logo">mateo sanz román</a><span><button id="mVolver" hidden title="volver" aria-label="volver"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button><button id="mInfo" class="tx">cv</button><button id="mMenu" title="proyectos" aria-label="proyectos"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.5 3.5h11M1.5 7h11M1.5 10.5h11" stroke="currentColor" fill="none"/></svg></button><button id="mSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
 <div class="cab k1"><a href="#" id="home" class="logo">mateo sanz román</a><span class="g">índice</span></div>
 <div class="cab k2"><span id="now"></span><span class="der2"><a id="ver" target="_blank" rel="noopener"></a><button id="bSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
 <div class="cab k3"><span class="g" id="hT">info</span><span class="der2" id="hInfo"><button id="bTodo" title="desplegar todo" aria-label="desplegar todo"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 2v10M2 7h10" stroke="currentColor" fill="none"/></svg></button><button id="bCV" class="tx">cv</button></span><span class="der2" id="hPj" hidden><button id="bVolver" title="volver a info" aria-label="volver a info"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button></span></div>
@@ -255,7 +264,7 @@ body:not(.enpj) .zona.k1{display:none}
 <div class="zona k2" id="proy" hidden></div>
 <div class="zona k3 info" id="info"></div>
 <div class="zona k3" id="pj" hidden></div>
-<div class="lado izq" id="izq"></div><div class="lado der" id="der"></div>
+<div id="mMenuL" hidden><div class="mmc"><span>proyectos</span><button id="mMenuX" aria-label="cerrar"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 2.5l9 9M11.5 2.5l-9 9" stroke="currentColor" fill="none"/></svg></button></div><div class="mml"></div></div><div class="lado izq" id="izq"></div><div class="lado der" id="der"></div>
 <div class="cvx" id="cvx" hidden><div class="cab2"><span>mateo sanz román · cv</span><button id="cCV">(cerrar)</button></div><div class="cvg" id="cvg"></div></div>
 
 <script src="datos.js"></script>
@@ -772,6 +781,11 @@ var r=document.createElement('div');r.className='row si';r.innerHTML='<div class
  var rt=document.createElement('div');rt.className='row si';rt.innerHTML='<div class="l"><span class="n">ϟ</span><span class="t">tormenta</span><span class="a">live a/v</span></div>';rt.querySelector('.l').onclick=function(){if(window.abreTormenta)return abreTormenta();var sc=document.createElement('script');sc.src='tormenta/tormenta.js';sc.onload=function(){abreTormenta()};document.head.appendChild(sc)};idx.appendChild(rt);
 
 document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.vivoBtn'))abreVivo()});
+(function(){var M=document.getElementById('mMenuL'),lst=M.querySelector('.mml');
+function cierraM(){M.hidden=true;document.body.classList.remove('menu')}
+function abreM(){lst.innerHTML='';[].forEach.call(idx.children,function(o){if(o.dataset.fuera)return;var c=o.cloneNode(true);c.hidden=false;c.classList.remove('off','act');c.querySelector('.l').onclick=function(){cierraM();o.querySelector('.l').onclick()};lst.appendChild(c)});M.hidden=false;document.body.classList.add('menu');M.scrollTop=0}
+document.getElementById('mMenu').onclick=abreM;document.getElementById('mMenuX').onclick=cierraM;
+document.addEventListener('keydown',function(e){if(!M.hidden&&e.key==='Escape')cierraM()});})();
 document.querySelectorAll('#mVivos .fr').forEach(function(f){f.onclick=function(){var q=f.dataset.v==="t"?rt:r;q.querySelector('.l').onclick()}});
 })();
 function logo(){var n=(S&&S.nombre)||'mateo sanz román',ini=n.split(/\s+/).map(function(w){return w[0]}).join('');document.querySelectorAll('a.logo').forEach(function(a){a.innerHTML='<span>'+n+'</span>';a.setAttribute('aria-label',n)})}
