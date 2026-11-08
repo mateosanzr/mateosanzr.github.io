@@ -312,13 +312,29 @@ body.hz #pj,body.hz .cab.k3 #hT,body.hz #proy .sigue{display:none}
 .hzg[hidden]{display:none}
 .hzg button{padding:0;display:block;text-align:left;color:var(--gris);font-size:11px}
 .hzg img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;opacity:.85;transition:opacity .3s;margin-bottom:4px}.hzg button:hover img{opacity:1}
+/* menú por secciones: dop · dirección · otros */
+#idx .sec{display:flex;justify-content:space-between;align-items:baseline;margin:30px 0 2px;padding-bottom:5px;border-bottom:1px solid var(--tinta);font-size:12px;letter-spacing:.06em;color:var(--tinta);cursor:pointer}
+#idx .sec:first-child{margin-top:4px}
+#idx .sec .g{color:var(--gris);font-variant-numeric:tabular-nums;letter-spacing:0}
+#idx .sec[hidden],#idx .row[hidden]{display:none}
+#idx .row .a{font-size:12px}
+.fil{gap:2px 20px}
+.fil button{position:relative}
+.fil button.on::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor}
+#mMenuL .sec{display:flex;justify-content:space-between;margin:26px 0 0;padding-bottom:6px;border-bottom:1px solid var(--tinta);font-size:13px;letter-spacing:.06em}
+#mMenuL .sec .g{color:var(--gris)}
+/* cabecera en la galería de foto: una sola línea a todo lo ancho */
+#bCerrarHz{display:none}
+body.hz .cab.k2{width:calc(var(--c)*9 - var(--gap))}
+body.hz .cab.k3{display:none}
+body.hz #bCerrarHz{display:inline-flex}
 /* sin botón cv */
 #mInfo,#bCV{display:none!important}
 </style></head><body>
 <div id="cur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="mbar"><a href="#" id="mHome" class="logo">mateo sanz román</a><span><button id="mVolver" hidden title="volver" aria-label="volver"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button><button id="mInfo" class="tx">cv</button><button id="mMenu" title="proyectos" aria-label="proyectos"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.5 3.5h11M1.5 7h11M1.5 10.5h11" stroke="currentColor" fill="none"/></svg></button><button id="mSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
 <div class="cab k1"><a href="#" id="home" class="logo">mateo sanz román</a><span class="g">índice</span></div>
-<div class="cab k2"><span id="now"></span><span class="der2"><a id="ver" target="_blank" rel="noopener"></a><button id="bSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
+<div class="cab k2"><span id="now"></span><span class="der2"><a id="ver" target="_blank" rel="noopener"></a><button id="bCerrarHz" class="tx">(cerrar)</button><button id="bSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
 <div class="cab k3"><span class="g" id="hT">info</span><span class="der2" id="hInfo"><button id="bTodo" title="desplegar todo" aria-label="desplegar todo"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 2v10M2 7h10" stroke="currentColor" fill="none"/></svg></button><button id="bCV" class="tx">cv</button></span><span class="der2" id="hPj" hidden><button id="bVolver" title="volver a info" aria-label="volver a info"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button></span></div>
 <div class="zona k1"><nav class="fil" id="fil"></nav><div id="idx"></div></div>
 <div class="zona k2" id="fotos"></div><div class="zona k2" id="mVivos"><figure class="fr a43" data-v="t"><div class="pl"><img src="tormenta/f/7213.jpg" alt="tormenta" loading="lazy"></div><figcaption><span class="t">ϟ tormenta</span> <i>live a/v</i></figcaption></figure><figure class="fr" data-v="a"><figcaption class="sol"><span class="t">∿ archivo vivo</span> <i>live a/v</i></figcaption></figure></div>
@@ -547,7 +563,7 @@ frs.forEach(function(f){ioM.observe(f)});
 var tick=false;
 col.addEventListener('scroll',function(){if(tick)return;tick=true;requestAnimationFrame(function(){tick=false;
  var lim=col.getBoundingClientRect().top+160,best=-1;
- frs.forEach(function(f,k){if(f.hidden)return;var b=f.getBoundingClientRect();if(best<0&&b.bottom>lim)best=k});
+ [].forEach.call(col.children,function(f){if(!f.classList.contains('fr')||f.hidden)return;var b=f.getBoundingClientRect();if(best<0&&b.bottom>lim)best=+f.dataset.i});
  if(best>=0)activa(best)})});
 var fil=document.getElementById('fil');
 ['todo','dop','dir','obra','foto'].forEach(function(k){var b=document.createElement('button');b.textContent=k==='todo'?'todo':CAT[k];if(k==='todo')b.className='on';
@@ -877,9 +893,31 @@ var r=document.createElement('div');r.className='row si';r.innerHTML='<div class
 document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.vivoBtn'))abreVivo()});
 (function(){var M=document.getElementById('mMenuL'),lst=M.querySelector('.mml');
 function cierraM(){M.hidden=true;document.body.classList.remove('menu')}
-function abreM(){lst.innerHTML='';[].forEach.call(idx.children,function(o){if(o.dataset.fuera)return;var c=o.cloneNode(true);c.hidden=false;c.classList.remove('off','act');c.querySelector('.l').onclick=function(){cierraM();o.querySelector('.l').onclick()};lst.appendChild(c)});M.hidden=false;document.body.classList.add('menu');M.scrollTop=0}
+function abreM(){lst.innerHTML='';[].forEach.call(idx.children,function(o){if(o.dataset.fuera)return;var c=o.cloneNode(true);c.hidden=false;c.classList.remove('off','act');var cl=c.querySelector('.l');if(cl)cl.onclick=function(){cierraM();o.querySelector('.l').onclick()};lst.appendChild(c)});M.hidden=false;document.body.classList.add('menu');M.scrollTop=0}
 document.getElementById('mMenu').onclick=abreM;document.getElementById('mMenuX').onclick=cierraM;
 document.addEventListener('keydown',function(e){if(!M.hidden&&e.key==='Escape')cierraM()});})();
+/* menú por secciones */
+(function(){var SEC=[['dop','dop'],['dir','dirección'],['otros','otros']],pd=function(x){return (x<10?'0':'')+x};
+function sec(c){return c==='dop'?'dop':c==='dir'?'dir':'otros'}
+var todas=[].slice.call(idx.children);var heads={};
+SEC.forEach(function(S){var h=document.createElement('div');h.className='sec';h.dataset.s=S[0];var lst=[];
+ todas.forEach(function(r){var k=rows.indexOf(r),s2=k>=0?sec(P[k].c):'otros';if(s2===S[0])lst.push(r)});
+ var vis=lst.filter(function(r){return !r.dataset.fuera});
+ h.innerHTML='<span>'+S[1]+'</span><span class="g">'+pd(vis.length)+'</span>';idx.appendChild(h);heads[S[0]]=h;h.onclick=function(){filtra(S[0])};
+ var n=0;lst.forEach(function(r){var k=rows.indexOf(r);r.dataset.s=S[0];idx.appendChild(r);
+  if(k>=0){if(!r.dataset.fuera){n++;r.querySelector('.n').textContent=pd(n)}var p=P[k];var a=r.querySelector('.a');
+   if(S[0]!=='otros'){var f=(p.f||'').split('·')[0].trim();a.textContent=/\d\s*(min|seg|s)\b/.test(f)?'':f}else a.textContent=p.c==='obra'?'obra':CAT[p.c];
+   var fr=frs[k];if(fr){fr.dataset.s=S[0];col.appendChild(fr)}}})});
+var actual=null;
+function filtra(k){actual=(actual===k)?null:k;
+ fil.querySelectorAll('button').forEach(function(b){b.classList.toggle('on',b.dataset.s===actual)});
+ [].forEach.call(idx.children,function(e){if(e.classList.contains('sec'))e.hidden=!!actual&&e.dataset.s!==actual;else if(!e.dataset.fuera)e.hidden=!!actual&&e.dataset.s!==actual;e.classList.remove('off')});
+ frs.forEach(function(f){f.hidden=!!f.dataset.fuera||(!!actual&&f.dataset.s!==actual)});col.scrollTo({top:0});
+ var first=[].find.call(col.children,function(f){return f.classList.contains('fr')&&!f.hidden});if(first)activa(+first.dataset.i,true)}
+fil.innerHTML='';SEC.forEach(function(S){var b=document.createElement('button');b.textContent=S[1];b.dataset.s=S[0];b.onclick=function(){filtra(S[0])};fil.appendChild(b)});
+window.filtraSec=filtra;
+var bc=document.getElementById('bCerrarHz');if(bc)bc.onclick=function(){volver()};
+})();
 document.querySelectorAll('#mVivos .fr').forEach(function(f){f.onclick=function(){var q=f.dataset.v==="t"?rt:r;q.querySelector('.l').onclick()}});
 })();
 function logo(){var n=(S&&S.nombre)||'mateo sanz román',ini=n.split(/\s+/).map(function(w){return w[0]}).join('');document.querySelectorAll('a.logo').forEach(function(a){a.innerHTML='<span>'+n+'</span>';a.setAttribute('aria-label',n)})}
