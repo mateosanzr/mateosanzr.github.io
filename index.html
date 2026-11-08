@@ -600,6 +600,7 @@ html.escOn #proy{overflow:hidden!important}
 .esc .sf .st{margin:8px 0 0;color:var(--gris)}
 .esc .lz[class*="bits"] canvas,.esc .win .cn canvas{cursor:inherit}
 
+@media(min-width:821px){#fotos .fr .tit{display:none!important}}
 #fil.f2{display:flex;justify-content:flex-start!important;gap:4px 16px!important;flex-wrap:wrap}
 #fil.f2 button{color:var(--gris);padding:0}#fil.f2 button sup{font-size:9px;margin-left:2px;color:var(--gris);vertical-align:4px}
 #fil.f2 button.on{color:var(--tinta)}#fil.f2 button.on::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor}
@@ -1619,7 +1620,7 @@ var pie=document.querySelector('footer span');if(pie&&S.lema)pie.textContent=S.l
   function conexion(){encola();bucle();
    ventana('bytes','','bytes','<div class="cn dump vt"></div>',{left:'calc(56% - 54px)',top:'34px',width:'calc(44% - 66px)',height:'50%'});
    lienzo('trafico','tráfico','',{left:'2%',top:'calc(50% + 46px)',width:'calc(40% - 30px)',height:'calc(50% - 60px)'},traficoD);
-   lienzo('bits','unos y ceros','',{left:'calc(40% - 18px)',top:'calc(50% + 46px)',width:'calc(60% - 100px)',height:'calc(50% - 60px)'},bitsD);
+   lienzo('bits','caché','',{left:'calc(40% - 18px)',top:'calc(50% + 46px)',width:'calc(60% - 100px)',height:'calc(50% - 60px)'},bitsD);
    traza();texto()}
   /* lienzos a 1 bit: se dibujan con píxeles de 2 × 2 */
   var LZ={},TR=[],LAT=[],GOT=[],ultPing=null,pingN=0,gotas=0;

@@ -791,8 +791,6 @@ window.DATOS={
    "creditos": "",
    "fotos": [
     "media/07-conciertos/01.jpg",
-    "media/07-conciertos/02.jpg",
-    "media/07-conciertos/03.jpg",
     "media/07-conciertos/04.jpg",
     "media/07-conciertos/05.jpg",
     "media/07-conciertos/06.jpg",
@@ -802,7 +800,6 @@ window.DATOS={
     "media/07-conciertos/10.jpg",
     "media/07-conciertos/11.jpg",
     "media/07-conciertos/12.jpg",
-    "media/07-conciertos/13.jpg",
     "media/07-conciertos/14.jpg",
     "media/07-conciertos/15.jpg",
     "media/07-conciertos/16.jpg",
@@ -819,7 +816,10 @@ window.DATOS={
     "media/07-conciertos/27.jpg",
     "media/07-conciertos/28.jpg",
     "media/07-conciertos/29.jpg",
-    "media/07-conciertos/30.jpg"
+    "media/07-conciertos/30.jpg",
+    "media/07-conciertos/02.jpg",
+    "media/07-conciertos/03.jpg",
+    "media/07-conciertos/13.jpg"
    ],
    "grupos": [],
    "cubierta": "",
