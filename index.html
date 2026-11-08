@@ -384,6 +384,27 @@ body.pjab .rt0{display:none}
 .juego{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 120px);gap:14px}
 .juego canvas{width:min(900px,100%);height:auto;aspect-ratio:900/260;display:block;touch-action:manipulation;cursor:pointer}
 .juego .g{color:var(--gris);font-size:12px;text-align:center}
+/* gasto de la visita: electricidad y agua */
+.gasto{border-top:1px solid var(--tinta);margin-top:46px;padding-top:12px}
+.gasto .h{display:flex;justify-content:space-between;color:var(--gris);font-size:12px}
+.gasto .fila{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) minmax(0,1fr);gap:40px;margin-top:22px;align-items:start}
+.gasto .num{font-size:clamp(30px,3.2vw,50px);font-style:italic;line-height:1;margin:0 0 4px;font-variant-numeric:tabular-nums}
+.gasto .num small{font-size:.42em;font-style:normal;color:var(--gris);margin-left:6px}
+.gasto .eq{color:var(--gris);font-size:13px;margin:0 0 22px}
+.gasto canvas.cur{width:100%;height:190px;display:block}
+.gasto .nota{font-size:12px;color:var(--gris);margin-top:22px;max-width:90ch}
+.gasto .gotas{display:flex;flex-wrap:wrap;gap:5px;align-content:flex-start;min-height:120px}
+.gasto .gotas i{width:6px;height:8px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;border:1px solid var(--gris);box-sizing:border-box;transition:background .4s,border-color .4s}
+.gasto .gotas i.on{background:#5b84b8;border-color:#5b84b8}
+.gasto .gl{color:var(--gris);font-size:12px;margin-top:8px}
+.reg{margin-top:40px;border-top:1px solid var(--linea);padding-top:10px}
+.reg .h{color:var(--gris);font-size:12px;display:flex;justify-content:space-between}
+.reg ol{list-style:none;margin:10px 0 0;padding:0;font:12px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--gris);max-height:260px;overflow:hidden;-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
+.reg li{display:grid;grid-template-columns:76px 78px 70px 1fr;gap:12px;white-space:nowrap}
+.reg li span:last-child{overflow:hidden;text-overflow:ellipsis;color:var(--tinta)}
+.reg li.nuevo{animation:regIn .6s ease}
+@keyframes regIn{from{background:rgba(200,55,45,.12)}to{background:transparent}}
+@media(max-width:820px){.gasto .fila{grid-template-columns:1fr;gap:24px}.reg li{grid-template-columns:64px 64px 1fr}.reg li span:nth-child(3){display:none}}
 /* sin botón cv */
 #mInfo,#bCV{display:none!important}
 </style></head><body>
@@ -1055,6 +1076,39 @@ document.addEventListener('keydown',function(e){if(!M.hidden&&e.key==='Escape')c
  function cierra(){C.hidden=true;clearInterval(iv)}
  b0.onclick=abre;C.querySelector('.x').onclick=cierra;
  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!C.hidden){cierra();e.stopImmediatePropagation()}},true);
+ /* gasto de la visita */
+ var GS=document.createElement('section');GS.innerHTML='<div class="gasto"><div class="h"><span>lo que ha gastado tu visita</span><span class="gt">00:00</span></div><div class="fila">'
+  +'<div><p class="num nE">0<small>Wh</small></p><p class="eq eE"></p><p class="num nA">0<small>ml de agua</small></p><p class="eq eA"></p></div>'
+  +'<div><canvas class="cur"></canvas><p class="gl">electricidad (línea) y agua (puntos) acumuladas desde que llegaste</p></div>'
+  +'<div><div class="gotas"></div><p class="gl gG"></p></div></div>'
+  +'<p class="nota">Estimación. Electricidad: modelo Sustainable Web Design, ≈ 0,19 kWh por cada GB que viaja (centros de datos, redes y tu dispositivo). Agua: ≈ 1,8 litros por kWh, la media que usan los centros de datos para refrigerarse; no incluye el agua necesaria para producir esa electricidad, que suele ser bastante más.</p></div>'
+  +'<div class="reg"><div class="h"><span>registro de lo que ha viajado hasta ti</span><span class="rn"></span></div><ol></ol></div>';
+ C.querySelector('.ruta').insertAdjacentElement('afterend',GS);
+ var cvC=GS.querySelector('.cur'),gotasEl=GS.querySelector('.gotas'),ol=GS.querySelector('.reg ol'),vistos={},serie=[];
+ for(var q=0;q<160;q++)gotasEl.appendChild(document.createElement('i'));
+ var f2=new Intl.NumberFormat('es-ES',{maximumFractionDigits:2,minimumFractionDigits:2});
+ function kb(b){return b>=1e6?f1.format(b/1e6)+' MB':b>=1e3?Math.round(b/1e3)+' KB':Math.round(b)+' B'}
+ function tipo(n){return /\.(jpe?g|png|webp|gif|avif)(\?|$)/i.test(n)?'imagen':/\.(mp4|webm|mov)(\?|$)/i.test(n)?'vídeo':/\.js(\?|$)/i.test(n)?'código':/\.css|fonts\./i.test(n)?'tipografía':/\.json/i.test(n)?'datos':'página'}
+ function hora(ms){var d=new Date(performance.timeOrigin+ms);return d.toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}
+ function registro(){var nuevos=[];performance.getEntriesByType('resource').forEach(function(r){if(vistos[r.name])return;var b=r.transferSize||r.encodedBodySize||0;if(/ping=/.test(r.name))return;vistos[r.name]=1;nuevos.push({t:r.startTime,b:b,n:r.name})});
+  for(var k in vid){if(vid[k]>0&&!vistos['v:'+k]){vistos['v:'+k]=1;nuevos.push({t:performance.now(),b:vid[k],n:k})}}
+  nuevos.sort(function(a,b){return a.t-b.t}).forEach(function(e){var li=document.createElement('li');li.className='nuevo';var nm=e.n.replace(location.origin+'/','').replace(/^https?:\/\//,'').replace(/\?.*$/,'');
+   li.innerHTML='<span>'+hora(e.t)+'</span><span>'+(e.b?kb(e.b):'—')+'</span><span>'+tipo(e.n)+'</span><span>'+nm.replace(/</g,'&lt;')+'</span>';ol.insertBefore(li,ol.firstChild)});
+  while(ol.children.length>60)ol.removeChild(ol.lastChild);GS.querySelector('.rn').textContent=Object.keys(vistos).length+' archivos'}
+ function gasto(){var r=bytes(),wh=r.b/1e9*0.19*1000,ml=wh/1000*1.8*1000,sg=Math.round((performance.now()-t0)/1000);serie=hist.map(function(b){var e=b/1e9*0.19*1000;return [e,e*1.8]});serie.push([wh,ml]);
+  GS.querySelector('.gt').textContent=pd(Math.floor(sg/60))+':'+pd(sg%60);
+  GS.querySelector('.nE').innerHTML=f2.format(wh)+'<small>Wh</small>';GS.querySelector('.nA').innerHTML=f2.format(ml)+'<small>ml de agua</small>';
+  var led=wh*3600/10,mov=wh/15*100;GS.querySelector('.eE').textContent='≈ '+(led<90?Math.round(led)+' s':Math.round(led/60)+' min')+' de una bombilla LED  ·  ≈ '+(mov<1?f1.format(mov):Math.round(mov))+' % de cargar un móvil';
+  var g=Math.round(ml/0.05);GS.querySelector('.eA').textContent='≈ '+g+(g===1?' gota':' gotas')+'  ·  '+(ml<15?'≈ '+f1.format(ml/15*100)+' % de una cucharada':'≈ '+f1.format(ml/15)+' cucharadas');
+  var por=g<=160?1:Math.ceil(g/160),on=Math.min(160,Math.ceil(g/por));[].forEach.call(gotasEl.children,function(e,i){e.classList.toggle('on',i<on)});
+  GS.querySelector('.gG').textContent='cada punto es '+(por===1?'una gota':por+' gotas')+' (≈ 0,05 ml)';
+  var a=tam(cvC),x=a[0],w=a[1],h=a[2];x.strokeStyle=col('--linea');x.lineWidth=1;x.beginPath();x.moveTo(0,h-.5);x.lineTo(w,h-.5);x.stroke();
+  if(serie.length>1){var mx=Math.max(serie[serie.length-1][0],1e-6),n=serie.length;x.strokeStyle=col('--tinta');x.lineWidth=1.3;x.beginPath();serie.forEach(function(v,i){var X=i/(n-1)*w,Y=h-4-(v[0]/mx)*(h-24);i?x.lineTo(X,Y):x.moveTo(X,Y)});x.stroke();
+   x.fillStyle='#5b84b8';serie.forEach(function(v,i){if(i%Math.max(1,Math.floor(n/60)))return;var X=i/(n-1)*w,Y=h-4-(v[0]/mx)*(h-24)+10;x.beginPath();x.arc(X,Y,1.6,0,7);x.fill()});
+   x.fillStyle=col('--gris');x.font='11px '+getComputedStyle(document.body).fontFamily;x.textAlign='right';x.fillText(f2.format(serie[n-1][0])+' Wh · '+f2.format(serie[n-1][1])+' ml',w,12);x.textAlign='left'}
+  registro()}
+ setInterval(function(){if(!C.hidden)gasto()},1000);
+ var abre0=abre;abre=function(){abre0();gasto()};b0.onclick=abre;
  window.abreRuta=abre;
 })();
 /* capas: juego (no clicar aquí) */
