@@ -328,7 +328,7 @@ body:not(.pjab) #bSala,body:not(.pjab) #mSala{display:none!important}
 #info .cvl{margin:18px 0 0}
 #info .cvl button{color:var(--gris);padding:0;border-bottom:1px solid var(--linea)}
 #info .cvl button:hover{color:var(--tinta);border-color:var(--tinta)}
-#info .fa{margin-top:44px;padding-top:12px;border-top:1px solid var(--linea);transition:opacity .35s ease}
+#info .fa{margin-top:34px;padding-top:0;transition:opacity .35s ease}
 #info .fa.fuera{opacity:0}
 #info .fa .g{color:var(--gris);font-variant-numeric:tabular-nums}
 #info .fa h3{font:inherit;font-size:26px;font-style:italic;line-height:1.05;margin:8px 0 14px;font-weight:400}
@@ -345,6 +345,15 @@ body:not(.pjab) #bSala,body:not(.pjab) #mSala{display:none!important}
 @media print{body>*:not(#cvx){display:none!important}#cvx{position:static!important;display:block!important;padding:0!important;overflow:visible}#cvx[hidden]{display:block!important}.cvx .cab2{display:none}.cvg{columns:2}a{color:inherit;text-decoration:none}}
 /* índice quieto: pasar por el índice no mueve la columna; solo resalta y enseña la ficha a la derecha */
 @media(min-width:821px){#idx .row{transition:opacity .35s}#idx:has(.row .l:hover) .row:not(:hover){opacity:.4}}
+/* ficha con créditos y luz de barcelona */
+#info .fa .cr{display:grid;grid-template-columns:76px 1fr;gap:2px 10px;margin:14px 0 14px;padding-top:10px;border-top:1px dotted var(--linea);font-size:13px}
+#info .fa .cr dt{color:var(--gris)}#info .fa .cr dd{margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.luz{position:fixed;right:16px;bottom:14px;width:calc(var(--c)*4 - var(--gap));font-size:12px;color:var(--gris);font-variant-numeric:tabular-nums;z-index:4;pointer-events:none}
+.luz .l1{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}
+.luz .hz2{position:relative;height:18px;border-bottom:1px solid var(--linea)}
+.luz .sol{position:absolute;width:7px;height:7px;border-radius:50%;margin:-3.5px 0 0 -3.5px;transition:left 1s,top 1s,background 2s,box-shadow 2s}
+.luz .arco{position:absolute;left:0;right:0;bottom:0;height:18px;overflow:hidden}
+@media(max-width:820px){.luz{position:static;width:auto;margin:30px 0 10px}}
 /* sin botón cv */
 #mInfo,#bCV{display:none!important}
 </style></head><body>
@@ -932,6 +941,38 @@ document.addEventListener('keydown',function(e){if(!M.hidden&&e.key==='Escape')c
  if(location.hash==='#cv')abreCV();
  if(act>=0)fichaInfo(act);
 })();
+/* ficha con créditos */
+(function(){var fa=info.querySelector('.fa');if(!fa)return;var esc=function(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;')};
+ var ROL=[['dirección',/^(direcci[oó]n|dirigid[oa] por|dir\.?)(?!.*(fotograf|arte|creativ))\s*(y montaje)?\b/i],['producción',/^(producci[oó]n|producido por|jefe de producci)/i],['fotografía',/^(dop|dp|dir\.? fotograf|direcci[oó]n de fotograf)/i],['arte',/^(dir\.? arte|direct(or|ora) de arte|arte\b|set design)/i],['montaje',/^(montaje|edit|editor|edici[oó]n)/i],['color',/^(color|etalonaje)/i],['música',/^(m[uú]sica|m[uú]sico|sonido)/i]];
+ function cortos(t){if(!t)return[];var out=[],vis={};t.split(/\n/).forEach(function(l){l=l.trim();if(!l)return;ROL.forEach(function(R){if(vis[R[0]])return;var m=l.match(R[1]);if(m){var v=l.slice(m[0].length).replace(/^[\s:·\-–]+/,'').replace(/^(por|de)\s+/i,'').trim();if(v){vis[R[0]]=1;out.push([R[0],v])}}})});
+  var orden=ROL.map(function(r){return r[0]});out.sort(function(a,b){return orden.indexOf(a[0])-orden.indexOf(b[0])});return out.slice(0,5)}
+ var tt=null,ult=-1;
+ window.fichaInfo=function(i){if(i===ult)return;ult=i;var p=P[i];fa.classList.add('fuera');clearTimeout(tt);tt=setTimeout(function(){
+  var d=DESC[i]||p.d||'',cr=cortos(CRED[i]);
+  fa.innerHTML='<div class="g">'+num(i)+'  ·  '+(CAT[p.c]||p.c)+'</div><h3>'+esc(p.t)+'</h3>'+(d?'<p>'+d+'</p>':'')
+   +'<dl>'+(p.r?'<dt>rol</dt><dd><i>'+esc(p.r)+'</i></dd>':'')+(p.f?'<dt>formato</dt><dd>'+esc(p.f)+'</dd>':'')+'</dl>'
+   +(cr.length?'<dl class="cr">'+cr.map(function(x){return '<dt>'+x[0]+'</dt><dd>'+esc(x[1])+'</dd>'}).join('')+'</dl>':'')
+   +'<button class="ver">ver proyecto →</button>';
+  fa.querySelector('.ver').onclick=function(){ficha(i)};fa.classList.remove('fuera')},160)};
+ setTimeout(function(){if(act>=0){ult=-1;fichaInfo(act)}},260)
+})();
+/* luz de barcelona: hora local y la luz que hay ahora mismo fuera */
+(function(){var L=document.createElement('div');L.className='luz';L.setAttribute('aria-hidden','true');
+ L.innerHTML='<div class="l1"><span class="t1"></span><span class="t2"></span></div><div class="hz2"><span class="sol"></span></div>';info.appendChild(L);
+ var LAT=41.39*Math.PI/180,LON=2.17;
+ function alt(d){var doy=Math.floor((d-Date.UTC(d.getUTCFullYear(),0,0))/864e5),dec=23.44*Math.PI/180*Math.sin(2*Math.PI*(284+doy)/365),uh=d.getUTCHours()+d.getUTCMinutes()/60,H=(uh-(12-LON/15))*15*Math.PI/180;
+  return {a:Math.asin(Math.sin(LAT)*Math.sin(dec)+Math.cos(LAT)*Math.cos(dec)*Math.cos(H))*180/Math.PI,h:H}}
+ function pinta(){var d=new Date(),r=alt(d),a=r.a,man=r.h<0,tx,k,col;
+  if(a<-6){tx='noche · luz artificial';k='≈ 3200 K';col='#8a8882'}
+  else if(a<0){tx='hora azul';k='≈ 9000 K';col='#6f8fc8'}
+  else if(a<6){tx='hora dorada';k='≈ 3500 K';col='#e0913a'}
+  else if(a<40){tx=man?'luz de mañana':'luz de tarde';k='≈ 4800 K';col='#d9a441'}
+  else{tx='luz cenital';k='≈ 5600 K';col='#b9ab84'}
+  var hm=d.toLocaleTimeString('es-ES',{timeZone:'Europe/Madrid',hour:'2-digit',minute:'2-digit'});
+  L.querySelector('.t1').textContent='barcelona  '+hm+'  ·  '+tx;L.querySelector('.t2').textContent=k;
+  var f=((r.h*180/Math.PI)/15+12)/24,s=L.querySelector('.sol');s.style.left=(f*100)+'%';s.style.top=(18-Math.max(-4,Math.min(18,(a+6)/(78)*18)))+'px';
+  s.style.background=a<-6?'transparent':col;s.style.border=a<-6?'1px solid var(--gris)':'0';s.style.boxShadow=a>=-6?'0 0 8px '+col:'none'}
+ pinta();setInterval(pinta,30000)})();
 var bcH=document.getElementById('bCerrarHz');if(bcH)bcH.onclick=function(){volver()};
 document.querySelectorAll('#mVivos .fr').forEach(function(f){f.onclick=function(){var q=f.dataset.v==="t"?rt:r;q.querySelector('.l').onclick()}});
 })();
