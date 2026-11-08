@@ -323,6 +323,26 @@ body.hz .cab.k3{display:none}
 body.hz #bCerrarHz{display:inline-flex}
 /* modo sala escondido: el botón solo aparece dentro de un proyecto */
 body:not(.pjab) #bSala,body:not(.pjab) #mSala{display:none!important}
+/* info contextual: bio + ficha del proyecto activo; el cv completo va aparte */
+#info .cv,#bTodo{display:none!important}
+#info .cvl{margin:18px 0 0}
+#info .cvl button{color:var(--gris);padding:0;border-bottom:1px solid var(--linea)}
+#info .cvl button:hover{color:var(--tinta);border-color:var(--tinta)}
+#info .fa{margin-top:44px;padding-top:12px;border-top:1px solid var(--linea);transition:opacity .35s ease}
+#info .fa.fuera{opacity:0}
+#info .fa .g{color:var(--gris);font-variant-numeric:tabular-nums}
+#info .fa h3{font:inherit;font-size:26px;font-style:italic;line-height:1.05;margin:8px 0 14px;font-weight:400}
+#info .fa dl{display:grid;grid-template-columns:76px 1fr;gap:3px 10px;margin:0 0 14px}
+#info .fa dt{color:var(--gris)}#info .fa dd{margin:0}
+#info .fa p{margin:0 0 10px;max-width:42ch}
+#info .fa .ver{color:var(--gris);font-size:13px}
+@media(max-width:820px){#info .fa{display:none}}
+.cvhead{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;padding:22px 0 26px;border-bottom:1px solid var(--linea);margin-bottom:6px}
+.cvhead h1{font:inherit;font-size:clamp(30px,3.4vw,52px);font-style:italic;font-weight:400;line-height:1;margin:0 0 14px}
+.cvhead p{margin:0 0 6px;max-width:52ch}.cvhead .g{color:var(--gris)}
+.cvx .cab2 .acc{display:flex;gap:16px}
+@media(max-width:820px){.cvhead{grid-template-columns:1fr;gap:10px}}
+@media print{body>*:not(#cvx){display:none!important}#cvx{position:static!important;display:block!important;padding:0!important;overflow:visible}#cvx[hidden]{display:block!important}.cvx .cab2{display:none}.cvg{columns:2}a{color:inherit;text-decoration:none}}
 /* sin botón cv */
 #mInfo,#bCV{display:none!important}
 </style></head><body>
@@ -409,7 +429,7 @@ function pon(i){if(!DESK.matches||i===cur)return;cur=i;frs.forEach(function(f,k)
 document.addEventListener('mouseover',function(e){if(!e.target.closest)return;var f=e.target.closest('#fotos .fr');if(f){pon(+f.dataset.i);return}var r=e.target.closest('#idx .row');if(r){var k=rows.indexOf(r);pon(k);return}pon(-1)});
 document.addEventListener('mouseleave',function(){pon(-1)});})();
 window.addEventListener('resize',function(){frs.forEach(function(f){var ifr=f.querySelector('iframe');if(ifr)encaja(f.querySelector('.pl'),ifr,VID[f.dataset.i][0]==='y')})});
-function activa(i,forzar){if(i===act&&!forzar)return;act=i;var p=P[i];
+function activa(i,forzar){if(i===act&&!forzar)return;act=i;var p=P[i];if(window.fichaInfo)fichaInfo(i);
  rows.forEach(function(r,k){r.classList.toggle('act',k===i)});
  document.getElementById('now').innerHTML=num(i)+'  '+p.t+'  <span class="g"><i>'+p.r+'</i> · '+p.f+'</span>';
 }
@@ -892,6 +912,24 @@ function cierraM(){M.hidden=true;document.body.classList.remove('menu')}
 function abreM(){lst.innerHTML='';[].forEach.call(idx.children,function(o){if(o.dataset.fuera)return;var c=o.cloneNode(true);c.hidden=false;c.classList.remove('off','act');c.querySelector('.l').onclick=function(){cierraM();o.querySelector('.l').onclick()};lst.appendChild(c)});M.hidden=false;document.body.classList.add('menu');M.scrollTop=0}
 document.getElementById('mMenu').onclick=abreM;document.getElementById('mMenuX').onclick=cierraM;
 document.addEventListener('keydown',function(e){if(!M.hidden&&e.key==='Escape')cierraM()});})();
+/* info contextual */
+(function(){var esc=function(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;')};
+ var yo=info.querySelector('.yo');if(yo){var l=document.createElement('p');l.className='cvl';l.innerHTML='<button>currículum completo →</button>';yo.appendChild(l);l.querySelector('button').onclick=abreCV}
+ var fa=document.createElement('div');fa.className='fa';info.appendChild(fa);var tt=null,ult=-1;
+ window.fichaInfo=function(i){if(i===ult)return;ult=i;var p=P[i];fa.classList.add('fuera');clearTimeout(tt);tt=setTimeout(function(){
+  var d=DESC[i]||p.d||'';fa.innerHTML='<div class="g">'+num(i)+'  ·  '+(CAT[p.c]||p.c)+'</div><h3>'+esc(p.t)+'</h3><dl>'+(p.r?'<dt>rol</dt><dd><i>'+esc(p.r)+'</i></dd>':'')+(p.f?'<dt>formato</dt><dd>'+esc(p.f)+'</dd>':'')+'</dl>'+(d?'<p>'+d+'</p>':'')+'<button class="ver">ver proyecto →</button>';
+  fa.querySelector('.ver').onclick=function(){ficha(i)};fa.classList.remove('fuera')},180)};
+ var cvx=document.getElementById('cvx'),cab=cvx.querySelector('.cab2');
+ var h=document.createElement('div');h.className='cvhead';var ig=(S.instagram||'').replace(/^@/,'');
+ h.innerHTML='<div><h1>'+esc(S.nombre||'')+'</h1>'+(S.bio?'<p>'+esc(S.bio)+'</p>':'')+'</div><div>'+(S.ciudad?'<p class="g">'+esc(S.ciudad)+'</p>':'')+(S.correo?'<p><a href="mailto:'+esc(S.correo)+'">'+esc(S.correo)+'</a></p>':'')+(ig?'<p><a href="https://instagram.com/'+esc(ig)+'" target="_blank" rel="noopener">@'+esc(ig)+'</a></p>':'')+'<p class="g">mateosanzr.com</p></div>';
+ cab.insertAdjacentElement('afterend',h);
+ var cc=document.getElementById('cCV'),acc=document.createElement('span');acc.className='acc';cc.parentNode.insertBefore(acc,cc);var pr=document.createElement('button');pr.textContent='(imprimir / pdf)';pr.onclick=function(){window.print()};acc.appendChild(pr);acc.appendChild(cc);
+ function abreCV(){cvx.hidden=false;cvx.scrollTop=0;try{history.replaceState(null,'','#cv')}catch(e){}}
+ window.abreCV=abreCV;
+ cc.onclick=function(){cvx.hidden=true;try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}};
+ if(location.hash==='#cv')abreCV();
+ if(act>=0)fichaInfo(act);
+})();
 var bcH=document.getElementById('bCerrarHz');if(bcH)bcH.onclick=function(){volver()};
 document.querySelectorAll('#mVivos .fr').forEach(function(f){f.onclick=function(){var q=f.dataset.v==="t"?rt:r;q.querySelector('.l').onclick()}});
 })();
