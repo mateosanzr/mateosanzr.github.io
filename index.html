@@ -603,7 +603,6 @@ html.escOn #proy{overflow:hidden!important}
 #fil.f2{display:flex;justify-content:flex-start!important;gap:4px 16px!important;flex-wrap:wrap}
 #fil.f2 button{color:var(--gris);padding:0}#fil.f2 button sup{font-size:9px;margin-left:2px;color:var(--gris);vertical-align:4px}
 #fil.f2 button.on{color:var(--tinta)}#fil.f2 button.on::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor}
-#idx>.off{display:none!important}
 </style><link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=VT323&display=swap" rel="stylesheet"></head><body>
 <div id="cur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="mbar"><a href="#" id="mHome" class="logo">mateo sanz román</a><span><button id="mVolver" hidden title="volver" aria-label="volver"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button><button id="mInfo" class="tx">cv</button><button id="mMenu" title="proyectos" aria-label="proyectos"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.5 3.5h11M1.5 7h11M1.5 10.5h11" stroke="currentColor" fill="none"/></svg></button><button id="mSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
@@ -1729,7 +1728,7 @@ var pie=document.querySelector('footer span');if(pie&&S.lema)pie.textContent=S.l
 /* filtros del índice */
 (function(){var fil=document.getElementById('fil');if(!fil)return;fil.innerHTML='';fil.classList.add('f2');var act=null,G=function(c){return c==='dop'?'dop':c==='dir'?'dir':'otros'};
  var cuenta={dop:0,dir:0,otros:0},tot=0;[].forEach.call(idx.children,function(r){if(!r.dataset.c)return;cuenta[G(r.dataset.c)]++;tot++});
- [[null,'todo',tot],['dop','dop',cuenta.dop],['dir','dirección',cuenta.dir],['otros','obra y foto',cuenta.otros]].forEach(function(K){var b=document.createElement('button');b.innerHTML=K[1]+'<sup>'+K[2]+'</sup>';b.dataset.s=K[0]||'';if(!K[0])b.classList.add('on');
+ [[null,'todo',tot],['dop','dop',cuenta.dop],['dir','dirección',cuenta.dir],['otros','otros',cuenta.otros]].forEach(function(K){var b=document.createElement('button');b.innerHTML=K[1]+'<sup>'+K[2]+'</sup>';b.dataset.s=K[0]||'';if(!K[0])b.classList.add('on');
   b.onclick=function(){act=K[0];fil.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});
    [].forEach.call(idx.children,function(r){var g=r.dataset.c?G(r.dataset.c):'otros';r.classList.toggle('off',!!act&&g!==act)});
    frs.forEach(function(f){f.hidden=!!f.dataset.fuera||(!!act&&G(f.dataset.c)!==act)});col.scrollTo({top:0});var first=frs.findIndex(function(f){return !f.hidden});if(first>=0)activa(first,true)};fil.appendChild(b)})})();
