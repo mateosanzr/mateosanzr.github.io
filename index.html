@@ -365,7 +365,7 @@ body.pjab .rt0{display:none}
 .hoy:hover{color:var(--tinta)}
 body.ancho .hoy,body.pjab .hoy{display:none}
 .hoy.m{position:static;order:98;margin:24px 0 0;align-self:flex-start}
-.cz .pc .tabs{display:flex;gap:16px}.cz .pc .tabs .t{font:700 15px Georgia,serif;letter-spacing:.1em;color:var(--gris);padding:0;background:none}.cz .pc .tabs .t.on{color:var(--tinta)}
+.cz .pc .tabs{display:flex;gap:clamp(10px,1.4vw,18px);white-space:nowrap}.cz .pc .tabs .t{font:700 15px Georgia,serif;letter-spacing:.1em;color:var(--gris);padding:0;background:none}.cz .pc .tabs .t.on{color:var(--tinta)}
 .cz .sopa{position:relative;display:grid;width:100%;max-width:520px;border-top:1px solid var(--tinta);border-left:1px solid var(--tinta);user-select:none}
 .cz .sl{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font:700 clamp(13px,1.6vw,19px) Georgia,serif;cursor:pointer;border-right:1px solid var(--linea);border-bottom:1px solid var(--linea)}
 .cz .sl:hover{background:rgba(200,55,45,.08)}.cz .sl.ini{background:rgba(200,55,45,.25)}.cz .sl.mal{background:rgba(0,0,0,.12)}
@@ -391,7 +391,13 @@ body.ancho #now:empty+.der2{margin-left:auto}
 .cz{font-family:Georgia,"Times New Roman",serif;padding-bottom:40px}
 .cz .pc{display:flex;justify-content:space-between;align-items:baseline;border-top:0;border-bottom:1px solid var(--tinta);padding:5px 0;font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px}
 .cz .pc .t{font-weight:700;font-size:17px;letter-spacing:.12em}
-.cz .czb{display:grid;grid-template-columns:minmax(0,520px) minmax(0,1fr);gap:40px;align-items:start}
+.cz .czb{display:grid;grid-template-columns:min(calc(100vh - 180px),58%) minmax(0,1fr);gap:clamp(22px,3vw,52px);align-items:start}
+.cz .tab{container-type:inline-size;width:100%;min-width:0}
+.cz .rej,.cz .sopa,.cz .sud{width:100%;max-width:none;margin:0}
+.cz .cel input,.cz .sl,.cz .sk,.cz .sk input{font-size:calc(52cqw / var(--n))!important}
+.cz .cel b{font-size:max(8px,calc(16cqw / var(--n)))}
+.cz .trazos line{stroke-width:calc(48cqw / var(--n))}
+.cz .ps.uno{grid-template-columns:1fr}.cz .ps{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
 .cz .rej{display:grid;width:100%;border:2px solid var(--tinta);margin-bottom:22px}
 .cz .pc .crono{color:var(--gris);font-variant-numeric:tabular-nums}
 .cz .cel,.cz .neg{position:relative;aspect-ratio:1;border:1px solid var(--tinta);margin:0 -1px -1px 0;background:var(--papel)}
@@ -415,7 +421,9 @@ body.ancho #now:empty+.der2{margin-left:auto}
 .cz form textarea{min-height:100px}
 .cz form button{color:var(--papel);background:var(--tinta);padding:9px 18px;font:inherit}
 .cz form button:hover{background:var(--rec)}
-@media(max-width:820px){.rt0{position:static;order:99;margin:10px 0 24px;align-self:flex-start}.cz .ps{grid-template-columns:1fr}.vj,.cz .czb{grid-template-columns:1fr;gap:20px}.vj .reg2{height:260px!important}.eggf{columns:1}.cz .pc{flex-wrap:wrap;gap:4px 12px}}
+@media(max-width:820px){.rt0{position:static;order:99;margin:10px 0 24px;align-self:flex-start}.cz .ps{grid-template-columns:1fr}.vj,.cz .czb{grid-template-columns:1fr;gap:20px}.vj .reg2{height:260px!important}.eggf{columns:1}.cz .pc{display:grid;grid-template-columns:1fr auto;gap:6px 12px}.cz .pc .tabs{grid-column:1/-1;justify-content:space-between}.cz .pc .tabs .t,.cz .pc .t{font-size:13px;letter-spacing:.06em}.cz .czb{grid-template-columns:1fr}}
+@media(min-width:821px){#now{visibility:hidden}}
+@media(max-width:820px){body.ancho #proy,body.ancho .cab.k2{width:auto!important}}
 
 /* vivo como proyecto: deja ver el índice */
 @media(min-width:821px){#vivo{left:calc(16px + var(--c)*3)}}
@@ -435,33 +443,49 @@ button.sg,.cab button.sg,.mbar button.sg,.cab button.tx.sg{font-size:19px!import
 /* sin botón cv */
 #mInfo,#bCV{display:none!important}
 
-/* archivo: escritorio */
-.esc{position:relative;height:calc(100vh - 92px);min-height:420px;font:11px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--tinta);user-select:none;overflow:hidden}
-.esc .ics{position:absolute;right:8px;top:6px;display:flex;flex-direction:column;gap:18px;align-items:center}
-.esc .ic{height:auto!important;min-height:0;display:flex;flex-direction:column;align-items:center;gap:6px;width:84px;background:none;border:0;padding:4px;cursor:default;color:inherit;font:inherit}
-.esc .ic span{padding:0 4px}.esc .ic.on span{background:var(--tinta);color:var(--papel)}
-.esc .cp,.esc .pp{flex:none;box-sizing:border-box}.esc .cp{display:block;width:46px;height:34px;position:relative;border:1px solid var(--gris);border-radius:1px;margin-top:6px}
-.esc .cp:before{content:"";position:absolute;left:-1px;top:-7px;width:18px;height:6px;border:1px solid var(--gris);border-bottom:0}
-.esc .ic.on .cp,.esc .ic.on .cp:before{border-color:var(--tinta)}
-.esc .pp{display:block;width:30px;height:38px;border:1px solid var(--gris);border-top-width:4px;border-radius:0 0 3px 3px}
-.esc .win{position:absolute;left:4%;top:5%;width:min(920px,86%);height:84%;background:var(--papel);border:1px solid var(--tinta);display:flex;flex-direction:column;box-shadow:6px 6px 0 rgba(0,0,0,.06)}
-.esc .wt{display:flex;align-items:center;gap:12px;padding:5px 8px;border-bottom:1px solid var(--linea);cursor:move}
-.esc .wt .ru{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--gris)}.esc .wt .ru b{font-weight:400;color:var(--tinta)}
-.esc .wt button{background:none;border:0;padding:0 2px;font:15px/1 inherit;color:var(--gris);cursor:pointer}.esc .wt button:hover{color:var(--tinta)}
-.esc .wb{flex:1;display:flex;min-height:0}
-.esc .ls{flex:0 0 46%;overflow:auto;border-right:1px solid var(--linea)}
-.esc .row{display:grid;grid-template-columns:18px 1fr 92px 64px;gap:8px;padding:2px 8px;cursor:default;white-space:nowrap}
+/* archivo: escritorio de ordenador antiguo */
+.esc{position:relative;height:calc(100vh - 92px);min-height:440px;font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--tinta);user-select:none;overflow:hidden;border:1px solid var(--tinta);
+ background:var(--papel) radial-gradient(circle,var(--linea) .8px,transparent 1px) 0 0/4px 4px}
+.esc .mb{position:absolute;left:0;right:0;top:0;height:22px;display:flex;align-items:center;gap:18px;padding:0 10px;background:var(--papel);border-bottom:1px solid var(--tinta);z-index:50}
+.esc .mb b{font-weight:700}.esc .mb .rl{margin-left:auto;font-variant-numeric:tabular-nums}
+.esc .mb button{background:none;border:0;padding:1px 6px;font:inherit;color:inherit;cursor:pointer}.esc .mb button:hover{background:var(--tinta);color:var(--papel)}
+.esc .ics{position:absolute;right:14px;top:40px;display:flex;flex-direction:column;gap:22px;align-items:center;z-index:1}
+.esc .ic{height:auto!important;min-height:0;display:flex;flex-direction:column;align-items:center;gap:5px;width:90px;background:none;border:0;padding:2px;cursor:pointer;color:inherit;font:inherit}
+.esc .ic span{padding:0 4px;background:var(--papel)}.esc .ic.on span{background:var(--tinta);color:var(--papel)}
+.esc .cp{flex:none;box-sizing:border-box;display:block;width:48px;height:36px;position:relative;border:1px solid var(--tinta);background:var(--papel);margin-top:7px}
+.esc .cp:before{content:"";position:absolute;left:-1px;top:-7px;width:20px;height:6px;border:1px solid var(--tinta);border-bottom:0;background:var(--papel)}
+.esc .ic.on .cp{background:repeating-linear-gradient(45deg,var(--tinta) 0 1px,var(--papel) 1px 3px)}
+.esc .win{position:absolute;background:var(--papel);border:1px solid var(--tinta);display:flex;flex-direction:column;box-shadow:2px 2px 0 var(--tinta);min-width:240px}
+.esc .wt{position:relative;height:21px;flex:none;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--tinta);cursor:move;
+ background:repeating-linear-gradient(to bottom,transparent 0 3px,var(--tinta) 3px 4px) 0 2px/100% 15px no-repeat;background-origin:content-box;padding:0 4px}
+.esc .win:not(.top) .wt{background:none}
+.esc .wt .ti{background:var(--papel);padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:70%}
+.esc .wt .cx{position:absolute;left:8px;top:4px;width:12px;height:12px;border:1px solid var(--tinta);background:var(--papel);padding:0;cursor:pointer}
+.esc .wt .cx:hover{background:var(--tinta)}
+.esc .tb{display:flex;align-items:center;gap:8px;padding:3px 8px;border-bottom:1px solid var(--tinta);flex:none}
+.esc .tb button{background:none;border:1px solid transparent;padding:0 5px;font:inherit;color:inherit;cursor:pointer}.esc .tb button:hover{border-color:var(--tinta)}
+.esc .tb button.on{background:var(--tinta);color:var(--papel)}
+.esc .tb .ru{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.esc .tb .ru a{cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.esc .cn{flex:1;overflow:auto;min-height:0}
+.esc .row{display:grid;grid-template-columns:20px 1fr 100px 70px;gap:8px;padding:2px 8px;cursor:pointer;white-space:nowrap}
 .esc .row>*{overflow:hidden;text-overflow:ellipsis}
-.esc .row.hd{color:var(--gris);border-bottom:1px solid var(--linea);position:sticky;top:0;background:var(--papel)}
-.esc .row:nth-child(even):not(.hd){background:rgba(0,0,0,.025)}
+.esc .row.hd{color:var(--gris);border-bottom:1px solid var(--linea);position:sticky;top:0;background:var(--papel);cursor:default}
+.esc .row:not(.hd):hover{background:rgba(0,0,0,.05)}
 .esc .row.on{background:var(--tinta)!important;color:var(--papel)}.esc .row.on .g{color:var(--papel)}
 .esc .row .g{color:var(--gris)}
-.esc .row i{font-style:normal;color:var(--gris)}.esc .row.on i{color:var(--papel)}
-.esc .pv{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px;min-width:0;gap:8px;color:var(--gris)}
-.esc .pv img{max-width:100%;max-height:calc(100% - 24px);object-fit:contain;display:block;cursor:zoom-in}
-.esc .est{padding:3px 8px;border-top:1px solid var(--linea);color:var(--gris)}
-@media(max-width:820px){.esc{height:auto;min-height:0;overflow:visible}.esc .ics{position:static;flex-direction:row;justify-content:flex-start;margin:6px 0 14px}
- .esc .win{position:static;width:auto;height:auto;box-shadow:none}.esc .wt{cursor:default}.esc .wb{flex-direction:column}.esc .ls{flex:none;max-height:46vh;border-right:0;border-bottom:1px solid var(--linea)}.esc .pv{min-height:52vh}.esc .row{grid-template-columns:18px 1fr 78px}.esc .row>:nth-child(4){display:none}}
+.esc .mini{display:inline-block;width:13px;height:9px;border:1px solid currentColor;position:relative;top:1px}.esc .mini:before{content:"";position:absolute;left:-1px;top:-3px;width:5px;height:2px;border:1px solid currentColor;border-bottom:0}
+.esc .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:16px 10px;padding:14px}
+.esc .th{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;min-width:0}
+.esc .th img{width:88px;height:66px;object-fit:cover;border:1px solid var(--tinta);display:block;background:var(--linea)}
+.esc .th span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 3px}.esc .th.on span{background:var(--tinta);color:var(--papel)}
+.esc .th .cp{width:56px;height:42px}
+.esc .est{flex:none;padding:2px 8px;border-top:1px solid var(--tinta);color:var(--gris);display:flex;justify-content:space-between}
+.esc .vs .cn{display:flex;align-items:center;justify-content:center;padding:10px;overflow:hidden;background:var(--papel)}
+.esc .vs .cn img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.esc .vs .est button{background:none;border:0;font:inherit;color:var(--tinta);cursor:pointer;padding:0 6px}
+@media(max-width:820px){.esc{height:calc(100svh - 120px);min-height:0}.esc .mb .op{display:none}.esc .ics{top:34px;right:6px}
+ .esc .win{left:6px!important;right:6px;width:auto!important;top:34px!important;bottom:8px;height:auto!important}.esc .wt{cursor:default}
+ .esc .row{grid-template-columns:20px 1fr 84px}.esc .row>:nth-child(4){display:none}.esc .grid{grid-template-columns:repeat(3,1fr);gap:12px 6px;padding:10px}.esc .th img{width:100%;height:auto;aspect-ratio:4/3}}
 </style></head><body>
 <div id="cur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="mbar"><a href="#" id="mHome" class="logo">mateo sanz román</a><span><button id="mVolver" hidden title="volver" aria-label="volver"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button><button id="mInfo" class="tx">cv</button><button id="mMenu" title="proyectos" aria-label="proyectos"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.5 3.5h11M1.5 7h11M1.5 10.5h11" stroke="currentColor" fill="none"/></svg></button><button id="mSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
@@ -1115,45 +1139,69 @@ document.addEventListener('keydown',function(e){if(!M.hidden&&e.key==='Escape')c
  var vjRaf=null,vjIv=null;
  function viaje(){
   egg('','','<div class="vj" id="vj"><canvas class="cuadro"></canvas></div>','');
-  var V=document.getElementById('vj'),cv=V.querySelector('.cuadro'),dpr=Math.min(2,window.devicePixelRatio||1),ARCH=[],vistos={},sel=-1,mx=-1,my=-1,sellos=[],frase=null,fi=0,ultFrase=0,capa=0,G=null,inicio=performance.now();
-  function encola(){performance.getEntriesByType('resource').forEach(function(r){if(vistos[r.name]||/ping=/.test(r.name))return;vistos[r.name]=1;var o={n:r.name.replace(location.origin+'/','').replace(/^https?:\/\//,'').replace(/\?.*$/,''),b:r.transferSize||r.encodedBodySize||0,t:new Date(performance.timeOrigin+r.startTime),hx:null};ARCH.push(o);
+  var V=document.getElementById('vj'),cv=V.querySelector('.cuadro'),dpr=Math.min(2,window.devicePixelRatio||1),ARCH=[],vistos={},hov=null,fij=null,mx=-1,my=-1,G=null,MONO='ui-monospace,SFMono-Regular,Menlo,monospace';
+  function encola(){var ahora=performance.now();performance.getEntriesByType('resource').forEach(function(r){if(vistos[r.name]||/ping=/.test(r.name))return;vistos[r.name]=1;var o={n:r.name.replace(location.origin+'/','').replace(/^https?:\/\//,'').replace(/\?.*$/,''),b:r.transferSize||r.encodedBodySize||0,t:new Date(performance.timeOrigin+r.startTime),hx:null,t0:ahora};ARCH.push(o);
     if(r.name.indexOf(location.origin)===0&&/\.(jpe?g|png|webp|gif|js|json)(\?|$)/i.test(r.name))fetch(r.name,{cache:'force-cache'}).then(function(x){return x.arrayBuffer()}).then(function(buf){o.hx=new Uint8Array(buf.slice(0,4096));if(!o.b)o.b=buf.byteLength}).catch(function(){})});
-   for(var k in vid){if(!vistos['v:'+k]&&vid[k]>0){vistos['v:'+k]=1;ARCH.push({n:k.replace(location.origin+'/',''),b:vid[k],t:new Date(),hx:null,v:k})}}
-   ARCH.forEach(function(o){if(o.v&&vid[o.v]>o.b)o.b=vid[o.v]})}
+   for(var k in vid){if(!vistos['v:'+k]&&vid[k]>0){vistos['v:'+k]=1;ARCH.push({n:k.replace(location.origin+'/',''),b:vid[k],t:new Date(),hx:null,v:k,t0:ahora})}}
+   ARCH.forEach(function(o){if(o.v&&vid[o.v]>o.b){o.b=vid[o.v];o.t0=ahora}})}
   function hex2(n){return (n<16?'0':'')+n.toString(16)}
   function hh2(d){return pd(d.getHours())+':'+pd(d.getMinutes())+':'+pd(d.getSeconds())}
-  /* textos que se escriben dentro de la retícula, dos letras por signo */
-  function total(){var r=bytes(),kwh=r.b/1e9*0.19,sg=(performance.now()-t0)/1000;return 'esta visita '+pd(Math.floor(sg/60))+':'+pd(Math.floor(sg)%60)+' · '+grupo(r.b)+' bytes · '+dec(kwh*1000,3)+' Wh · '+dec(kwh*1.8*1000,3)+' ml de agua · '+dec(kwh*494,3)+' g co2'}
-  var CAPAS=[total,function(){return 'servidor '+(srv.c?srv.c.toLowerCase():'?')+' · '+(srv.ms!=null?srv.ms+' ms ida y vuelta · '+grupo(srv.ms/2*200)+' km de fibra':'midiendo')+' · github pages 185.199.108.153'},
-   function(){var sg=(performance.now()-t0)/1000;return 'mientras miras · centros de datos del mundo '+grupo(415e9/31536000*sg)+' kWh · agua de google '+grupo(6.1e9*3.785/31536000*sg)+' litros'},
-   function(){return 'fuentes · sustainable web design 0,19 kWh/GB · refrigeración 1,8 L/kWh · media mundial 494 g co2/kWh · aie 415 TWh/año · google 6.100 M galones/año'}];
-  function texto(){if(sel>=0){var o=ARCH[sel],kwh=o.b/1e9*0.19;return o.n+' · '+grupo(o.b)+' bytes · '+hh2(o.t)+' · '+(srv.c?srv.c.toLowerCase():'cdn')+' → tú · '+dec(kwh*1000,4)+' Wh · '+dec(kwh*1.8*1000,4)+' ml'}return CAPAS[capa%CAPAS.length]()}
+  function sg(){return (performance.now()-t0)/1000}
+  /* los datos viven dentro del cuadro: cifras que cambian; al pasar, qué son; al pulsar, de dónde salen */
+  var DAT=[
+   {v:function(){return grupo(bytes().b)},u:'bytes',q:'han viajado hasta tu pantalla desde que entraste',f:['cada imagen, vídeo y línea de código de esta página','copiado desde un servidor a tu ordenador']},
+   {v:function(){return srv.ms!=null?String(srv.ms):'—'},u:'ms',q:function(){return 'ida y vuelta hasta el servidor'+(srv.c?' ('+srv.c.toLowerCase()+')':'')},f:function(){return ['medido cada 5 s desde tu navegador',srv.ms!=null?'≈ '+grupo(srv.ms/2*200)+' km de fibra óptica en cada sentido':'la luz recorre ~200 km por milisegundo en fibra']}},
+   {v:function(){var s=sg();return pd(Math.floor(s/60))+':'+pd(Math.floor(s)%60)},u:'',q:'tiempo mirando esto',f:['mientras la página esté abierta','algo sigue encendido en otra parte']},
+   {v:function(){return dec(bytes().b/1e9*0.19*1.8*1000,3)},u:'ml',q:'de agua para enfriar lo que has descargado',f:['0,19 kWh por GB transferido (sustainable web design)','1,8 litros por kWh en refrigeración de centros de datos']},
+   {v:function(){return dec(bytes().b/1e9*0.19*494,3)},u:'g co₂',q:'emitidos por esta visita',f:['0,19 kWh por GB transferido','494 g de co₂ por kWh, media mundial (ember 2024)']},
+   {v:function(){return grupo(6.1e9*3.785/31536000*sg())},u:'litros',q:'de agua evaporada en los centros de datos de google desde que llegaste',f:['google, informe ambiental: 6.100 millones de galones al año','≈ 732 litros por segundo']},
+   {v:function(){return grupo(415e9/31536000*sg())},u:'kWh',q:'consumidos por los centros de datos del mundo desde que llegaste',f:['agencia internacional de la energía: 415 TWh en 2024','≈ 13.000 kWh por segundo']}];
+  DAT.forEach(function(d){d.prev='';d.ch=[]});
+  var POS=[[.04,.08],[.62,.14],[.30,.30],[.70,.42],[.06,.56],[.40,.72],[.68,.86]],POSM=[[.04,.05],[.52,.17],[.04,.29],[.52,.41],[.04,.55],[.04,.69],[.04,.84]];
   function dibuja(t){if(!document.body.contains(V)){vjRaf=null;return}vjRaf=requestAnimationFrame(dibuja);
    var w=cv.clientWidth,h=cv.clientHeight;if(!w)return;if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(h*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr)}
-   var cols=Math.max(16,Math.floor(w/21)),rows=Math.max(10,Math.floor(h/18));G={cw:w/cols,ch:h/rows,cols:cols,rows:rows,n:cols*rows,map:[]};
+   var cols=Math.max(16,Math.floor(w/21)),rows=Math.max(10,Math.floor(h/18)),cw=w/cols,ch=h/rows,peq=w<620;G={cw:cw,ch:ch,cols:cols,rows:rows,n:cols*rows,map:[],B:[]};
    var x=cv.getContext('2d');x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,w,h);
+   var ti=colr('--tinta'),gr=colr('--gris'),li=colr('--linea'),re=colr('--rec'),pa=colr('--papel');
    var tot=0;ARCH.forEach(function(o){tot+=o.b});var K=4096;while(tot/K>G.n*0.9)K*=2;
-   var ti=colr('--tinta'),gr=colr('--gris'),li=colr('--linea'),re=colr('--rec');
-   x.font='10px ui-monospace,SFMono-Regular,Menlo,monospace';x.textBaseline='middle';x.textAlign='center';
-   /* texto escrito sobre la retícula: donde está el ratón y los sellos de los clics */
-   var escrito={};function escribe(str,r0,c0,al){for(var k=0;k<Math.ceil(str.length/2);k++){var c=c0+k,r=r0;if(c>=cols){r+=Math.floor(c/cols);c=c%cols}if(r>=rows)break;escrito[r*cols+c]={s:str.substr(k*2,2),a:al}}}
-   sellos=sellos.filter(function(z){return t<z.fin});sellos.forEach(function(z){escribe(z.s,z.r,z.c,Math.min(1,(z.fin-t)/1200))});
-   if(mx>=0){var r0=Math.floor(my/G.ch),c0=Math.floor(mx/G.cw)+1,str=texto();if(c0+Math.ceil(str.length/2)>cols)c0=Math.max(0,cols-Math.ceil(str.length/2));escribe(str,r0+1>=rows?r0-1:r0+1,c0,1)}
-   else if(t-inicio<6000){var hint='pasa por encima · haz clic';escribe(hint,Math.floor(rows/2),Math.floor((cols-hint.length/2)/2),Math.min(1,(6000-(t-inicio))/1500))}
-   if(frase&&t<frase.fin)escribe(frase.s,frase.r,frase.c,Math.min(1,(frase.fin-t)/1500,(t-frase.ini)/800));
-   var c=0;
-   ARCH.forEach(function(o,ai){var nc=Math.max(1,Math.round(o.b/K));for(var q=0;q<nc&&c<G.n;q++,c++){G.map[c]=ai;if(escrito[c])continue;var cx=(c%cols)*G.cw+G.cw/2,cy=Math.floor(c/cols)*G.ch+G.ch/2;
-     var by=o.hx&&o.hx.length?o.hx[(q*7)%o.hx.length]:((ai*31+q*17)&255);x.fillStyle=ai===sel?re:(o.v?ti:gr);x.globalAlpha=ai===sel?1:(.35+.5*((by%5)/4));x.fillText(hex2(by),cx,cy)}});
+   /* bloques de cifras, encajados en la retícula */
+   var fz=peq?15:19,libre={};x.font='400 '+fz+'px '+MONO;
+   DAT.forEach(function(d,i){var val=d.v(),txt=val+(d.u?' '+d.u:'');
+    if(val!==d.prev){for(var k=0;k<val.length;k++)if(val[k]!==d.prev[k])d.ch[k]=t;d.ch.length=val.length;d.prev=val}
+    var P=(peq?POSM:POS)[i],c0=Math.floor(P[0]*cols),r0=Math.floor(P[1]*rows),wc=Math.ceil((x.measureText(txt).width+cw)/cw),hc=2;
+    c0=Math.min(c0,cols-wc);r0=Math.min(r0,rows-hc);var B={d:d,i:i,c:c0,r:r0,wc:wc,hc:hc,val:val,txt:txt};G.B.push(B);
+    for(var rr=r0;rr<r0+hc;rr++)for(var cc=c0;cc<c0+wc;cc++)libre[rr*cols+cc]=1});
+   /* los bytes */
+   x.font='10px '+MONO;x.textBaseline='middle';x.textAlign='center';
+   var c=0,ahora=performance.now(),sel=hov&&hov.f!=null?hov.f:(fij&&fij.f!=null?fij.f:-1);
+   ARCH.forEach(function(o,ai){var nc=Math.max(1,Math.round(o.b/K)),nuevo=ahora-o.t0<1600;for(var q=0;q<nc&&c<G.n;q++,c++){while(libre[c]&&c<G.n)c++;if(c>=G.n)break;G.map[c]=ai;
+     var cx=(c%cols)*cw+cw/2,cy=Math.floor(c/cols)*ch+ch/2,by=o.hx&&o.hx.length?o.hx[(q*7)%o.hx.length]:((ai*31+q*17)&255);
+     if(nuevo&&Math.random()<.6)by=Math.floor(Math.random()*256);
+     x.fillStyle=ai===sel?re:(nuevo?ti:(o.v?ti:gr));x.globalAlpha=ai===sel||nuevo?1:(.35+.5*((by%5)/4));x.fillText(hex2(by),cx,cy)}});
    x.globalAlpha=1;x.fillStyle=li;
-   for(var cc=c;cc<G.n;cc++){if(escrito[cc])continue;x.fillText('·',(cc%cols)*G.cw+G.cw/2,Math.floor(cc/cols)*G.ch+G.ch/2)}
-   for(var k in escrito){var e=escrito[k],kk=+k;x.fillStyle=ti;x.globalAlpha=e.a;x.clearRect((kk%cols)*G.cw,Math.floor(kk/cols)*G.ch,G.cw,G.ch);x.fillText(e.s,(kk%cols)*G.cw+G.cw/2,Math.floor(kk/cols)*G.ch+G.ch/2)}x.globalAlpha=1;
-   var lleno=Math.min(G.n,c);if((!frase||t>frase.fin+4000)&&t-ultFrase>12000&&G.n-lleno>80){var d=DICHOS[fi%DICHOS.length];fi++;var pos=lleno+Math.floor(Math.random()*Math.max(1,G.n-lleno-d.length));frase={s:d,r:Math.floor(pos/cols),c:pos%cols,ini:t,fin:t+7000};ultFrase=t}}
-  function donde(e){var R=cv.getBoundingClientRect();mx=e.clientX-R.left;my=e.clientY-R.top;if(!G)return;var c=Math.floor(my/G.ch)*G.cols+Math.floor(mx/G.cw),ai=G.map[c];sel=ai==null?-1:ai}
-  cv.addEventListener('pointermove',donde);
-  cv.addEventListener('pointerleave',function(){mx=my=-1;sel=-1});
-  cv.addEventListener('click',function(e){donde(e);if(sel<0)capa++;if(!G)return;var r=Math.floor(my/G.ch),c=Math.floor(mx/G.cw);sellos.push({s:texto(),r:Math.max(0,r-1),c:Math.max(0,Math.min(c,G.cols-40)),fin:performance.now()+9000})});
+   for(var cc=c;cc<G.n;cc++){if(libre[cc])continue;x.fillText('·',(cc%cols)*cw+cw/2,Math.floor(cc/cols)*ch+ch/2)}
+   /* cifras: los dígitos que acaban de cambiar se encienden */
+   x.textAlign='left';x.textBaseline='alphabetic';
+   G.B.forEach(function(B){var X=B.c*cw+cw/2,Y=B.r*ch+ch*1.55,on=(hov&&hov.b===B.i)||(fij&&fij.b===B.i);x.font='400 '+fz+'px '+MONO;
+    for(var k=0;k<B.val.length;k++){var e=t-(B.d.ch[k]||-1e9),f=Math.max(0,1-e/900);x.fillStyle=f>0?re:ti;x.globalAlpha=f>0?.45+.55*f:1;x.fillText(B.val[k],X,Y);X+=x.measureText(B.val[k]).width}
+    x.globalAlpha=1;if(B.d.u){x.fillStyle=gr;x.font='400 '+Math.round(fz*.62)+'px '+MONO;x.fillText(' '+B.d.u,X,Y)}
+    if(on){x.strokeStyle=ti;x.lineWidth=1;x.strokeRect(B.c*cw+.5,B.r*ch+.5,B.wc*cw-1,B.hc*ch-1)}});
+   /* nota legible bajo lo que señalas */
+   var nota=null,act=hov||fij;
+   if(act&&act.b!=null){var B=G.B[act.b],q=typeof B.d.q==='function'?B.d.q():B.d.q,L=[q];if(fij&&fij.b===act.b){var ff=typeof B.d.f==='function'?B.d.f():B.d.f;L=L.concat(ff)}nota={L:L,c:B.c,r:B.r+B.hc,fj:fij&&fij.b===act.b}}
+   else if(act&&act.f!=null&&ARCH[act.f]){var o=ARCH[act.f],kwh=o.b/1e9*0.19,L=[o.n,grupo(o.b)+' bytes · llegó a las '+hh2(o.t)];if(fij&&fij.f===act.f)L=L.concat([(srv.c?srv.c.toLowerCase():'cdn')+' → tú',dec(kwh*1000,4)+' Wh · '+dec(kwh*1.8*1000,4)+' ml de agua · '+dec(kwh*494,4)+' g co₂']);
+    nota={L:L,c:Math.floor(act.x/cw)+1,r:Math.floor(act.y/ch)+1,fj:fij&&fij.f===act.f}}
+   if(nota){x.font='11px '+MONO;var mw=0;nota.L.forEach(function(s){mw=Math.max(mw,x.measureText(s).width)});var wc=Math.min(cols,Math.ceil((mw+cw)/cw)),hc=nota.L.length,c1=Math.max(0,Math.min(nota.c,cols-wc)),r1=nota.r+hc>rows?Math.max(0,nota.r-hc-3):nota.r;
+    x.fillStyle=pa;x.fillRect(c1*cw,r1*ch,wc*cw,hc*ch);x.strokeStyle=nota.fj?ti:li;x.strokeRect(c1*cw+.5,r1*ch+.5,wc*cw-1,hc*ch-1);x.textBaseline='middle';
+    nota.L.forEach(function(s,k){x.fillStyle=k===0?ti:gr;x.fillText(s,c1*cw+cw/2,(r1+k)*ch+ch/2)})}}
+  function que(e){var R=cv.getBoundingClientRect(),X=e.clientX-R.left,Y=e.clientY-R.top;mx=X;my=Y;if(!G)return null;var c=Math.floor(X/G.cw),r=Math.floor(Y/G.ch);
+   for(var i=0;i<G.B.length;i++){var B=G.B[i];if(c>=B.c&&c<B.c+B.wc&&r>=B.r&&r<B.r+B.hc)return {b:i}}
+   var ai=G.map[r*G.cols+c];return ai==null?null:{f:ai,x:X,y:Y}}
+  cv.addEventListener('pointermove',function(e){if(e.pointerType==='touch')return;hov=que(e);cv.style.cursor=hov?'pointer':'crosshair'});
+  cv.addEventListener('pointerleave',function(){hov=null});
+  cv.addEventListener('click',function(e){var z=que(e);if(!z||(fij&&((z.b!=null&&z.b===fij.b)||(z.f!=null&&z.f===fij.f))))fij=null;else fij=z});
   encola();clearInterval(vjIv);vjIv=setInterval(function(){if(!document.body.contains(V)){clearInterval(vjIv);return}encola()},1000);if(!vjRaf)vjRaf=requestAnimationFrame(dibuja);
-  setInterval(function(){if(document.body.contains(V))ping()},5000)}
+  ping();var pi=setInterval(function(){if(document.body.contains(V))ping();else clearInterval(pi)},5000)}
  b0.onclick=viaje;window.abreRuta=viaje;
  /* ---------- crucigrama del día ---------- */
  var DIARIO=[{"h":8,"w":9,"p":[["CABLE",1,3,"H","Echar un ___: ayudar"],["RED",0,7,"V","Sin ella trabaja el trapecista valiente"],["ACERO",0,3,"V","Material del que se hacen los nervios más templados"],["ROSA",3,3,"H","Vientos que marca la brújula"],["CINE",2,0,"H","Arte de los hermanos Lumière"],["ASNO",4,0,"H","Burro"],["NILO",4,2,"V","Río que se desborda cada verano en Egipto"],["ABEJA",3,6,"V","Reina de la colmena, entre otras"],["DUNA",0,0,"H","Montaña que mueve el viento"],["UVA",7,4,"H","Las doce se comen en Nochevieja"],["POEMA",5,4,"H","Ser todo un ___: ser un espectáculo"],["AMOR",4,0,"V","Según Dante, mueve el sol y las demás estrellas"],["TAJO",4,8,"V","Corte profundo; también, río de Toledo"]]},{"h":8,"w":9,"p":[["PIANO",7,0,"H","Mueble que se toca"],["ECO",5,4,"V","Ninfa castigada a repetir lo último que oía"],["CABLE",5,0,"H","Echar un ___: ayudar"],["LIMA",2,1,"V","Herramienta del preso de las películas"],["CARTA",6,4,"H","De navegación o de restaurante"],["NOTA",4,7,"V","Apunte breve para no olvidar algo"],["OLA",2,0,"H","Llegar de calor en verano"],["RANA",4,5,"H","Salir ___: decepcionar"],["ORO",0,0,"V","Palo de la baraja española"],["AROMA",0,6,"V","Lo que desprende el café recién hecho"],["FOTO",2,5,"H","___ finish: llegada muy ajustada"],["ISLA",0,3,"H","Lo es Menorca, pero no Gibraltar"],["SOL",3,3,"V","Moneda peruana"],["ROMA",1,8,"V","A ella llevan todos los caminos"]]},{"h":9,"w":9,"p":[["TIEMPO",4,2,"H","Matarlo es entretenerse"],["TREN",4,2,"V","Llevar un buen ___ de vida"],["CIRCO",0,7,"V","Valle glaciar con forma de anfiteatro"],["FARO",2,5,"H","Lo es la Torre de Hércules, en A Coruña"],["ASNO",7,0,"H","Burro"],["PAPEL",4,6,"V","Lo representa el actor"],["TELA",3,4,"V","Tener mucha ___: tener mucha complicación"],["ECO",0,6,"H","Ninfa castigada a repetir lo último que oía"],["ORILLA",2,0,"V","Lugar donde muere la ola"],["PIE",6,6,"H","Al ___ de la letra"],["SELLO",8,4,"H","Discográfica"],["OCA",2,0,"H","De ___ a ___ y tiro porque me toca"],["ERA",0,2,"V","Espacio donde se trilla la mies"],["ABEJA",0,0,"H","Reina de la colmena, entre otras"]]},{"h":9,"w":8,"p":[["PUERTA",1,0,"H","Dar con ella en las narices"],["LUZ",0,1,"V","Dar a ___: parir"],["SAPO",0,5,"V","Tragarse uno: aguantar algo desagradable"],["LOBO",3,2,"H","Hombre, para el hombre, según Hobbes"],["SOL",0,5,"H","Moneda peruana"],["LIMA",0,7,"V","Herramienta del preso de las películas"],["LAGO",3,2,"V","Ness tiene uno famoso"],["TIGRE",5,0,"H","Ser de papel: no dar miedo"],["ARCO",0,3,"V","Del violín o del triunfo"],["ARTE",3,0,"V","Séptimo, el cine"],["EBRO",5,4,"V","Río que da nombre a la península"],["SELLO",8,0,"H","Discográfica"],["REMO",7,4,"H","Deporte de banco móvil"],["ORO",5,7,"V","Palo de la baraja española"]]},{"h":9,"w":8,"p":[["VENTANA",2,0,"H","Tirar la casa por ella"],["PLAYA",0,4,"V","Lugar donde se busca debajo de los adoquines, según Mayo del 68"],["UVA",1,0,"V","Las doce se comen en Nochevieja"],["TINTA",0,2,"V","Saberlo de buena ___: de fuente fiable"],["MAPA",4,1,"H","Desaparecer de él es esfumarse"],["CASA",1,6,"V","Puede ser de empeño, de citas o de la moneda"],["PIANO",4,3,"V","Mueble que se toca"],["OSO",8,3,"H","Hacer el ___: comportarse de forma ridícula"],["LIRA",6,0,"H","Instrumento de Orfeo"],["DADO",5,5,"V","Lo echó César al cruzar el Rubicón"],["ASA",6,5,"H","Parte de la taza por donde se coge"],["MANO",5,7,"V","Echar una: ayudar"],["ALBA",5,0,"V","Hora de los fusilamientos en muchos poemas"]]},{"h":9,"w":8,"p":[["TIEMPO",3,2,"H","Matarlo es entretenerse"],["CARTA",0,2,"V","De navegación o de restaurante"],["NUBE",0,4,"V","Estar en ella es estar distraído"],["EBRO",0,7,"V","Río que da nombre a la península"],["MIEL",3,5,"V","Luna de ___"],["ARENA",5,3,"H","Lugar de los toros y del circo romano"],["MAR",2,0,"H","Alta ___: aguas internacionales"],["REMO",0,0,"V","Deporte de banco móvil"],["ARCO",5,3,"V","Del violín o del triunfo"],["AROMA",8,1,"H","Lo que desprende el café recién hecho"],["ASNO",5,7,"V","Burro"],["OCA",6,1,"V","De ___ a ___ y tiro porque me toca"],["CINE",0,2,"H","Arte de los hermanos Lumière"]]},{"h":8,"w":9,"p":[["TEATRO",2,2,"H","Hacer ___: exagerar"],["MESA",1,3,"V","De diálogo, de negociación o de mezclas"],["LIMA",4,0,"H","Herramienta del preso de las películas"],["PAPEL",0,0,"V","Lo representa el actor"],["ARTE",0,5,"V","Séptimo, el cine"],["LAPIZ",0,4,"H","Mina con funda de madera"],["MIEL",4,2,"V","Luna de ___"],["ABEJA",6,0,"H","Reina de la colmena, entre otras"],["PAN",0,0,"H","Dios griego de los pastores"],["ORCA",2,7,"V","Ballena asesina"],["MAR",5,4,"V","Alta ___: aguas internacionales"],["SAL",5,6,"H","Tener gracia, en sentido figurado"],["ROSA",7,4,"H","Vientos que marca la brújula"]]},{"h":9,"w":9,"p":[["TEATRO",6,3,"H","Hacer ___: exagerar"],["OTRO",5,3,"V","Ser ___: haber cambiado mucho"],["OSO",6,8,"V","Hacer el ___: comportarse de forma ridícula"],["ETNA",5,6,"V","Volcán activo de Sicilia"],["ASNO",5,0,"H","Burro"],["LOBO",8,0,"H","Hombre, para el hombre, según Hobbes"],["LAGO",8,5,"H","Ness tiene uno famoso"],["RISA",3,1,"V","Muerto de ella, el que se divierte mucho"],["ORILLA",3,0,"H","Lugar donde muere la ola"],["PAN",2,5,"V","Dios griego de los pastores"],["FOTO",0,0,"V","___ finish: llegada muy ajustada"],["PERA",2,5,"H","Ser la ___: ser el colmo"],["OASIS",1,0,"H","Grupo de los hermanos Gallagher"],["GATO",1,8,"V","Sirve para levantar el coche"],["MIEL",0,3,"V","Luna de ___"]]},{"h":9,"w":8,"p":[["VENTANA",4,1,"H","Tirar la casa por ella"],["NUDO",4,3,"V","Lo tiene el marinero y también la garganta"],["ARENA",4,5,"V","Lugar de los toros y del circo romano"],["CAMA",8,4,"H","Lo que se hace al levantarse"],["UVA",6,7,"V","Las doce se comen en Nochevieja"],["AROMA",0,7,"V","Lo que desprende el café recién hecho"],["TORRE",0,2,"V","Pieza de ajedrez que enroca"],["ORCA",0,4,"H","Ballena asesina"],["NIDO",2,4,"H","___ de amor: refugio de enamorados"],["TAJO",7,0,"H","Corte profundo; también, río de Toledo"],["DATO",5,0,"V","Sin él no hay estadística"],["ORO",1,0,"H","Palo de la baraja española"],["OCA",1,0,"V","De ___ a ___ y tiro porque me toca"]]},{"h":8,"w":9,"p":[["PUERTA",5,3,"H","Dar con ella en las narices"],["ARTE",2,5,"V","Séptimo, el cine"],["CANOA",2,4,"H","Embarcación de un solo tronco"],["OCA",0,8,"V","De ___ a ___ y tiro porque me toca"],["PIANO",0,4,"H","Mueble que se toca"],["RED",5,6,"V","Sin ella trabaja el trapecista valiente"],["MAPA",3,3,"V","Desaparecer de él es esfumarse"],["ROMA",4,0,"H","A ella llevan todos los caminos"],["NUDO",7,4,"H","Lo tiene el marinero y también la garganta"],["SAL",4,8,"V","Tener gracia, en sentido figurado"],["TIGRE",1,0,"V","Ser de papel: no dar miedo"],["TAJO",1,0,"H","Corte profundo; también, río de Toledo"],["ASA",6,1,"H","Parte de la taza por donde se coge"]]},{"h":9,"w":8,"p":[["PUERTA",4,1,"H","Dar con ella en las narices"],["CIELO",2,3,"V","Ser un ___: ser encantador"],["LUNA",1,6,"V","Le dio nombre a un lunes y a una miel"],["REMO",6,0,"H","Deporte de banco móvil"],["RIO",6,0,"V","De la Plata, en Argentina"],["TAJO",4,5,"V","Corte profundo; también, río de Toledo"],["OASIS",8,0,"H","Grupo de los hermanos Gallagher"],["ARCO",2,1,"H","Del violín o del triunfo"],["ASA",0,1,"V","Parte de la taza por donde se coge"],["LAPIZ",0,0,"H","Mina con funda de madera"],["OCA",7,5,"H","De ___ a ___ y tiro porque me toca"],["PIE",4,1,"V","Al ___ de la letra"],["OLA",1,5,"H","Llegar de calor en verano"],["UVA",5,7,"V","Las doce se comen en Nochevieja"]]},{"h":8,"w":9,"p":[["VENTANA",1,0,"H","Tirar la casa por ella"],["REMO",0,1,"V","Deporte de banco móvil"],["ROSA",3,0,"H","Vientos que marca la brújula"],["DADO",0,6,"V","Lo echó César al cruzar el Rubicón"],["NOTA",3,5,"H","Apunte breve para no olvidar algo"],["CASA",0,8,"V","Puede ser de empeño, de citas o de la moneda"],["RAMO",3,0,"V","De la construcción o del textil"],["ASNO",3,3,"V","Burro"],["SAL",0,4,"V","Tener gracia, en sentido figurado"],["TINTA",3,7,"V","Saberlo de buena ___: de fuente fiable"],["ETNA",5,5,"H","Volcán activo de Sicilia"],["ECO",5,5,"V","Ninfa castigada a repetir lo último que oía"],["ROMA",7,4,"H","A ella llevan todos los caminos"]]},{"h":8,"w":9,"p":[["PUERTA",0,3,"H","Dar con ella en las narices"],["ERA",0,5,"V","Espacio donde se trilla la mies"],["ARTE",2,5,"H","Séptimo, el cine"],["PAN",0,3,"V","Dios griego de los pastores"],["TEATRO",2,7,"V","Hacer ___: exagerar"],["TINTA",4,3,"H","Saberlo de buena ___: de fuente fiable"],["MESA",1,0,"H","De diálogo, de negociación o de mezclas"],["NUBE",4,5,"V","Estar en ella es estar distraído"],["VELA",0,1,"V","Pasar la noche en ___: no dormir"],["TAJO",4,3,"V","Corte profundo; también, río de Toledo"],["LAGO",7,0,"H","Ness tiene uno famoso"],["AVE",0,8,"V","Tren de alta velocidad"],["ORCA",5,0,"H","Ballena asesina"]]},{"h":9,"w":8,"p":[["TIEMPO",4,0,"H","Matarlo es entretenerse"],["ASNO",1,5,"V","Burro"],["NOCHE",0,2,"V","La de San Juan se celebra con hogueras"],["LEON",1,0,"H","Ciudad de la catedral Pulchra Leonina"],["TORRE",4,0,"V","Pieza de ajedrez que enroca"],["OLA",0,0,"V","Llegar de calor en verano"],["SOL",2,5,"H","Moneda peruana"],["MAR",4,3,"V","Alta ___: aguas internacionales"],["ERA",8,0,"H","Espacio donde se trilla la mies"],["RELOJ",0,7,"V","De arena, de sol o de cuco"],["AROMA",6,2,"H","Lo que desprende el café recién hecho"],["RAMO",5,6,"V","De la construcción o del textil"],["OCA",6,4,"V","De ___ a ___ y tiro porque me toca"]]},{"h":8,"w":9,"p":[["TEATRO",2,1,"H","Hacer ___: exagerar"],["MAPA",1,3,"V","Desaparecer de él es esfumarse"],["RAMO",4,2,"H","De la construcción o del textil"],["ORCA",4,5,"V","Ballena asesina"],["DATO",0,1,"V","Sin él no hay estadística"],["MAR",0,5,"V","Alta ___: aguas internacionales"],["CABLE",7,4,"H","Echar un ___: ayudar"],["SOL",5,7,"V","Moneda peruana"],["ROSA",5,5,"H","Vientos que marca la brújula"],["TELA",2,8,"V","Tener mucha ___: tener mucha complicación"],["AMOR",0,4,"H","Según Dante, mueve el sol y las demás estrellas"],["ROMA",4,2,"V","A ella llevan todos los caminos"],["REMO",6,0,"H","Deporte de banco móvil"],["EBRO",4,0,"V","Río que da nombre a la península"]]},{"h":8,"w":9,"p":[["VENTANA",7,2,"H","Tirar la casa por ella"],["TORRE",3,3,"V","Pieza de ajedrez que enroca"],["ACERO",5,0,"H","Material del que se hacen los nervios más templados"],["ROSA",4,6,"V","Vientos que marca la brújula"],["GATO",3,1,"H","Sirve para levantar el coche"],["MANO",4,0,"V","Echar una: ayudar"],["CERO",0,4,"V","Partir de él es empezar de nuevo"],["ORCA",4,8,"V","Ballena asesina"],["MAPA",0,2,"V","Desaparecer de él es esfumarse"],["ASA",1,0,"H","Parte de la taza por donde se coge"],["MAR",0,0,"V","Alta ___: aguas internacionales"],["CIRCO",0,4,"H","Valle glaciar con forma de anfiteatro"],["OCA",0,8,"V","De ___ a ___ y tiro porque me toca"]]},{"h":8,"w":9,"p":[["TEATRO",4,0,"H","Hacer ___: exagerar"],["ERA",4,1,"V","Espacio donde se trilla la mies"],["ACERO",6,1,"H","Material del que se hacen los nervios más templados"],["ANIMO",0,5,"V","Lo que se da al que flaquea"],["GATO",0,4,"H","Sirve para levantar el coche"],["TELA",1,2,"V","Tener mucha ___: tener mucha complicación"],["PIANO",2,4,"H","Mueble que se toca"],["ORILLA",2,8,"V","Lugar donde muere la ola"],["SAL",5,6,"H","Tener gracia, en sentido figurado"],["ASA",7,6,"H","Parte de la taza por donde se coge"],["ARTE",1,0,"H","Séptimo, el cine"],["PAN",0,0,"V","Dios griego de los pastores"],["TREN",4,3,"V","Llevar un buen ___ de vida"]]},{"h":8,"w":9,"p":[["LIBRO",5,4,"H","Lo tiene el rumiante, además del cuajar"],["SELLO",3,4,"V","Discográfica"],["SAL",3,4,"H","Tener gracia, en sentido figurado"],["ORO",4,7,"V","Palo de la baraja española"],["ARCO",7,1,"H","Del violín o del triunfo"],["ROSA",4,1,"V","Vientos que marca la brújula"],["ERA",4,0,"H","Espacio donde se trilla la mies"],["SILLA",0,2,"V","La de montar va sobre el caballo"],["CAMA",0,5,"V","Lo que se hace al levantarse"],["CASA",0,0,"H","Puede ser de empeño, de citas o de la moneda"],["TELA",2,0,"H","Tener mucha ___: tener mucha complicación"],["ALBA",1,5,"H","Hora de los fusilamientos en muchos poemas"],["FARO",0,8,"V","Lo es la Torre de Hércules, en A Coruña"]]},{"h":9,"w":9,"p":[["VENTANA",3,2,"H","Tirar la casa por ella"],["LIRA",0,6,"V","Instrumento de Orfeo"],["ARENA",0,4,"V","Lugar de los toros y del circo romano"],["GATO",2,8,"V","Sirve para levantar el coche"],["SAPO",5,5,"H","Tragarse uno: aguantar algo desagradable"],["TINTA",0,0,"H","Saberlo de buena ___: de fuente fiable"],["LUZ",0,6,"H","Dar a ___: parir"],["SAL",5,5,"V","Tener gracia, en sentido figurado"],["PIE",5,7,"V","Al ___ de la letra"],["CANOA",6,1,"H","Embarcación de un solo tronco"],["DATO",5,2,"V","Sin él no hay estadística"],["TIEMPO",0,0,"V","Matarlo es entretenerse"],["LOBO",8,1,"H","Hombre, para el hombre, según Hobbes"]]},{"h":9,"w":8,"p":[["PUERTA",3,0,"H","Dar con ella en las narices"],["RAMO",3,3,"V","De la construcción o del textil"],["MESA",5,3,"H","De diálogo, de negociación o de mezclas"],["LAGO",6,0,"H","Ness tiene uno famoso"],["ISLA",0,5,"V","Lo es Menorca, pero no Gibraltar"],["DADO",4,6,"V","Lo echó César al cruzar el Rubicón"],["NIDO",0,4,"H","___ de amor: refugio de enamorados"],["SAPO",1,0,"V","Tragarse uno: aguantar algo desagradable"],["PIE",1,2,"V","Al ___ de la letra"],["SOL",7,5,"H","Moneda peruana"],["CASA",5,1,"V","Puede ser de empeño, de citas o de la moneda"],["ORCA",0,7,"V","Ballena asesina"],["GATO",8,0,"H","Sirve para levantar el coche"]]},{"h":7,"w":9,"p":[["TEATRO",1,3,"H","Hacer ___: exagerar"],["LOBO",0,8,"V","Hombre, para el hombre, según Hobbes"],["MAR",0,5,"V","Alta ___: aguas internacionales"],["ATLAS",0,3,"V","Titán que sostiene el cielo"],["SOL",4,3,"H","Moneda peruana"],["RIO",3,6,"H","De la Plata, en Argentina"],["ALMA",0,0,"H","Llegar al ___: emocionar mucho"],["RANA",3,0,"H","Salir ___: decepcionar"],["ROMA",3,0,"V","A ella llevan todos los caminos"],["ISLA",3,7,"V","Lo es Menorca, pero no Gibraltar"],["PAN",6,6,"H","Dios griego de los pastores"],["LUNA",0,1,"V","Le dio nombre a un lunes y a una miel"],["ALBA",6,0,"H","Hora de los fusilamientos en muchos poemas"]]}];
@@ -1169,7 +1217,7 @@ document.addEventListener('keydown',function(e){if(!M.hidden&&e.key==='Escape')c
   var celdas='';for(var r=0;r<Z.h;r++)for(var c=0;c<Z.w;c++){var k=r+','+c;celdas+=sol[k]?'<label class="cel" style="grid-row:'+(r+1)+';grid-column:'+(c+1)+'">'+(num[k]?'<b>'+num[k]+'</b>':'')+'<input maxlength="1" data-k="'+k+'" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></label>':'<span class="neg" style="grid-row:'+(r+1)+';grid-column:'+(c+1)+'"></span>'}
   function pista(p){var h=0,x=p[0]+dia;for(var q=0;q<x.length;q++)h=(h*31+x.charCodeAt(q))>>>0;return (h%3===0||!FACIL[p[0]])?p[4]:FACIL[p[0]]}
   function lista(d){return Z.p.filter(function(p){return p[3]===d}).sort(function(a,b){return num[a[1]+','+a[2]]-num[b[1]+','+b[2]]}).map(function(p){return '<li data-w="'+p[0]+'" data-d="'+d+'" data-k="'+p[1]+','+p[2]+'"><b>'+num[p[1]+','+p[2]]+'.</b>'+pista(p)+'.</li>'}).join('')}
-  egg('','','<div class="cz" id="cz"><div class="pc"><span class="tabs"><button class="t on">CRUCIGRAMA</button><button class="t" data-j="sopa">SOPA DE LETRAS</button><button class="t" data-j="sudoku">SUDOKU</button></span><span>'+fecha+' · nº '+nro+'</span><span class="crono">00:00</span></div><div class="czb"><div class="rej" style="grid-template-columns:repeat('+Z.w+',1fr)">'+celdas+'</div><div class="ps"><div><h4>HORIZONTALES</h4><ol>'+lista('H')+'</ol></div><div><h4>VERTICALES</h4><ol>'+lista('V')+'</ol></div></div></div></div>','');
+  egg('','','<div class="cz" id="cz"><div class="pc"><span class="tabs"><button class="t on">CRUCIGRAMA</button><button class="t" data-j="sopa">SOPA DE LETRAS</button><button class="t" data-j="sudoku">SUDOKU</button></span><span>'+fecha+' · nº '+nro+'</span><span class="crono">00:00</span></div><div class="czb"><div class="tab"><div class="rej" style="--n:'+Z.w+';grid-template-columns:repeat('+Z.w+',1fr)">'+celdas+'</div></div><div class="ps"><div><h4>HORIZONTALES</h4><ol>'+lista('H')+'</ol></div><div><h4>VERTICALES</h4><ol>'+lista('V')+'</ol></div></div></div></div>','');
   var J=document.getElementById('cz'),ins=[].slice.call(J.querySelectorAll('input')),dir='H',t1=null,tim=null,hecho=false;
   function at(r,c){return J.querySelector('input[data-k="'+r+','+c+'"]')}
   function seg(){return t1?Math.round((Date.now()-t1)/1000):0}
@@ -1207,7 +1255,7 @@ document.addEventListener('keydown',function(e){if(!M.hidden&&e.key==='Escape')c
     if(ok){for(k=0;k<w.length;k++)G[r0+d[0]*k][c0+d[1]*k]=w[k];puestas.push({w:w,a:[r0,c0],b:[r0+d[0]*(w.length-1),c0+d[1]*(w.length-1)]});break}}});
   var ABC='EEEEAAAAOOOSSRRNNIIDLLCCTTUMPBGVYQHFZJ';for(r=0;r<N;r++)for(c=0;c<N;c++)if(!G[r][c])G[r][c]=ABC[Math.floor(rnd()*ABC.length)];
   var celdas='';for(r=0;r<N;r++)for(c=0;c<N;c++)celdas+='<span class="sl" data-r="'+r+'" data-c="'+c+'">'+G[r][c]+'</span>';
-  egg('','','<div class="cz" id="cz"><div class="pc"><span class="tabs"><button class="t" data-j="cruci">CRUCIGRAMA</button><button class="t on">SOPA DE LETRAS</button><button class="t" data-j="sudoku">SUDOKU</button></span><span>'+fecha+' · nº '+nro+'</span><span class="crono">00:00</span></div><div class="czb"><div class="sopa" style="grid-template-columns:repeat('+N+',1fr)">'+celdas+'<svg class="trazos"></svg></div><div class="ps"><div><h4>PALABRAS</h4><ol class="pw">'+puestas.map(function(p){return '<li data-w="'+p.w+'">'+p.w.toLowerCase()+'</li>'}).join('')+'</ol><p class="ayuda">Pulsa la primera letra y la última de cada palabra. Pueden ir en horizontal, en vertical, en diagonal o al revés.</p></div></div></div></div>','');
+  egg('','','<div class="cz" id="cz"><div class="pc"><span class="tabs"><button class="t" data-j="cruci">CRUCIGRAMA</button><button class="t on">SOPA DE LETRAS</button><button class="t" data-j="sudoku">SUDOKU</button></span><span>'+fecha+' · nº '+nro+'</span><span class="crono">00:00</span></div><div class="czb"><div class="tab"><div class="sopa" style="--n:'+N+';grid-template-columns:repeat('+N+',1fr)">'+celdas+'<svg class="trazos"></svg></div></div><div class="ps uno"><div><h4>PALABRAS</h4><ol class="pw">'+puestas.map(function(p){return '<li data-w="'+p.w+'">'+p.w.toLowerCase()+'</li>'}).join('')+'</ol><p class="ayuda">Pulsa la primera letra y la última de cada palabra. Pueden ir en horizontal, en vertical, en diagonal o al revés.</p></div></div></div></div>','');
   var J=document.getElementById('cz'),t1=null,tim=null,ini=null,hechas=0,sv=J.querySelector('.trazos');
   J.querySelectorAll('.tabs [data-j]').forEach(function(b){b.onclick=function(){juego(b.dataset.j)}});
   function pd2(x){return (x<10?'0':'')+x}
@@ -1230,7 +1278,7 @@ document.addEventListener('keydown',function(e){if(!M.hidden&&e.key==='Escape')c
   function llena(i){if(i===81)return true;var vs=mezcla([1,2,3,4,5,6,7,8,9]);for(var k=0;k<9;k++){if(puede(T,i,vs[k])){T[i]=vs[k];if(llena(i+1))return true;T[i]=0}}return false}
   llena(0);var quita=mezcla(Array.from({length:81},function(_,i){return i})).slice(0,44),Q={};quita.forEach(function(i){Q[i]=1});
   var celdas='';for(i=0;i<81;i++){var r=Math.floor(i/9),c=i%9,cls='sk'+(c%3===2&&c<8?' bd':'')+(r%3===2&&r<8?' bb':'');celdas+=Q[i]?'<label class="'+cls+'"><input maxlength="1" inputmode="numeric" data-i="'+i+'"></label>':'<span class="'+cls+' fx">'+T[i]+'</span>'}
-  egg('','','<div class="cz" id="cz"><div class="pc"><span class="tabs"><button class="t" data-j="cruci">CRUCIGRAMA</button><button class="t" data-j="sopa">SOPA DE LETRAS</button><button class="t on">SUDOKU</button></span><span>'+fecha+' · nº '+nro+'</span><span class="crono">00:00</span></div><div class="czb"><div class="sud">'+celdas+'</div><div class="ps"><p class="ayuda">Completa cada fila, cada columna y cada cuadro de 3 × 3 con los números del 1 al 9, sin repetir.</p></div></div></div>','');
+  egg('','','<div class="cz" id="cz"><div class="pc"><span class="tabs"><button class="t" data-j="cruci">CRUCIGRAMA</button><button class="t" data-j="sopa">SOPA DE LETRAS</button><button class="t on">SUDOKU</button></span><span>'+fecha+' · nº '+nro+'</span><span class="crono">00:00</span></div><div class="czb"><div class="tab"><div class="sud" style="--n:9">'+celdas+'</div></div><div class="ps uno"><p class="ayuda">Completa cada fila, cada columna y cada cuadro de 3 × 3 con los números del 1 al 9, sin repetir.</p></div></div></div>','');
   var J=document.getElementById('cz'),ins=[].slice.call(J.querySelectorAll('.sud input')),t1=null,tim=null,hecho=false;
   J.querySelectorAll('.tabs [data-j]').forEach(function(b){b.onclick=function(){juego(b.dataset.j)}});
   function pd2(x){return (x<10?'0':'')+x}
@@ -1256,52 +1304,60 @@ logo();
  document.documentElement.addEventListener('mouseleave',function(){c.classList.add('fuera')})})();
 var pie=document.querySelector('footer span');if(pie&&S.lema)pie.textContent=S.lema;
 
-/* archivo: un escritorio; dentro, la carpeta de fotos por fecha */
+/* archivo: un escritorio antiguo; dentro, la carpeta de fotos por fecha */
 (function(){var _vp=verProyecto;verProyecto=function(i){_vp(i);if(P[i]&&P[i].gr.length)escritorio(i)};
  var MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
- function fe(t){var m=/(\d{4})\D+(\d{1,2})\D+(\d{1,2})/.exec(t||'');return m?(+m[3])+' '+MES[+m[2]-1]+' '+m[1]:t}
+ function fe(t){var m=/(\d{4})\D+(\d{1,2})\D+(\d{1,2})/.exec(t||'');return m?(+m[3])+' '+MES[+m[2]-1]+' '+m[1]:t.replace(/\s*[—–]\s*/,'–')}
  function clave(t){var y=(t.match(/\d{4}/g)||['0']).pop(),m=0,mm=t.match(/\b(ene|feb|mar|abr|may|jun|jul|ago|sep|oct|nov|dic)/g),n=/\d{4}\D+(\d{1,2})\D+(\d{1,2})/.exec(t);
   if(n)return +y*400+(+n[1])*31+(+n[2]);if(mm)m=MES.indexOf(mm.pop())+1;return +y*400+m*31}
  function car(t){return t.replace(/\s*[—–-]+\s*/g,'_').replace(/\s+/g,'-')}
- function fe2(t){var r=fe(t);return r===t?t.replace(/\s*[—–]\s*/,'–'):r}
  function nom(h){return h.split('/').pop()}
+ function pd(n){return (n<10?'0':'')+n}
  function escritorio(i){var p=P[i],G=p.gr.slice().sort(function(a,b){return clave(b.titulo)-clave(a.titulo)}),tot=0;G.forEach(function(g){tot+=g.fotos.length});
-  proyEl.innerHTML='<div class="esc"><div class="ics"><button class="ic" data-a="fotos"><i class="cp"></i><span>fotos</span></button><button class="ic" data-a="pap"><i class="pp"></i><span>papelera</span></button></div></div>';
-  var E=proyEl.querySelector('.esc'),W=null,ruta=null,sel=-1,items=[];
-  function ventana(){if(W)return W;W=document.createElement('div');W.className='win';W.innerHTML='<div class="wt"><button class="at" aria-label="atrás">←</button><span class="ru"></span><button class="wx" aria-label="cerrar">×</button></div><div class="wb"><div class="ls"></div><div class="pv"></div></div><div class="est"></div>';E.appendChild(W);
-   W.querySelector('.wx').onclick=function(){W.remove();W=null;E.querySelectorAll('.ic').forEach(function(b){b.classList.remove('on')})};
-   W.querySelector('.at').onclick=function(){if(ruta!=null&&ruta!=='pap'&&ruta!==-1)abre(-1)};
-   var t=W.querySelector('.wt');t.onpointerdown=function(e){if(MOV.matches||e.target.closest('button'))return;var R=E.getBoundingClientRect(),r=W.getBoundingClientRect(),dx=e.clientX-r.left,dy=e.clientY-r.top;
-    function mv(ev){W.style.left=Math.max(-r.width+80,Math.min(R.width-80,ev.clientX-R.left-dx))+'px';W.style.top=Math.max(0,Math.min(R.height-30,ev.clientY-R.top-dy))+'px'}
+  proyEl.innerHTML='<div class="esc"><div class="mb"><b>mateo</b><span class="op">archivo</span><span class="op">edición</span><button class="op vr">ver</button><span class="rl"></span></div><div class="ics"><button class="ic" data-a="fotos"><i class="cp"></i><span>fotos</span></button></div></div>';
+  var E=proyEl.querySelector('.esc'),z=10,FD=null,VS=null,ruta=-1,sel=-1,items=[],modo='lista',vsI=0,vsL=[];
+  var rl=E.querySelector('.rl');(function reloj(){if(!E.isConnected)return;var d=new Date();rl.textContent=['dom','lun','mar','mié','jue','vie','sáb'][d.getDay()]+' '+pd(d.getHours())+':'+pd(d.getMinutes());setTimeout(reloj,15000)})();
+  function arriba(W){z++;W.style.zIndex=z;E.querySelectorAll('.win').forEach(function(x){x.classList.toggle('top',x===W)})}
+  function ventana(cls,html,pos){var W=document.createElement('div');W.className='win '+cls;W.innerHTML='<div class="wt"><button class="cx" aria-label="cerrar"></button><span class="ti"></span></div>'+html;E.appendChild(W);
+   for(var k in pos)W.style[k]=pos[k];arriba(W);W.addEventListener('pointerdown',function(){arriba(W)});
+   var t=W.querySelector('.wt');t.onpointerdown=function(e){if(MOV.matches||e.target.closest('button'))return;e.preventDefault();var R=E.getBoundingClientRect(),r=W.getBoundingClientRect(),dx=e.clientX-r.left,dy=e.clientY-r.top;
+    function mv(ev){W.style.left=Math.max(-r.width+80,Math.min(R.width-80,ev.clientX-R.left-dx))+'px';W.style.top=Math.max(23,Math.min(R.height-24,ev.clientY-R.top-dy))+'px'}
     function up(){removeEventListener('pointermove',mv);removeEventListener('pointerup',up)}addEventListener('pointermove',mv);addEventListener('pointerup',up)};return W}
-  function abre(r){ventana();ruta=r;sel=-1;var ls=W.querySelector('.ls'),pv=W.querySelector('.pv'),ru=W.querySelector('.ru'),es=W.querySelector('.est');pv.innerHTML='';
-   var hd='<div class="row hd"><span></span><span>nombre</span><span>fecha</span><span>tipo</span></div>';
-   if(r==='pap'){ru.innerHTML='~/<b>papelera</b>';ls.innerHTML=hd;es.textContent='0 elementos';items=[];return}
-   if(r===-1){ru.innerHTML='~/escritorio/<b>fotos</b>';items=G.map(function(g,k){return {k:k}});items.push({vivo:1});
-    ls.innerHTML=hd+G.map(function(g,k){return '<div class="row" data-n="'+k+'"><i>▸</i><span>'+car(g.titulo)+'</span><span class="g">'+fe2(g.titulo)+'</span><span class="g">'+g.fotos.length+(g.fotos.length===1?' foto':' fotos')+'</span></div>'}).join('')
-     +'<div class="row" data-n="'+G.length+'"><i>·</i><span>vivo</span><span class="g">—</span><span class="g">alias</span></div>';
-    es.textContent=G.length+' carpetas · '+tot+' fotos';pv.innerHTML='<span>'+tot+' fotos</span>'}
-   else{var g=G[r];ru.innerHTML='~/escritorio/fotos/<b>'+car(g.titulo)+'</b>';items=g.fotos.map(function(h){return {h:h}});
-    ls.innerHTML=hd+g.fotos.map(function(h,k){return '<div class="row" data-n="'+k+'"><i></i><span>'+nom(h)+'</span><span class="g">'+fe2(g.titulo)+'</span><span class="g">jpeg</span></div>'}).join('');
-    es.textContent=g.fotos.length+' elementos';marca(0)}
-   ls.scrollTop=0}
-  function marca(n){if(!W||n<0||n>=items.length)return;sel=n;W.querySelectorAll('.ls .row').forEach(function(x){x.classList.toggle('on',+x.dataset.n===n)});
-   var it=items[n],pv=W.querySelector('.pv'),x=W.querySelector('.ls .row[data-n="'+n+'"]');if(x&&x.scrollIntoViewIfNeeded)x.scrollIntoViewIfNeeded(false);
-   if(it.h)pv.innerHTML='<img src="'+F(it.h,1200)+'" alt=""><span>'+nom(it.h)+'</span>';
-   else if(it.vivo)pv.innerHTML='<span>vivo</span>';
-   else{var g=G[it.k];pv.innerHTML='<img src="'+F(g.fotos[0],600)+'" alt="" style="max-height:60%"><span>'+g.fotos.length+' fotos</span>'}}
-  function entra(n){var it=items[n];if(!it)return;if(it.vivo){if(window.abreVivo)abreVivo();return}if(it.k!=null){abre(it.k);return}
-   var A=items.map(function(o){return F(o.h,1200)});GAL.push(A);var gi=GAL.length-1;lbI=n;
-   todasE=A;lb.querySelector('img').src=A[n];lb.querySelector('.lbn').textContent=(n+1)+' / '+A.length;lb.hidden=false}
-  E.addEventListener('click',function(e){var b=e.target.closest('.ic');if(b){E.querySelectorAll('.ic').forEach(function(x){x.classList.toggle('on',x===b)});if(MOV.matches||b._t&&Date.now()-b._t<450||e.detail>1)abre(b.dataset.a==='pap'?'pap':-1);b._t=Date.now();return}
-   var r=e.target.closest('.row:not(.hd)');if(r){var n=+r.dataset.n;if(sel===n||MOV.matches&&items[n]&&!items[n].h)entra(n);else marca(n);return}
-   if(e.target.closest('.pv img')&&sel>=0)entra(sel)});
-  E.addEventListener('dblclick',function(e){var r=e.target.closest('.row:not(.hd)');if(r)entra(+r.dataset.n)});
-  if(!MOV.matches)setTimeout(function(){if(E.isConnected&&!W){E.querySelector('.ic').classList.add('on');abre(-1)}},500);
-  E._key=function(e){if(!E.isConnected||!W||!lb.hidden)return;if(e.key==='ArrowDown'){marca(Math.min(items.length-1,sel+1));e.preventDefault()}else if(e.key==='ArrowUp'){marca(Math.max(0,sel-1));e.preventDefault()}else if(e.key==='Enter'&&sel>=0)entra(sel);else if(e.key==='Backspace'&&ruta!==-1&&ruta!=='pap')abre(-1)};
-  document.addEventListener('keydown',E._key)}
- /* el visor grande navega dentro de la carpeta abierta */
- var todasE=null,_t=todas;todas=function(){return proyEl.querySelector('.esc')&&todasE?todasE:_t()}})();
+  function carpeta(){if(FD){arriba(FD);return FD}
+   FD=ventana('fd','<div class="tb"><button class="at" aria-label="atrás">◂</button><span class="ru"></span><button class="m1" title="lista">≡</button><button class="m2" title="iconos">▦</button></div><div class="cn"></div><div class="est"><span class="e1"></span><span class="e2"></span></div>',{left:'3%',top:'40px',width:'min(720px,64%)',height:'calc(100% - 64px)'});
+   FD.querySelector('.cx').onclick=function(){FD.remove();FD=null;E.querySelector('.ic').classList.remove('on')};
+   FD.querySelector('.at').onclick=function(){if(ruta!==-1)abre(-1)};
+   FD.querySelector('.m1').onclick=function(){modo='lista';abre(ruta,sel)};FD.querySelector('.m2').onclick=function(){modo='iconos';abre(ruta,sel)};
+   FD.querySelector('.ru').onclick=function(e){if(e.target.tagName==='A')abre(-1)};
+   FD.querySelector('.cn').onclick=function(e){var r=e.target.closest('[data-n]');if(r)toca(+r.dataset.n)};
+   return FD}
+  function abre(r,s0){carpeta();ruta=r;var cn=FD.querySelector('.cn'),ti=FD.querySelector('.ti');
+   FD.querySelector('.at').style.visibility=r===-1?'hidden':'visible';FD.querySelector('.m1').classList.toggle('on',modo==='lista');FD.querySelector('.m2').classList.toggle('on',modo==='iconos');
+   if(r===-1){ti.textContent='fotos';FD.querySelector('.ru').innerHTML='fotos';items=G.map(function(g,k){return {k:k,nm:car(g.titulo),fe:fe(g.titulo),n:g.fotos.length,h:g.fotos[0]}});items.push({vivo:1,nm:'vivo',fe:'—'});
+    FD.querySelector('.e1').textContent=G.length+' carpetas';FD.querySelector('.e2').textContent=tot+' fotos'}
+   else{var g=G[r];ti.textContent=car(g.titulo);FD.querySelector('.ru').innerHTML='<a>fotos</a> ▸ '+car(g.titulo);items=g.fotos.map(function(h){return {h:h,nm:nom(h),fe:fe(g.titulo),foto:1}});
+    FD.querySelector('.e1').textContent=g.fotos.length+(g.fotos.length===1?' foto':' fotos');FD.querySelector('.e2').textContent=fe(g.titulo)}
+   if(modo==='lista')cn.innerHTML='<div class="row hd"><span></span><span>nombre</span><span>fecha</span><span>tipo</span></div>'+items.map(function(o,k){return '<div class="row" data-n="'+k+'"><span>'+(o.foto?'':o.vivo?'↳':'<i class="mini"></i>')+'</span><span>'+o.nm+'</span><span class="g">'+o.fe+'</span><span class="g">'+(o.foto?'jpeg':o.vivo?'alias':o.n+(o.n===1?' foto':' fotos'))+'</span></div>'}).join('');
+   else cn.innerHTML='<div class="grid">'+items.map(function(o,k){return '<div class="th" data-n="'+k+'">'+(o.foto?'<img src="'+F(o.h,600)+'" alt="" loading="lazy">':o.vivo?'<i class="cp" style="border-style:dashed"></i>':'<i class="cp"></i>')+'<span>'+o.nm+'</span></div>'}).join('')+'</div>';
+   sel=-1;if(s0!=null&&s0>=0)marca(s0);cn.scrollTop=0}
+  function marca(n){sel=n;FD.querySelectorAll('[data-n]').forEach(function(x){x.classList.toggle('on',+x.dataset.n===n)});var x=FD.querySelector('[data-n="'+n+'"]');if(x&&x.scrollIntoView)x.scrollIntoView({block:'nearest'})}
+  function toca(n){var o=items[n];if(!o)return;marca(n);if(o.vivo){if(window.abreVivo)abreVivo();return}if(o.k!=null){abre(o.k);return}visor(items.filter(function(x){return x.foto}),n)}
+  function visor(L,n){vsL=L;vsI=n;if(!VS){VS=ventana('vs','<div class="cn"><img alt=""></div><div class="est"><span><button class="pv" aria-label="anterior">◂</button><span class="nn"></span><button class="nx" aria-label="siguiente">▸</button></span><span class="fn"></span></div>',{left:'38%',top:'64px',width:'min(760px,58%)',height:'calc(100% - 90px)'});
+    VS.querySelector('.cx').onclick=function(){VS.remove();VS=null};VS.querySelector('.pv').onclick=function(){paso(-1)};VS.querySelector('.nx').onclick=function(){paso(1)};VS.querySelector('.cn').onclick=function(){paso(1)}}
+   arriba(VS);pinta()}
+  function pinta(){var o=vsL[vsI];VS.querySelector('img').src=F(o.h,1200);VS.querySelector('.ti').textContent=o.nm;VS.querySelector('.nn').textContent=(vsI+1)+' / '+vsL.length;VS.querySelector('.fn').textContent=o.fe;if(FD&&ruta!==-1)marca(vsI)}
+  function paso(d){if(!VS)return;vsI=(vsI+d+vsL.length)%vsL.length;pinta()}
+  E.querySelector('.ic').onclick=function(){this.classList.add('on');abre(-1)};
+  E.querySelector('.vr').onclick=function(){modo=modo==='lista'?'iconos':'lista';if(FD)abre(ruta,sel)};
+  setTimeout(function(){if(E.isConnected&&!FD){E.querySelector('.ic').classList.add('on');abre(-1)}},400);
+  var key=function(e){if(!E.isConnected){document.removeEventListener('keydown',key);return}if(!FD||!lb.hidden||/INPUT|TEXTAREA/.test((e.target||{}).tagName))return;
+   if(VS&&VS.classList.contains('top')){if(e.key==='ArrowRight'){paso(1);e.preventDefault()}else if(e.key==='ArrowLeft'){paso(-1);e.preventDefault()}else if(e.key==='Escape'){VS.remove();VS=null}return}
+   var st=modo==='lista'?1:Math.max(1,Math.round(FD.querySelector('.cn').clientWidth/114));
+   if(e.key==='ArrowDown'){marca(Math.min(items.length-1,sel+st));e.preventDefault()}else if(e.key==='ArrowUp'){marca(Math.max(0,sel-st));e.preventDefault()}
+   else if(e.key==='ArrowRight'&&modo!=='lista'){marca(Math.min(items.length-1,sel+1));e.preventDefault()}else if(e.key==='ArrowLeft'&&modo!=='lista'){marca(Math.max(0,sel-1));e.preventDefault()}
+   else if(e.key==='Enter'&&sel>=0)toca(sel);else if((e.key==='Backspace'||e.key==='Escape')&&ruta!==-1){var k=ruta;abre(-1,k)}};
+  document.addEventListener('keydown',key)}
+})();
 </script>
 
 </body></html>
