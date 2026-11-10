@@ -347,6 +347,7 @@ function loadYtApi(){if(ytApi)return ytApi;ytApi=new Promise(r=>{window.onYouTub
 const src={}; // key -> {type:'yt'|'file',cell,p|el,ready,shown}
 function videoList(){return Object.keys(media).filter(id=>media[id].kind==='video')}
 function prep(o){ // salta a un punto al azar mientras la fuente está oculta
+  o.prepAt=performance.now();
   try{if(o.type==='yt'&&o.p&&o.p.getDuration){const d=o.p.getDuration();if(d>8)o.p.seekTo(d*.05+Math.random()*d*.85,true);o.p.playVideo()}
       else if(o.el&&isFinite(o.el.duration)&&o.el.duration>2){o.el.currentTime=Math.random()*(o.el.duration-1);o.el.play().catch(()=>{})}}catch(e){}
 }
@@ -387,7 +388,11 @@ function renderStrip(){
 /* motor de montaje */
 let live=null,layer=null,lastCutAt=0,beatsSince=0,layerUntil=0;
 function nextKey(exclude){
-  const ks=readyKeys().filter(k=>!exclude.includes(k));if(!ks.length)return null;
+  let ks=readyKeys().filter(k=>!exclude.includes(k));if(!ks.length)return null;
+  // evita mostrar una fuente que aún está cargando tras saltar de punto
+  const now=performance.now();
+  const ok=ks.filter(k=>{const o=src[k];if(now-(o.prepAt||0)<1800)return false;if(o.type==='yt'&&o.p&&o.p.getPlayerState)return o.p.getPlayerState()===1;return true});
+  if(ok.length)ks=ok;
   ks.sort((a,b)=>src[a].shown-src[b].shown);           // prioriza lo que menos ha salido
   const top=ks.slice(0,Math.max(1,Math.ceil(ks.length/2)));
   return top[Math.floor(Math.random()*top.length)];
