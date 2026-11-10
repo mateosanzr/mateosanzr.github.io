@@ -384,7 +384,6 @@ function cut(force){
 beatFns.push(()=>{if(sala.classList.contains('open')&&mode!=='mosaico'&&performance.now()-cutT>(mode==='capas'?1600:700))cut()});
 setInterval(()=>{if(sala.classList.contains('open')&&mode!=='mosaico'&&performance.now()-cutT>(au.paused?3200:5200))cut()},500);
 document.querySelectorAll('#sala [data-mode]').forEach(b=>b.onclick=()=>{mode=b.dataset.mode;document.querySelectorAll('#sala [data-mode]').forEach(x=>x.setAttribute('aria-pressed',x===b));layoutSala()});
-$('#addv').onclick=()=>pickVideo(null,null);
 function setView(v){const s=v==='sala';sala.classList.toggle('open',s);$('#m-sala').setAttribute('aria-pressed',s);$('#m-espacio').setAttribute('aria-pressed',!s);if(s)layoutSala();else Object.values(vids).forEach(x=>pool.appendChild(x.el))}
 $('#m-sala').onclick=()=>setView('sala');$('#m-espacio').onclick=()=>setView('espacio');
 
