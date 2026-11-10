@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>PTQ · sala</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --room:#0e0e0d;
+  --ink:#e6e5df;
+  --soft:#8a8983;
+  --paper:#e6e5df;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--room);color:var(--ink);font-family:var(--f-mono);font-size:12px;letter-spacing:.03em;overflow:hidden}
+button,input{font:inherit;color:inherit}
+button{background:none;border:0;padding:0;cursor:pointer;text-transform:uppercase;letter-spacing:.05em}
+button:focus-visible,input:focus-visible{outline:1.5px solid currentColor;outline-offset:3px}
+.app{display:grid;grid-template-rows:auto minmax(0,1fr) auto;height:100%}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 20px;text-transform:uppercase;flex-wrap:wrap}
+.title{font-weight:500}
+.modes{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.modes button{opacity:.45}
+.modes button[aria-pressed="true"]{opacity:1;text-decoration:underline;text-underline-offset:4px}
+.add{display:flex;gap:8px;align-items:center}
+.add input{background:transparent;border:0;border-bottom:1px solid var(--soft);width:220px;padding:2px 0;text-transform:none}
+.add input::placeholder{color:var(--soft);text-transform:uppercase}
+
+.stage{position:relative;margin:0 20px 20px;min-height:0}
+.stage.mosaico{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:12px;align-content:center;overflow:auto}
+.cell{position:relative;background:#000;overflow:hidden;aspect-ratio:16/9}
+.cell .yt,.cell iframe{position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none}
+.cell .x{position:absolute;top:6px;right:8px;font-size:11px;opacity:0;z-index:2;color:var(--ink);mix-blend-mode:difference}
+.cell:hover .x,.cell .x:focus-visible{opacity:.8}
+.stage.corte .cell,.stage.capas .cell{position:absolute;inset:0;aspect-ratio:auto;visibility:hidden;background:transparent}
+.stage.corte .cell.live{visibility:visible}
+.stage.capas .cell.live{visibility:visible;mix-blend-mode:screen;opacity:.85}
+.stage.corte .x,.stage.capas .x{display:none}
+/* recorta los bordes del reproductor para esconder la interfaz de YouTube */
+.stage.corte iframe,.stage.capas iframe{inset:-8% -4%;width:108%;height:116%}
+
+.bar{border-top:1px solid var(--soft);display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:18px;align-items:center;padding:12px 20px;min-height:70px}
+.play{width:38px;height:38px;border:1px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-size:13px}
+.play:disabled{opacity:.3;cursor:default}
+.tracks{display:flex;gap:6px 22px;flex-wrap:wrap;align-items:center;text-transform:uppercase}
+.tracks button{opacity:.45}
+.tracks button.has{opacity:1}
+.tracks button.on{text-decoration:underline;text-underline-offset:4px}
+.scrub{display:flex;align-items:center;gap:10px}
+.scrub input{width:160px;accent-color:var(--ink)}
+.time{font-variant-numeric:tabular-nums;min-width:86px;text-align:right}
+#drop{position:fixed;inset:0;z-index:60;display:none;place-items:center;background:rgba(14,14,13,.85);text-transform:uppercase;font-size:14px}
+#drop.on{display:grid}
+.empty{position:absolute;inset:0;display:grid;place-items:center;color:var(--soft);text-transform:uppercase;text-align:center;line-height:1.8}
+@media (max-width:700px){.bar{grid-template-columns:auto minmax(0,1fr)}.scrub{grid-column:1/-1}.scrub input{flex:1}.add input{width:160px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <div class="title">Paco Te Quiero — Sala</div>
+    <div class="modes" role="group" aria-label="Montaje">
+      <button data-mode="mosaico" aria-pressed="true">Mosaico</button>
+      <button data-mode="corte" aria-pressed="false">Corte</button>
+      <button data-mode="capas" aria-pressed="false">Capas</button>
+      <form class="add" id="addf"><label for="url" class="sr" style="position:absolute;left:-9999px">Enlace de YouTube</label><input id="url" placeholder="+ enlace de youtube" autocomplete="off"></form>
+    </div>
+  </div>
+  <div class="stage mosaico" id="stage"></div>
+  <div class="bar">
+    <button class="play" id="play" aria-label="Reproducir" disabled>▶</button>
+    <div class="tracks" id="tracks"></div>
+    <div class="scrub"><input type="range" id="seek" min="0" max="1000" value="0" aria-label="Posición"><span class="time" id="time">0:00 / 0:00</span></div>
+  </div>
+</div>
+<div id="drop">soltar canciones</div>
+<input type="file" id="file" accept="audio/*" hidden>
+<audio id="au" preload="auto"></audio>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const DEFAULT=['jQkf4ZMudBs','sQRfp2Xp6U0','hwe8_oluVn4'];
+const TRACKS=['Oscura','Grandes incendios','Ciervo','Mierdoncho terrible'];
+let ids;try{ids=JSON.parse(localStorage.getItem('ptq-yt'))||DEFAULT.slice()}catch(e){ids=DEFAULT.slice()}
+function saveIds(){try{localStorage.setItem('ptq-yt',JSON.stringify(ids))}catch(e){}}
+const stage=$('#stage');let mode='mosaico';const players={};let apiReady=false;
+
+/* ---------- YouTube ---------- */
+const tag=document.createElement('script');tag.src='https://www.youtube.com/iframe_api';document.head.appendChild(tag);
+window.onYouTubeIframeAPIReady=()=>{apiReady=true;ids.forEach(addPlayer)};
+function parseId(u){u=u.trim();const m=u.match(/(?:v=|youtu\.be\/|shorts\/|embed\/)([\w-]{11})/);return m?m[1]:(/^[\w-]{11}$/.test(u)?u:null)}
+function addPlayer(id){
+  if(players[id])return;
+  const c=document.createElement('div');c.className='cell';c.dataset.id=id;
+  const d=document.createElement('div');d.className='yt';c.appendChild(d);
+  const x=document.createElement('button');x.className='x';x.textContent='×';x.setAttribute('aria-label','Quitar vídeo');
+  x.onclick=()=>removePlayer(id);c.appendChild(x);
+  stage.appendChild(c);
+  players[id]={cell:c,p:new YT.Player(d,{videoId:id,playerVars:{autoplay:1,mute:1,controls:0,disablekb:1,modestbranding:1,rel:0,playsinline:1,iv_load_policy:3,loop:1,playlist:id},
+    events:{onReady:e=>{e.target.mute();e.target.setPlaybackQuality&&e.target.setPlaybackQuality('hd720');e.target.playVideo();const dur=e.target.getDuration();if(dur>20)e.target.seekTo(Math.random()*dur*.6,true)},
+            onStateChange:e=>{if(e.data===YT.PlayerState.ENDED){e.target.seekTo(0,true);e.target.playVideo()}}}})};
+  checkEmpty();cut(true);
+}
+function removePlayer(id){const o=players[id];if(!o)return;o.p.destroy();o.cell.remove();delete players[id];ids=ids.filter(i=>i!==id);saveIds();checkEmpty()}
+$('#addf').onsubmit=e=>{e.preventDefault();const id=parseId($('#url').value);if(!id){$('#url').value='';$('#url').placeholder='enlace no válido';return}
+  $('#url').value='';$('#url').placeholder='+ enlace de youtube';if(!ids.includes(id)){ids.push(id);saveIds();if(apiReady)addPlayer(id)}};
+function checkEmpty(){let e=stage.querySelector('.empty');if(Object.keys(players).length){e&&e.remove()}else if(!e){e=document.createElement('div');e.className='empty';e.textContent='pega un enlace de youtube arriba';stage.appendChild(e)}}
+
+/* ---------- montaje ---------- */
+let live=[],cutT=0;
+function cut(force){
+  const cells=[...stage.querySelectorAll('.cell')];if(!cells.length)return;
+  if(mode==='mosaico'){cells.forEach(c=>c.classList.remove('live'));return}
+  const n=mode==='capas'?Math.min(2,cells.length):1;
+  const pool=cells.slice().sort(()=>Math.random()-.5);const pick=[];
+  for(const c of pool){if(pick.length>=n)break;if(!force&&cells.length>n&&live.includes(c)&&pick.length===0&&Math.random()<.7)continue;pick.push(c)}
+  cells.forEach(c=>c.classList.toggle('live',pick.includes(c)));
+  pick.forEach(c=>{const o=players[c.dataset.id];if(!o||!o.p.getDuration)return;const d=o.p.getDuration();if(d>4&&(mode==='corte'||!live.includes(c)))o.p.seekTo(Math.random()*(d-3),true)});
+  live=pick;cutT=performance.now();
+}
+document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{mode=b.dataset.mode;document.querySelectorAll('[data-mode]').forEach(x=>x.setAttribute('aria-pressed',x===b));stage.className='stage '+mode;live=[];cut(true)});
+setInterval(()=>{if(mode!=='mosaico'&&performance.now()-cutT>(au.paused?3500:6000))cut()},500);
+
+/* ---------- canciones (se cargan desde el ordenador, no se suben a ningún sitio) ---------- */
+const au=$('#au');const songs={};let current=null,pendingSlot=null;
+const tracksEl=$('#tracks');
+function renderTracks(){
+  tracksEl.innerHTML='';
+  TRACKS.forEach((t,i)=>{const b=document.createElement('button');b.textContent=String(i+1).padStart(2,'0')+' '+t;
+    b.className=(songs[i]?'has':'')+(current===i?' on':'');b.title=songs[i]?'Reproducir':'Cargar canción';
+    b.onclick=()=>songs[i]?playSong(i):pick(i);tracksEl.appendChild(b)});
+  $('#play').disabled=!Object.keys(songs).length;
+}
+function pick(i){pendingSlot=i;$('#file').value='';$('#file').click()}
+$('#file').onchange=e=>{const f=e.target.files[0];if(f&&pendingSlot!=null){songs[pendingSlot]=URL.createObjectURL(f);playSong(pendingSlot)}};
+function matchSlot(name){const n=name.toLowerCase().replace(/[_-]+/g,' ');const i=TRACKS.findIndex(t=>n.includes(t.toLowerCase().split(' ')[0]));return i}
+let actx,an,freq,avg=0,lastBeat=0;
+function initAudio(){if(actx)return;try{actx=new (window.AudioContext||window.webkitAudioContext)();const s=actx.createMediaElementSource(au);an=actx.createAnalyser();an.fftSize=1024;an.smoothingTimeConstant=.6;s.connect(an);an.connect(actx.destination);freq=new Uint8Array(an.frequencyBinCount)}catch(e){actx=null}}
+function playSong(i){initAudio();actx&&actx.state==='suspended'&&actx.resume();if(current!==i){current=i;au.src=songs[i]}au.play();renderTracks();Object.values(players).forEach(o=>o.p.playVideo&&o.p.playVideo())}
+function toggle(){if(current==null){const k=Object.keys(songs)[0];if(k!=null)playSong(+k);return}initAudio();au.paused?au.play():au.pause()}
+$('#play').onclick=toggle;
+addEventListener('keydown',e=>{if(e.code==='Space'&&e.target===document.body){e.preventDefault();toggle()}});
+au.addEventListener('play',()=>{$('#play').textContent='❚❚';$('#play').setAttribute('aria-label','Pausar')});
+au.addEventListener('pause',()=>{$('#play').textContent='▶';$('#play').setAttribute('aria-label','Reproducir')});
+au.addEventListener('ended',()=>{const k=Object.keys(songs).map(Number).sort();const n=k.find(x=>x>current);if(n!=null)playSong(n)});
+const fmt=s=>isFinite(s)?Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'):'0:00';
+let seeking=false;
+au.addEventListener('timeupdate',()=>{if(!seeking)$('#seek').value=au.duration?au.currentTime/au.duration*1000:0;$('#time').textContent=fmt(au.currentTime)+' / '+fmt(au.duration)});
+$('#seek').addEventListener('input',e=>{seeking=true;if(au.duration)au.currentTime=e.target.value/1000*au.duration});
+$('#seek').addEventListener('change',()=>seeking=false);
+(function beat(){requestAnimationFrame(beat);if(!an||au.paused)return;an.getByteFrequencyData(freq);let s=0;for(let i=1;i<12;i++)s+=freq[i];const b=s/11/255;avg=avg*.96+b*.04;
+  const now=performance.now();if(b>avg*1.28&&b>.35&&now-lastBeat>420){lastBeat=now;if(mode!=='mosaico'&&now-cutT>(mode==='capas'?1600:700))cut()}})();
+
+let dn=0;
+addEventListener('dragenter',e=>{if([...e.dataTransfer.types].includes('Files')){dn++;$('#drop').classList.add('on')}});
+addEventListener('dragleave',()=>{dn=Math.max(0,dn-1);if(!dn)$('#drop').classList.remove('on')});
+addEventListener('dragover',e=>e.preventDefault());
+addEventListener('drop',e=>{e.preventDefault();dn=0;$('#drop').classList.remove('on');
+  [...e.dataTransfer.files].filter(f=>f.type.startsWith('audio')||/\.(aif|aiff|m4a|mp3|wav)$/i.test(f.name)).forEach(f=>{
+    let i=matchSlot(f.name);if(i<0||songs[i])i=TRACKS.findIndex((t,j)=>!songs[j]);if(i<0)return;songs[i]=URL.createObjectURL(f)});
+  renderTracks()});
+
+renderTracks();checkEmpty();
+})();
+</script>
+</body>
+</html>
