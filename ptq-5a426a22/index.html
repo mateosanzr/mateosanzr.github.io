@@ -295,7 +295,7 @@ footer{padding:40px 24px;border-top:1px solid var(--ink);display:flex;justify-co
 
   // vídeos de YouTube controlados por las canciones: sin interfaz, play/pausa y posición siguen al reproductor
   // Para que salgan siempre a todo el mundo, añade los enlaces en FIJOS.
-  var FIJOS=[];
+  var FIJOS=["_v_2F0727jA","qltdURp0bPU","QO2L4EMBx-U","VZ9gaRpt-Ns","ySlKLUaQbgo","LxmcKF2elmE","pXcjhVxmrew","25A5Y0_qHCc","jdU16tnrt14"];
   var cg=document.getElementById('cg'),yt=document.getElementById('yt'),nota=document.getElementById('nota'),players=[],apiOK=false;
   function idDe(u){var m=String(u).match(/(?:youtu\.be\/|v=|embed\/|shorts\/|live\/)([\w-]{11})/);return m?m[1]:null}
   function guardados(){try{return JSON.parse(localStorage.getItem('ptq-yt')||'[]')}catch(e){return[]}}
