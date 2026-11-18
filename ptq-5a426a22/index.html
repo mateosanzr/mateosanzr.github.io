@@ -324,7 +324,7 @@ footer{padding:40px 24px;border-top:1px solid var(--ink);display:flex;justify-co
     players.push(p)}
   window.onYouTubeIframeAPIReady=function(){apiOK=true;pinta()};
   (function(){var s=document.createElement('script');s.src='https://www.youtube.com/iframe_api';document.head.appendChild(s)})();
-  au.addEventListener('play',function(){sincroniza(true)});
+  au.addEventListener('play',function(){sincroniza(false)});
   au.addEventListener('pause',function(){sincroniza(false)});
   au.addEventListener('seeked',function(){sincroniza(true)});
   au.addEventListener('emptied',function(){sincroniza(true)});
