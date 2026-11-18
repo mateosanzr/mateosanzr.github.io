@@ -11,7 +11,7 @@
 <style>
 :root{--paper:#efeee9;--ink:#171716;--soft:#6a6963;--card:#fbfbf8;--f:"IBM Plex Mono",ui-monospace,Menlo,monospace}
 *{box-sizing:border-box}
-html{scroll-padding-top:64px}
+html{scroll-padding-top:64px;overflow-x:clip}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f);font-size:12.5px;line-height:1.7;letter-spacing:.02em}
 a{color:inherit}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
@@ -134,27 +134,20 @@ header{display:grid;grid-template-columns:auto minmax(280px,560px) 1fr;align-ite
 
 
 /* vídeos para ver con las canciones */
-.cine{max-width:1500px;margin:0 auto;padding:8vw 24px 40px}
+.cine{margin:0 auto;padding:8vw 24px 0}
 .cine-cab{display:flex;justify-content:space-between;gap:16px;align-items:baseline;border-top:1px solid var(--ink);padding-top:10px;font-size:11px;text-transform:uppercase;letter-spacing:.08em}
 .pegar{display:flex;gap:12px;margin-top:18px;max-width:640px}
 .pegar input{flex:1;font:inherit;font-size:12px;background:transparent;border:0;border-bottom:1px solid var(--ink);padding:8px 0;color:var(--ink);outline:none}
 .pegar button{font-size:11px;text-transform:uppercase;letter-spacing:.08em;border:1px solid var(--ink);padding:6px 14px}
-.yt{position:relative;aspect-ratio:16/9;background:#141413;overflow:hidden;cursor:pointer}
-.yt img,.yt iframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0}
-.yt .ply{position:absolute;inset:0;display:grid;place-items:center;color:#ecebe5;font-size:22px;text-shadow:0 1px 6px rgba(0,0,0,.4)}
 .nota{font-size:11px;color:#6b6a64;margin:8px 0 22px}
-.cine-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr));gap:3vw 2.4vw}
-.cine-grid figure{margin:0;position:relative}
-.cine-grid figcaption{display:flex;justify-content:space-between;font-size:10px;letter-spacing:.08em;color:#6b6a64;margin-top:8px;text-transform:uppercase}
-.cine-grid .x{color:#6b6a64}
-.cine-grid .x.seguro{color:#b0261c}
-.gv{position:fixed;inset:0;z-index:60;background:rgba(20,20,19,.92);display:flex;flex-direction:column;padding:16px 24px 24px}
-.gv[hidden]{display:none}
-.gvb{display:flex;justify-content:flex-end;color:#ecebe5;font-size:11px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
-.gvb button{color:inherit}
-.gvf{flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
-.gvf iframe{width:min(100%,calc((100vh - 90px) * 16 / 9));aspect-ratio:16/9;border:0;background:#000}
-.cine-grid figcaption .x{margin-left:14px}
+.cine-grid{display:grid;grid-template-columns:repeat(var(--cols,2),minmax(0,1fr));grid-auto-rows:calc((100svh - var(--cab,80px)) / var(--rows,1));gap:2px;width:100vw;margin-left:calc(50% - 50vw);background:#141413;scroll-margin-top:var(--cab,80px)}
+.celda{position:relative;overflow:hidden;background:#141413;container-type:size}
+.marco{position:absolute;left:50%;top:50%;width:max(100cqw,177.78cqh);height:max(100cqh,56.25cqw);transform:translate(-50%,-50%) scale(1.18);pointer-events:none}
+.marco iframe,.marco>div{width:100%;height:100%;border:0;display:block}
+.celda .th{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .4s;pointer-events:none}
+.quita{position:absolute;right:8px;top:6px;z-index:2;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#ecebe5;opacity:0;mix-blend-mode:difference}
+.celda:hover .quita,.quita.seguro{opacity:1}
+.cine-grid .vacio{grid-column:1/-1;background:var(--paper)}
 .vacio{font-size:11px;color:#6b6a64;border:1px dashed rgba(23,23,22,.3);padding:40px;text-align:center}
 
 ol.tracks{list-style:none;padding:0;margin:0;counter-reset:t}
@@ -233,10 +226,9 @@ footer{padding:40px 24px;border-top:1px solid var(--ink);display:flex;justify-co
 <section class="cine" id="cine">
   <div class="cine-cab"><span>Vídeos con las canciones del EP</span></div>
   <form class="pegar" id="pegar"><input id="yt" type="url" placeholder="Pega aquí un enlace de YouTube" aria-label="Enlace de YouTube"><button>añadir</button></form>
-  <p class="nota" id="nota">Al darle a un vídeo se reproduce sin su sonido, con la canción del EP que esté puesta arriba.</p>
+  <p class="nota" id="nota">Los vídeos siguen a la canción de arriba: play, pausa y la barra para adelantar o atrasar.</p>
   <div class="cine-grid" id="cg"></div>
 </section>
-<div class="gv" id="gv" hidden role="dialog" aria-modal="true" aria-label="Vídeo en grande"><div class="gvb"><button id="gvx">cerrar ✕</button></div><div class="gvf" id="gvf"></div></div>
 </main>
 
 <footer><span>Paco Te Quiero</span><span>EP · febrero 2027</span></footer>
@@ -300,36 +292,45 @@ footer{padding:40px 24px;border-top:1px solid var(--ink);display:flex;justify-co
   seek.addEventListener('change',function(){if(au.duration)au.currentTime=seek.value/1000*au.duration;seeking=false});
 
 
-  // vídeos de YouTube para ver con las canciones del EP
+  // vídeos de YouTube controlados por las canciones: sin interfaz, play/pausa y posición siguen al reproductor
   // Para que salgan siempre a todo el mundo, añade los enlaces en FIJOS.
   var FIJOS=[];
-  var cg=document.getElementById('cg'),yt=document.getElementById('yt'),nota=document.getElementById('nota');
+  var cg=document.getElementById('cg'),yt=document.getElementById('yt'),nota=document.getElementById('nota'),players=[],apiOK=false;
   function idDe(u){var m=String(u).match(/(?:youtu\.be\/|v=|embed\/|shorts\/|live\/)([\w-]{11})/);return m?m[1]:null}
   function guardados(){try{return JSON.parse(localStorage.getItem('ptq-yt')||'[]')}catch(e){return[]}}
   function guarda(l){try{localStorage.setItem('ptq-yt',JSON.stringify(l))}catch(e){}}
-  function pinta(){cg.innerHTML='';var fijos=FIJOS.map(idDe).filter(Boolean),mios=guardados(),todos=fijos.concat(mios.filter(function(x){return fijos.indexOf(x)<0}));
-    if(!todos.length){var v=document.createElement('div');v.className='vacio';v.textContent='Aún no hay vídeos · pega un enlace de YouTube arriba';cg.appendChild(v);return}
-    todos.forEach(function(id,i){var f=document.createElement('figure'),box=document.createElement('div'),c=document.createElement('figcaption');
-      box.className='yt';box.innerHTML='<img alt="" loading="lazy" src="https://i.ytimg.com/vi/'+id+'/hqdefault.jpg"><span class="ply">▶</span>';
-      box.onclick=function(){if(box.querySelector('iframe'))return;
-        box.innerHTML='<iframe data-id="'+id+'" src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&mute=1&loop=1&playlist='+id+'&controls=1&playsinline=1&modestbranding=1&rel=0&fs=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="Vídeo '+(i+1)+'"></iframe>';
-        if(au.paused)au.play().catch(function(){})};
-      c.innerHTML='<span>Vídeo '+String(i+1).padStart(2,'0')+'</span>';var g=document.createElement('button');g.className='x';g.textContent='ver en grande';g.onclick=function(){grande(id)};c.appendChild(g);
-      if(fijos.indexOf(id)<0){var x=document.createElement('button');x.className='x';x.textContent='quitar';x.onclick=function(){
+  function lista(){var f=FIJOS.map(idDe).filter(Boolean);return{fijos:f,todos:f.concat(guardados().filter(function(x){return f.indexOf(x)<0}))}}
+  function objetivo(p){var d=p.getDuration&&p.getDuration();var t=au.currentTime||0;return d>1?t%d:t}
+  function sincroniza(forzar){players.forEach(function(p){if(!p.ready)return;var tg=objetivo(p),c=p.getCurrentTime();
+      if(forzar||Math.abs(c-tg)>.7)p.seekTo(tg,true);
+      if(au.paused){if(p.getPlayerState()===1)p.pauseVideo()}else if(p.getPlayerState()!==1)p.playVideo()})}
+  function pinta(){players.forEach(function(p){try{p.destroy()}catch(e){}});players=[];cg.innerHTML='';
+    var l=lista(),n=l.todos.length;cg.className='cine-grid n'+Math.min(n,9);
+    if(!n){var v=document.createElement('div');v.className='vacio';v.textContent='Aún no hay vídeos · pega un enlace de YouTube arriba';cg.appendChild(v);return}
+    var cols=n<=1?1:n<=4?2:3;cg.style.setProperty('--cols',cols);cg.style.setProperty('--rows',Math.ceil(n/cols));
+    l.todos.forEach(function(id,i){var cel=document.createElement('div'),mar=document.createElement('div'),hold=document.createElement('div'),th=document.createElement('img');
+      cel.className='celda';mar.className='marco';th.className='th';th.alt='';th.src='https://i.ytimg.com/vi/'+id+'/hqdefault.jpg';
+      mar.appendChild(hold);cel.append(mar,th);
+      if(l.fijos.indexOf(id)<0){var x=document.createElement('button');x.className='quita';x.textContent='quitar';x.onclick=function(){
         if(!x.classList.contains('seguro')){x.classList.add('seguro');x.textContent='¿seguro?';setTimeout(function(){x.classList.remove('seguro');x.textContent='quitar'},3000);return}
-        guarda(guardados().filter(function(y){return y!==id}));pinta()};c.appendChild(x)}
-      f.append(box,c);cg.appendChild(f)})}
-  var gv=document.getElementById('gv'),gvf=document.getElementById('gvf');
-  function grande(id){cg.querySelectorAll('iframe').forEach(function(f){f.parentNode.innerHTML='<img alt="" src="https://i.ytimg.com/vi/'+f.dataset.id+'/hqdefault.jpg"><span class="ply">▶</span>'});
-    gvf.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&mute=1&controls=1&playsinline=1&modestbranding=1&rel=0&fs=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="Vídeo en grande"></iframe>';
-    gv.hidden=false;document.body.style.overflow='hidden';if(au.paused)au.play().catch(function(){})}
-  function cierraGrande(){gv.hidden=true;gvf.innerHTML='';document.body.style.overflow=''}
-  document.getElementById('gvx').onclick=cierraGrande;
-  gv.addEventListener('click',function(e){if(e.target===gv)cierraGrande()});
-  addEventListener('keydown',function(e){if(e.key==='Escape'&&!gv.hidden)cierraGrande()});
+        guarda(guardados().filter(function(y){return y!==id}));pinta()};cel.appendChild(x)}
+      cg.appendChild(cel);
+      if(apiOK)crea(hold,id,th)});}
+  function crea(hold,id,th){var p=new YT.Player(hold,{videoId:id,host:'https://www.youtube-nocookie.com',width:'100%',height:'100%',
+      playerVars:{controls:0,disablekb:1,fs:0,iv_load_policy:3,modestbranding:1,rel:0,playsinline:1,mute:1,loop:0},
+      events:{onReady:function(){p.ready=true;p.mute();sincroniza(true)},
+        onStateChange:function(e){if(e.data===1)th.style.opacity=0;if(e.data===0){p.seekTo(0,true);if(!au.paused)p.playVideo()}}}});
+    players.push(p)}
+  window.onYouTubeIframeAPIReady=function(){apiOK=true;pinta()};
+  (function(){var s=document.createElement('script');s.src='https://www.youtube.com/iframe_api';document.head.appendChild(s)})();
+  au.addEventListener('play',function(){sincroniza(true)});
+  au.addEventListener('pause',function(){sincroniza(false)});
+  au.addEventListener('seeked',function(){sincroniza(true)});
+  au.addEventListener('emptied',function(){sincroniza(true)});
+  setInterval(function(){if(!au.paused)sincroniza(false)},1500);
   document.getElementById('pegar').onsubmit=function(e){e.preventDefault();var id=idDe(yt.value);
     if(!id){nota.textContent='Ese enlace no parece de YouTube.';nota.style.color='#b0261c';return}
-    var l=guardados();if(l.indexOf(id)<0)l.push(id);guarda(l);yt.value='';nota.style.color='';nota.textContent='Al darle a un vídeo se reproduce sin su sonido, con la canción del EP que esté puesta arriba.';pinta()};
+    var l=guardados();if(l.indexOf(id)<0)l.push(id);guarda(l);yt.value='';nota.style.color='';pinta()};
   pinta();
 })();
 </script>
