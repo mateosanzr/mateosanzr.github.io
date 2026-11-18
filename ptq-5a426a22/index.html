@@ -145,6 +145,8 @@ header{display:grid;grid-template-columns:auto minmax(280px,560px) 1fr;align-ite
 .marco{position:absolute;left:50%;top:50%;width:max(100cqw,177.78cqh);height:max(100cqh,56.25cqw);transform:translate(-50%,-50%) scale(1.18);pointer-events:none}
 .marco iframe,.marco>div{width:100%;height:100%;border:0;display:block}
 .celda .th{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .4s;pointer-events:none}
+body:not(.sonando) .celda .th{opacity:1 !important}
+.celda::after{content:"";position:absolute;inset:0;z-index:1}
 .quita{position:absolute;right:8px;top:6px;z-index:2;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#ecebe5;opacity:0;mix-blend-mode:difference}
 .celda:hover .quita,.quita.seguro{opacity:1}
 .cine-grid .vacio{grid-column:1/-1;background:var(--paper)}
