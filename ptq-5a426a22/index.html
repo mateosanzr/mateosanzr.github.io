@@ -140,12 +140,11 @@ header{display:grid;grid-template-columns:auto minmax(280px,560px) 1fr;align-ite
 .pegar input{flex:1;font:inherit;font-size:12px;background:transparent;border:0;border-bottom:1px solid var(--ink);padding:8px 0;color:var(--ink);outline:none}
 .pegar button{font-size:11px;text-transform:uppercase;letter-spacing:.08em;border:1px solid var(--ink);padding:6px 14px}
 .nota{font-size:11px;color:#6b6a64;margin:8px 0 22px}
-.cine-grid{display:grid;grid-template-columns:repeat(var(--cols,2),minmax(0,1fr));grid-auto-rows:calc((100svh - var(--cab,80px) - 60px) / var(--rows,1));gap:10px;scroll-margin-top:var(--cab,80px)}
-.celda{position:relative;overflow:hidden;background:#141413;container-type:size}
-.marco{position:absolute;left:50%;top:50%;width:max(100cqw,177.78cqh);height:max(100cqh,56.25cqw);transform:translate(-50%,-50%) scale(1.18);pointer-events:none}
+.cine-grid{display:grid;grid-template-columns:repeat(var(--cols,2),minmax(0,1fr));gap:10px;scroll-margin-top:var(--cab,80px)}
+.celda{position:relative;overflow:hidden;background:#141413;aspect-ratio:16/9;container-type:size}
+.marco{position:absolute;left:50%;top:50%;width:max(100cqw,177.78cqh);height:max(100cqh,56.25cqw);transform:translate(-50%,-50%) scale(1.32);pointer-events:none}
 .marco iframe,.marco>div{width:100%;height:100%;border:0;display:block}
 .celda .th{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .4s;pointer-events:none}
-body:not(.sonando) .celda .th{opacity:1 !important}
 .celda::after{content:"";position:absolute;inset:0;z-index:1}
 .quita{position:absolute;right:8px;top:6px;z-index:2;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#ecebe5;opacity:0;mix-blend-mode:difference}
 .celda:hover .quita,.quita.seguro{opacity:1}
@@ -228,7 +227,7 @@ footer{padding:40px 24px;border-top:1px solid var(--ink);display:flex;justify-co
 <section class="cine" id="cine">
   <div class="cine-cab"><span>Vídeos con las canciones del EP</span></div>
   <form class="pegar" id="pegar"><input id="yt" type="url" placeholder="Pega aquí un enlace de YouTube" aria-label="Enlace de YouTube"><button>añadir</button></form>
-  <p class="nota" id="nota">Los vídeos siguen a la canción de arriba: play, pausa y la barra para adelantar o atrasar.</p>
+  <p class="nota" id="nota"></p>
   <div class="cine-grid" id="cg"></div>
 </section>
 </main>
@@ -321,7 +320,7 @@ footer{padding:40px 24px;border-top:1px solid var(--ink);display:flex;justify-co
   function crea(hold,id,th){var p=new YT.Player(hold,{videoId:id,host:'https://www.youtube-nocookie.com',width:'100%',height:'100%',
       playerVars:{controls:0,disablekb:1,fs:0,iv_load_policy:3,modestbranding:1,rel:0,playsinline:1,mute:1,loop:0},
       events:{onReady:function(){p.ready=true;p.mute();sincroniza(true)},
-        onStateChange:function(e){if(e.data===1)th.style.opacity=0;if(e.data===0){p.seekTo(0,true);if(!au.paused)p.playVideo()}}}});
+        onStateChange:function(e){if(e.data===1&&!th.dataset.ido){th.dataset.ido=1;setTimeout(function(){th.style.opacity=0},2500)}if(e.data===0){p.seekTo(0,true);if(!au.paused)p.playVideo()}}}});
     players.push(p)}
   window.onYouTubeIframeAPIReady=function(){apiOK=true;pinta()};
   (function(){var s=document.createElement('script');s.src='https://www.youtube.com/iframe_api';document.head.appendChild(s)})();
@@ -332,7 +331,7 @@ footer{padding:40px 24px;border-top:1px solid var(--ink);display:flex;justify-co
   setInterval(function(){if(!au.paused)sincroniza(false)},1500);
   document.getElementById('pegar').onsubmit=function(e){e.preventDefault();var id=idDe(yt.value);
     if(!id){nota.textContent='Ese enlace no parece de YouTube.';nota.style.color='#b0261c';return}
-    var l=guardados();if(l.indexOf(id)<0)l.push(id);guarda(l);yt.value='';nota.style.color='';pinta()};
+    var l=guardados();if(l.indexOf(id)<0)l.push(id);guarda(l);yt.value='';nota.style.color='';nota.textContent='';pinta()};
   pinta();
 })();
 </script>
