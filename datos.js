@@ -6,7 +6,7 @@ window.DATOS={
   "correo": "sanzromanmateo@gmail.com",
   "instagram": "@mateosanzr",
   "tiktok": "",
-  "bio": "Fotógrafo y artista visual. Trabaja como director de fotografía en cine, videoclip y publicidad, y también desarrolla instalaciones audiovisuales."
+  "bio": "Fotógrafo y artista visual. Trabaja como director de fotografía en cine, videoclip y publicidad, y también desarrolla instalaciones audiovisuales. Premio a la mejor dirección de fotografía por el cortometraje «tenemos patria»."
  },
  "cv": [
   {
