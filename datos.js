@@ -18,7 +18,7 @@ window.DATOS={
     ],
     [
      "this is an autopsy",
-     "cortometraje de Lucía Alonso"
+     "cortometraje de Lucía Selva · estreno en el Vancouver International Film Festival"
     ],
     [
      "leandro cano",
@@ -574,7 +574,7 @@ window.DATOS={
    "subtitulo": "",
    "disciplina": "dop",
    "rol": "dirección de fotografía, con Mar Vidal",
-   "formato": "fashion film de Joel Adán y Julieta Lasarte · 1 min",
+   "formato": "fashion film de Joel Adán y Julieta Lasarte · 1 min · 2025",
    "enlace": "",
    "descripcion": "",
    "creditos": "dirección: Joel Adán (@_joeladan), Julieta Lasarte (@julietalasarte)\nproducción: Lourdes Escalante (@l.escalante_)\ndirección de fotografía: Mar Vidal (@marvidalferra), Mateo Sanz (@mateosanzr)\nfotografía: Julieta Lasarte (@julietalasarte)\nmontaje: Joel Adán (@_joeladan)\nmúsica y diseño sonoro: @inhalflight\ndiseño gráfico: @orfidal\nestilismo: Carol Gamarra (@carolgamarrastylist)\nayudante de estilismo: Sofía Lagomarsino (@imalwayssjudging)\nayudantes de estilismo y producción: Mariana Zubizarreta (@marianazubi), Virginia Muraz (@virginiamuraz)\nmaquillaje y peluquería: Candela López (@candelpzz)\nmodelos: Bass (@troublesomesss), Juanjo (@jj.marlian), Saliou (@salioundiiaye), Susy (@ssy.ojbb), Layla (@laylanovaas), Liya (@nosoytunovia_)\ngafas: @voacollective",
@@ -874,7 +874,7 @@ window.DATOS={
    "subtitulo": "",
    "disciplina": "foto",
    "rol": "foto fija",
-   "formato": "",
+   "formato": "2026",
    "enlace": "",
    "descripcion": "Del rodaje del videoclip «iphone», de paco te quiero.",
    "creditos": "",
@@ -1063,11 +1063,11 @@ window.DATOS={
    "titulo": "this is an autopsy",
    "subtitulo": "",
    "disciplina": "dop",
-   "rol": "dirección de fotografía",
-   "formato": "cortometraje experimental de Lucía Alonso · 10 min",
+   "rol": "dirección de fotografía y color",
+   "formato": "cortometraje experimental de Lucía Selva · 11 min",
    "enlace": "",
-   "descripcion": "",
-   "creditos": "",
+   "descripcion": "Estreno mundial en el Vancouver International Film Festival. Mientras se resisten al colapso, los cuerpos permanecen suspendidos en la oscuridad. En aquel lugar intermedio, fuera del tiempo y del espacio, viven los vivos y los muertos… mientras una mirada clínica disecciona sus cuerpos… buscando un rastro de vida, una señal de muerte.",
+   "creditos": "dirección, guion y montaje: Lucía Selva (@luciaselva____)\nreparto: Mar Vidal (@marvidalferra), Jaume Roma (@jaume.roma), Jordi Latorre (@jordilatorre_)\nproducción ejecutiva: Rita Rodríguez (@ritardgz)\ndirección de fotografía y color: Mateo Sanz (@mateosanzr)\ndiseño sonoro: Laura Gantes (@lauragantes)\nproductora: @mubox.studio",
    "fotos": [
     "media/16-this-is-an-autopsy/01.jpg",
     "media/16-this-is-an-autopsy/02.jpg",
@@ -1111,7 +1111,7 @@ window.DATOS={
    "formato": "videoclip de Gonzalo Muñoz · 2026",
    "enlace": "https://www.youtube.com/watch?v=XOQGmPRp81g",
    "descripcion": "",
-   "creditos": "",
+   "creditos": "artista: @ddramatico\ndirección: @1500gon\ncolaboración: @getnicoo\ndirección de fotografía: @mateosanzr\nfoto fija: @mariamevoy____\nagradecimientos: @jadecarmn, @ariel4riel, @marialarasolutions",
    "fotos": [
     "media/17-ultimamente/01.jpg",
     "media/17-ultimamente/02.jpg",
