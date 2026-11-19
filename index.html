@@ -239,6 +239,7 @@ body:not(.enpj) .zona.k1{display:none}
 #fotos .fr{position:relative;margin:0 0 14px}
 #fotos .fr figcaption{position:absolute;left:10px;right:10px;bottom:8px;margin:0;font-size:14px;line-height:1.2;color:#fff;text-shadow:0 0 6px rgba(0,0,0,.55);pointer-events:none;z-index:2}
 #fotos .fr figcaption .g{display:none}
+#fotos .fr figcaption{display:flex;align-items:baseline;gap:8px;left:12px;bottom:10px;font-size:15px}#fotos .fr figcaption .tt{font-style:italic}#fotos .fr figcaption .nn{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.04em;color:var(--rec)!important;text-shadow:none}
 #fotos .fr figcaption *{color:inherit}
 .mbar{font-size:16px;border-bottom:0}
 }
@@ -637,6 +638,10 @@ var PEQ={"media/03-nuria-roman/01.jpg":1,"media/02-ego-arthropods/01.jpg":1,"med
 /* portadas en versión ligera (media/…/s/) cuando se muestran pequeñas */
 var F=function(u,w){return w&&w<=1000&&PEQ[u]?u.replace(/([^/]+)$/,'s/$1'):u};
 var CAT={dop:'dop',dir:'dirección',obra:'obra / instalación',foto:'foto'};
+/* rol y formato sin repetir lo que ya dice la disciplina */
+var ROLC={dop:'dirección de fotografía',dir:'dirección',foto:'fotografía',obra:''};
+function rolUtil(p){var r=String(p.r||'').trim();return r&&r.toLowerCase()!==ROLC[p.c]?r:''}
+function metaDl(p,e){e=e||function(t){return t};var r=rolUtil(p);return (r||p.f)?'<dl>'+(r?'<dt>rol</dt><dd><i>'+e(r)+'</i></dd>':'')+(p.f?'<dt>formato</dt><dd>'+e(p.f)+'</dd>':'')+'</dl>':''}
 var EMBEBER=false;
 var nP=0;var P=D.proyectos.map(function(p){var pt=p.portada!==false;return {t:p.titulo,c:p.disciplina,r:p.rol,f:p.formato,d:p.descripcion,fr:p.fotos,gr:p.grupos||[],cub:p.cubierta||'',pt:pt,n:pt?++nP:0,cvk:p.en_cv||[],ex:p.extras||[],al:!!p.alfa,cl:p.clips||{},gl:p.galeria||''}});
 function num(i){return P[i].n?pad(P[i].n):'—'}
@@ -677,7 +682,7 @@ P.forEach(function(p,i){
  idx.appendChild(r);rows.push(r);
  var f=document.createElement('figure');f.className='fr';f.dataset.c=p.c;f.dataset.i=i;if(p.gr&&p.gr.length)f.classList.add('a43');if(!p.pt){f.hidden=true;f.dataset.fuera=1}
  var cv=VID[i]&&VID[i][0]==='f'?VID[i].slice(2):null;
- f.innerHTML='<div class="pl">'+'<img class="mv" src="'+F(p.cub||p.fr[0],1000)+'" alt="'+p.t+'">'+(cv?'<video class="vh" muted loop playsinline preload="none" src="'+cv+'"></video>':'')+'</div><figcaption>'+num(i)+'  '+p.t+'  <span class="g">'+p.r+'</span></figcaption>';
+ f.innerHTML='<div class="pl">'+'<img class="mv" src="'+F(p.cub||p.fr[0],1000)+'" alt="'+p.t+'">'+(cv?'<video class="vh" muted loop playsinline preload="none" src="'+cv+'"></video>':'')+'</div><figcaption><span class="nn">'+num(i)+'</span> <span class="tt">'+p.t+'</span>  <span class="g">'+p.r+'</span></figcaption>';
  f.onmouseenter=function(){activa(i,true);arranca(i)};f.onmouseleave=para;f.onclick=function(){ficha(i)};
  if(p.al){var vv=f.querySelector('video.vh');if(vv)quitaNegro(vv)}
  col.appendChild(f);frs.push(f);
@@ -830,7 +835,7 @@ function ficha(i){var p=P[i];document.body.classList.remove('ancho');document.bo
  document.getElementById('hInfo').hidden=true;document.getElementById('hPj').hidden=false;
  var esc=function(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;')};
  pjEl.innerHTML='<div class="pj"><h2 class="pjt">'+num(i)+'  '+p.t+'</h2>'+(SUB[i]?'<p class="sub">'+SUB[i]+'</p>':'')
-  +'<dl><dt>rol</dt><dd><i>'+p.r+'</i></dd><dt>formato</dt><dd>'+p.f+'</dd><dt>disciplina</dt><dd>'+CAT[p.c]+'</dd></dl>'
+  +metaDl(p)
   +((DESC[i]||p.d)?'<p>'+(DESC[i]||p.d)+'</p>':'')
   +(ENL[i]?'<p><a href="'+esc(ENL[i])+'" target="_blank" rel="noopener">ver la pieza ↗</a></p>':'')+(CRED[i]?'<div class="cred"><div class="g">créditos</div><p>'+esc(CRED[i])+'</p></div>':'')+'</div>';
  info.hidden=true;pjEl.hidden=false;pjEl.scrollTop=0;document.body.classList.toggle('arch',p.gr.length>0);encajaCollage();edita(i);
@@ -1198,7 +1203,7 @@ document.addEventListener('keydown',function(e){if(e.key!=='Enter'&&e.key!==' ')
  var yo=info.querySelector('.yo');if(yo){var l=document.createElement('p');l.className='cvl';l.innerHTML='<button>currículum completo →</button>';yo.appendChild(l);l.querySelector('button').onclick=abreCV}
  var fa=document.createElement('div');fa.className='fa';info.appendChild(fa);var tt=null,ult=-1;
  window.fichaInfo=function(i){if(i===ult)return;ult=i;var p=P[i];fa.classList.add('fuera');clearTimeout(tt);tt=setTimeout(function(){
-  var d=DESC[i]||p.d||'';fa.innerHTML='<div class="g">'+num(i)+'  ·  '+(CAT[p.c]||p.c)+'</div><h3>'+esc(p.t)+'</h3><dl>'+(p.r?'<dt>rol</dt><dd><i>'+esc(p.r)+'</i></dd>':'')+(p.f?'<dt>formato</dt><dd>'+esc(p.f)+'</dd>':'')+'</dl>'+(d?'<p>'+d+'</p>':'')+'<button class="ver">→</button>';
+  var d=DESC[i]||p.d||'';fa.innerHTML='<div class="g">'+num(i)+'  ·  '+(CAT[p.c]||p.c)+'</div><h3>'+esc(p.t)+'</h3>'+metaDl(p,esc)+(d?'<p>'+d+'</p>':'')+'<button class="ver">→</button>';
   fa.querySelector('.ver').onclick=function(){ficha(i)};fa.classList.remove('fuera')},180)};
  var cvx=document.getElementById('cvx'),cab=cvx.querySelector('.cab2');
  var h=document.createElement('div');h.className='cvhead';var ig=(S.instagram||'').replace(/^@/,'');
@@ -1220,7 +1225,7 @@ document.addEventListener('keydown',function(e){if(e.key!=='Enter'&&e.key!==' ')
  window.fichaInfo=function(i){if(i===ult)return;ult=i;var p=P[i];fa.classList.add('fuera');clearTimeout(tt);tt=setTimeout(function(){
   var d=DESC[i]||p.d||'',cr=cortos(CRED[i]);
   fa.innerHTML='<div class="g">'+num(i)+'  ·  '+(CAT[p.c]||p.c)+'</div><h3>'+esc(p.t)+'</h3>'+(d?'<p>'+d+'</p>':'')
-   +'<dl>'+(p.r?'<dt>rol</dt><dd><i>'+esc(p.r)+'</i></dd>':'')+(p.f?'<dt>formato</dt><dd>'+esc(p.f)+'</dd>':'')+'</dl>'
+   +metaDl(p,esc)
    +(cr.length?'<dl class="cr">'+cr.map(function(x){return '<dt>'+x[0]+'</dt><dd>'+esc(x[1])+'</dd>'}).join('')+'</dl>':'')
    +'<button class="ver">→</button>';
   fa.querySelector('.ver').onclick=function(){ficha(i)};fa.classList.remove('fuera')},160)};
