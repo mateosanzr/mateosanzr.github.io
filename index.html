@@ -239,7 +239,7 @@ body:not(.enpj) .zona.k1{display:none}
 #fotos .fr{position:relative;margin:0 0 14px}
 #fotos .fr figcaption{position:absolute;left:10px;right:10px;bottom:8px;margin:0;font-size:14px;line-height:1.2;color:#fff;text-shadow:0 0 6px rgba(0,0,0,.55);pointer-events:none;z-index:2}
 #fotos .fr figcaption .g{display:none}
-#fotos .fr figcaption{display:flex;align-items:baseline;gap:8px;left:12px;bottom:10px;font-size:15px}#fotos .fr figcaption .tt{font-style:italic}#fotos .fr figcaption .nn{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.04em;color:var(--rec)!important;text-shadow:none}
+#fotos .fr figcaption{display:flex;align-items:baseline;gap:8px;left:12px;bottom:10px;font-size:15px}#fotos .fr figcaption .tt{font-style:italic}#fotos .fr figcaption .nn{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.04em;color:#d08a80!important;text-shadow:none}
 #fotos .fr figcaption *{color:inherit}
 .mbar{font-size:16px;border-bottom:0}
 }
@@ -1193,8 +1193,6 @@ document.addEventListener('keydown',function(e){if(!M.hidden&&e.key==='Escape')c
 document.addEventListener('keydown',function(e){if(e.key!=='Enter'&&e.key!==' ')return;var t=e.target;if(t&&t.matches&&t.matches('.row .l,.it.lk')){e.preventDefault();t.click()}});
 /* móvil: quién eres arriba y contacto en el menú */
 (function(){var esc=function(t){return String(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')},ig=(S.instagram||'').replace(/^@/,'');
- var m=document.createElement('div');m.className='mlema';m.innerHTML='<span>'+esc(S.lema||'dirección de fotografía')+(S.ciudad?' · '+esc(S.ciudad):'')+'</span>'+(S.correo?'<a href="mailto:'+esc(S.correo)+'">'+esc(S.correo)+'</a>':'');
- var mb=document.querySelector('.mbar');if(mb)mb.insertAdjacentElement('afterend',m);
  var M=document.getElementById('mMenuL');if(!M)return;var c=document.createElement('div');c.className='mcto';
  c.innerHTML=(S.correo?'<a href="mailto:'+esc(S.correo)+'">'+esc(S.correo)+'</a>':'')+(ig?'<a href="https://instagram.com/'+esc(ig)+'" target="_blank" rel="noopener">@'+esc(ig)+'</a>':'')+'<button type="button">currículum completo →</button>';
  c.querySelector('button').onclick=function(){M.hidden=true;document.body.classList.remove('menu');if(window.abreCV)window.abreCV()};M.appendChild(c)})();
