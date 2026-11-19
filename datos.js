@@ -282,7 +282,7 @@ window.DATOS={
     ],
     [
      "l’escola",
-     "foquista · videoclip de Lexxar, dir. Lucía Alonso"
+     "foquista · videoclip de Lexxar, dir. Lucía Selva"
     ],
     [
      "cari",
@@ -343,7 +343,7 @@ window.DATOS={
     ],
     [
      "l’escola",
-     "videoclip de Lexxar, dir. Lucía Alonso"
+     "videoclip de Lexxar, dir. Lucía Selva"
     ],
     [
      "bereal",
@@ -376,7 +376,7 @@ window.DATOS={
     ],
     [
      "quién vio los templos caer",
-     "gaffer · largometraje de Lucía Alonso, Escac Films"
+     "gaffer · largometraje de Lucía Selva, Escac Films"
     ],
     [
      "el faro",
@@ -1064,7 +1064,7 @@ window.DATOS={
    "subtitulo": "",
    "disciplina": "dop",
    "rol": "dirección de fotografía y color",
-   "formato": "cortometraje experimental de Lucía Selva · 11 min",
+   "formato": "cortometraje experimental de Lucía Selva · 11 min · 2026",
    "enlace": "",
    "descripcion": "Estreno mundial en el Vancouver International Film Festival. Mientras se resisten al colapso, los cuerpos permanecen suspendidos en la oscuridad. En aquel lugar intermedio, fuera del tiempo y del espacio, viven los vivos y los muertos… mientras una mirada clínica disecciona sus cuerpos… buscando un rastro de vida, una señal de muerte.",
    "creditos": "dirección, guion y montaje: Lucía Selva (@luciaselva____)\nreparto: Mar Vidal (@marvidalferra), Jaume Roma (@jaume.roma), Jordi Latorre (@jordilatorre_)\nproducción ejecutiva: Rita Rodríguez (@ritardgz)\ndirección de fotografía y color: Mateo Sanz (@mateosanzr)\ndiseño sonoro: Laura Gantes (@lauragantes)\nproductora: @mubox.studio",
@@ -1111,7 +1111,7 @@ window.DATOS={
    "formato": "videoclip de Gonzalo Muñoz · 2026",
    "enlace": "https://www.youtube.com/watch?v=XOQGmPRp81g",
    "descripcion": "",
-   "creditos": "artista: @ddramatico\ndirección: @1500gon\ncolaboración: @getnicoo\ndirección de fotografía: @mateosanzr\nfoto fija: @mariamevoy____\nagradecimientos: @jadecarmn, @ariel4riel, @marialarasolutions",
+   "creditos": "artista: @ddramatico\ndirección: @1500gon\nartista invitado: @getnicoo\ndirección de fotografía: @mateosanzr\nfoto fija: @mariamevoy____\nagradecimientos: @jadecarmn, @ariel4riel, @marialarasolutions",
    "fotos": [
     "media/17-ultimamente/01.jpg",
     "media/17-ultimamente/02.jpg",
