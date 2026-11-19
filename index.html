@@ -94,6 +94,7 @@ body.abierto #tira img{opacity:1}
 .cred{border-top:1px solid var(--linea);padding-top:8px;margin-top:6px}
 .cred .g{margin-bottom:6px}
 .cred p{white-space:pre-line;margin:0;max-width:none}
+.pj .fmt,#info .fa .fmt{margin:0 0 10px;color:var(--gris)}
 .pj dl{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;margin:0 0 14px}.pj dt{color:var(--gris)}.pj dd{margin:0}
 .pj p{margin:0 0 14px;max-width:46ch}
 .pjg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
@@ -641,7 +642,7 @@ var CAT={dop:'dop',dir:'dirección',obra:'obra / instalación',foto:'foto'};
 /* rol y formato sin repetir lo que ya dice la disciplina */
 var ROLC={dop:'dirección de fotografía',dir:'dirección',foto:'fotografía',obra:''};
 function rolUtil(p){var r=String(p.r||'').trim();return r&&r.toLowerCase()!==ROLC[p.c]?r:''}
-function metaDl(p,e){e=e||function(t){return t};var r=rolUtil(p);return (r||p.f)?'<dl>'+(r?'<dt>rol</dt><dd><i>'+e(r)+'</i></dd>':'')+(p.f?'<dt>formato</dt><dd>'+e(p.f)+'</dd>':'')+'</dl>':''}
+function metaDl(p,e){e=e||function(t){return t};var r=rolUtil(p);return (p.f?'<p class="fmt">'+e(p.f)+'</p>':'')+(r?'<dl><dt>rol</dt><dd><i>'+e(r)+'</i></dd></dl>':'')}
 var EMBEBER=false;
 var nP=0;var P=D.proyectos.map(function(p){var pt=p.portada!==false;return {t:p.titulo,c:p.disciplina,r:p.rol,f:p.formato,d:p.descripcion,fr:p.fotos,gr:p.grupos||[],cub:p.cubierta||'',pt:pt,n:pt?++nP:0,cvk:p.en_cv||[],ex:p.extras||[],al:!!p.alfa,cl:p.clips||{},gl:p.galeria||''}});
 function num(i){return P[i].n?pad(P[i].n):'—'}
