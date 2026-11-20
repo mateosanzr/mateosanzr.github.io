@@ -635,19 +635,19 @@ html.escOn #proy{overflow:hidden!important}
 .fig,#info .yo{font:400 10.5px/1.32 var(--mono);text-transform:uppercase;letter-spacing:.015em}
 .fig{position:relative;overflow:hidden;padding-bottom:30px}
 .fig>*{position:relative;z-index:1}
-.fig .fgh{display:grid;grid-template-columns:1fr auto auto;gap:0 22px;align-items:start;margin:0 0 6px}
+.fig .fgh{position:relative;z-index:1;display:grid;grid-template-columns:1fr auto auto;gap:0 22px;align-items:start;margin:0 0 6px}
 .fig .fgh .fgc{color:var(--gris)}
 .fig .fgh .fgk{letter-spacing:.18em}
 .fig h3,#info .fa.fig h3{display:none}
-.fig .fgb{position:relative;z-index:0;margin:4px -2px 0;pointer-events:none;user-select:none}
+.fig .fgb{position:absolute;z-index:0;top:34px;left:-2px;right:0;margin:0;pointer-events:none;user-select:none}
 .fig .fgb span{display:block;font:400 clamp(40px,4.1vw,62px)/.86 var(--dot);text-transform:uppercase;letter-spacing:-.01em;
  color:transparent;background:radial-gradient(circle,var(--tinta) .95px,transparent 1.35px) 0 0/3px 3px;-webkit-background-clip:text;background-clip:text;
- filter:blur(1.4px);opacity:.34;word-break:break-word;overflow-wrap:anywhere}
+ filter:blur(1.6px);opacity:.1;word-break:break-word;overflow-wrap:anywhere}
 .fig .fgm{position:absolute;z-index:0;left:6%;bottom:2px;white-space:nowrap;font:400 clamp(30px,3vw,46px)/1 var(--dot);text-transform:uppercase;
- transform:scale(-1,1);transform-origin:center;color:var(--tinta);filter:blur(3.2px);opacity:.16;pointer-events:none;user-select:none}
-.fig .fgcols{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 18px;margin:-26px 0 14px;align-items:start}
+ transform:scale(-1,1);transform-origin:center;color:var(--tinta);filter:blur(3.2px);opacity:.06;pointer-events:none;user-select:none}
+.fig .fgcols{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 18px;margin:18px 0 14px;align-items:start}
 .fig .fgcols p{max-width:none}
-.fig .fgd{margin:0;background:var(--papel);box-shadow:0 0 0 4px var(--papel);transition:background .6s,box-shadow .6s}
+.fig .fgd{margin:0}
 .fig .fmt,#info .fa.fig .fmt{display:block;font-size:inherit;margin:0;color:var(--gris);max-width:none}
 .fig .fmt span{display:block}
 .fig .fmt.rol,#info .fa.fig .fmt.rol{font-size:inherit;line-height:inherit;margin:8px 0 0;color:var(--tinta);max-width:none}
