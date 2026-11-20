@@ -927,7 +927,16 @@ window.DATOS={
    ],
    "grupos": [],
    "cubierta": "",
-   "clips": {},
+   "clips": {
+    "media/10-catalepsi/01.jpg": "media/10-catalepsi/clip-01.mp4",
+    "media/10-catalepsi/02.jpg": "media/10-catalepsi/clip-02.mp4",
+    "media/10-catalepsi/03.jpg": "media/10-catalepsi/clip-03.mp4",
+    "media/10-catalepsi/04.jpg": "media/10-catalepsi/clip-04.mp4",
+    "media/10-catalepsi/05.jpg": "media/10-catalepsi/clip-05.mp4",
+    "media/10-catalepsi/06.jpg": "media/10-catalepsi/clip-06.mp4",
+    "media/10-catalepsi/07.jpg": "media/10-catalepsi/clip-07.mp4",
+    "media/10-catalepsi/08.jpg": "media/10-catalepsi/clip-08.mp4"
+   },
    "galeria": "",
    "video": null,
    "extras": [],

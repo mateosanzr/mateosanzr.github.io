@@ -629,6 +629,48 @@ html.escOn #proy{overflow:hidden!important}
 @media(max-width:820px){.mlema{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 12px;order:0;padding:0 0 10px;font-size:14px;color:var(--gris);border-bottom:1px solid var(--linea)}
 #mMenuL .mcto{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:22px 0 0;font-size:15px}#mMenuL .mcto button{color:var(--gris);border-bottom:1px solid var(--linea)}body.enpj .mlema{display:none}}
 #fil.f2 button.on{color:var(--tinta)}#fil.f2 button.on::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor}
+
+/* ===== textos en ficha técnica (mono en mayúsculas, bloques en columnas, titular grande desenfocado) ===== */
+:root{--mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,"Courier New",monospace;--dot:"VT323",ui-monospace,Menlo,monospace}
+.fig,#info .yo{font:400 10.5px/1.32 var(--mono);text-transform:uppercase;letter-spacing:.015em}
+.fig{position:relative;overflow:hidden;padding-bottom:30px}
+.fig>*{position:relative;z-index:1}
+.fig .fgh{display:grid;grid-template-columns:1fr auto auto;gap:0 22px;align-items:start;margin:0 0 6px}
+.fig .fgh .fgc{color:var(--gris)}
+.fig .fgh .fgk{letter-spacing:.18em}
+.fig h3,#info .fa.fig h3{display:none}
+.fig .fgb{position:relative;z-index:0;margin:4px -2px 0;pointer-events:none;user-select:none}
+.fig .fgb span{display:block;font:400 clamp(40px,4.1vw,62px)/.86 var(--dot);text-transform:uppercase;letter-spacing:-.01em;
+ color:transparent;background:radial-gradient(circle,var(--tinta) .95px,transparent 1.35px) 0 0/3px 3px;-webkit-background-clip:text;background-clip:text;
+ filter:blur(1.4px);opacity:.34;word-break:break-word;overflow-wrap:anywhere}
+.fig .fgm{position:absolute;z-index:0;left:6%;bottom:2px;white-space:nowrap;font:400 clamp(30px,3vw,46px)/1 var(--dot);text-transform:uppercase;
+ transform:scale(-1,1);transform-origin:center;color:var(--tinta);filter:blur(3.2px);opacity:.16;pointer-events:none;user-select:none}
+.fig .fgcols{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 18px;margin:-26px 0 14px;align-items:start}
+.fig .fgcols p{max-width:none}
+.fig .fgd{margin:0;background:var(--papel);box-shadow:0 0 0 4px var(--papel);transition:background .6s,box-shadow .6s}
+.fig .fmt,#info .fa.fig .fmt{display:block;font-size:inherit;margin:0;color:var(--gris);max-width:none}
+.fig .fmt span{display:block}
+.fig .fmt.rol,#info .fa.fig .fmt.rol{font-size:inherit;line-height:inherit;margin:8px 0 0;color:var(--tinta);max-width:none}
+.fig .fmt.rol i{font-style:normal}
+.fig .fmt.rol i::before{content:"( "}.fig .fmt.rol i::after{content:" )"}
+.fig .sub{font-style:normal;color:var(--gris);margin:0 0 10px}
+.fig a,.fig .ver{letter-spacing:.06em}
+.fig .ver{font-size:inherit!important}
+.fig .pjt{display:none!important}
+.fig .crx{font-size:inherit;margin:18px 0 0}
+.fig .crx{display:grid;grid-template-columns:1fr 1fr;gap:9px 18px}
+.fig .crx header{grid-column:1/-1;padding:7px 0 4px}
+.fig .crx .ct{font-size:inherit}
+.fig .crx .f{display:block;margin:0;padding:0;line-height:1.32}
+.fig .crx .r{display:block}
+.fig .crx .hh{font-size:inherit;margin-left:4px}
+#info .fa.fig dl.cr{grid-template-columns:auto 1fr;gap:1px 14px;border-top:1px solid var(--linea);padding-top:8px;margin-top:16px}
+#info .fa.fig{margin-top:30px}
+#info .fa.fig dl.cr,#info .fa.fig dt,#info .fa.fig dd{font:inherit}
+.fig button,#info .yo button{text-transform:inherit;font:inherit;letter-spacing:.06em}
+#info .yo p{max-width:none}
+#info .yo .cvl button{font:inherit;letter-spacing:.06em}
+@media(max-width:820px){.fig .fgb span{font-size:clamp(34px,11vw,52px)}.fig .fgcols{grid-template-columns:1fr;gap:10px 0}.fig .crx{grid-template-columns:1fr 1fr}}
 </style><link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=VT323&display=swap" rel="stylesheet"></head><body>
 <div id="cur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="mbar"><a href="#" id="mHome" class="logo">mateo sanz román</a><span><button id="mVolver" hidden title="volver" aria-label="volver"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button><button id="mInfo" class="tx">cv</button><button id="mMenu" title="proyectos" aria-label="proyectos"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.5 3.5h11M1.5 7h11M1.5 10.5h11" stroke="currentColor" fill="none"/></svg></button><button id="mSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
@@ -654,6 +696,12 @@ var CAT={dop:'dop',dir:'dirección',obra:'obra / instalación',foto:'foto'};
 /* rol y formato sin repetir lo que ya dice la disciplina */
 var ROLC={dop:'dirección de fotografía',dir:'dirección',foto:'fotografía',obra:''};
 function rolUtil(p){var r=String(p.r||'').trim();return r&&r.toLowerCase()!==ROLC[p.c]?r:''}
+/* maquetación de los textos en ficha: FIG nnn · [ título ] · código, texto grande desenfocado detrás */
+function figN(i){var n=P[i].n||0;return String(n).padStart(3,'0')}
+function figHTML(i,e,d){e=e||function(t){return t};var p=P[i],t=e(p.t),big=(d?String(d).replace(/<[^>]+>/g,''):p.t);
+ var w=big.split(/\s+/),corte=Math.max(3,Math.ceil(w.length*.62));big=e(w.slice(0,corte).join(' '))+' [';
+ return '<div class="fgh"><span>fig '+figN(i)+'<br>[ '+t+' ]</span><span class="fgc">'+(CAT[p.c]||p.c)+'</span><span class="fgk">a'+(P[i].n?pad(P[i].n):'--')+'</span></div>'
+  +'<div class="fgb" aria-hidden="true"><span>'+big+'</span></div><div class="fgm" aria-hidden="true">]  '+t+'  [</div>'}
 function metaDl(p,e){e=e||function(t){return t};var r=rolUtil(p);return (p.f?'<p class="fmt">'+String(p.f).split(/\s+·\s+/).map(function(x){return '<span>'+e(x)+'</span>'}).join('')+'</p>':'')+(r?'<p class="fmt rol"><i>'+e(r)+'</i></p>':'')}
 /* créditos compuestos: rol en mono a la derecha, nombres en serif */
 var MONO='ui-monospace,SFMono-Regular,Menlo,monospace';
@@ -856,9 +904,9 @@ function ficha(i){var p=P[i];document.body.classList.remove('ancho');document.bo
  document.getElementById('hT').textContent=num(i)+'  '+p.t;
  document.getElementById('hInfo').hidden=true;document.getElementById('hPj').hidden=false;
  var esc=function(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;')};
- pjEl.innerHTML='<div class="pj"><h2 class="pjt">'+num(i)+'  '+p.t+'</h2>'+(SUB[i]?'<p class="sub">'+SUB[i]+'</p>':'')
-  +metaDl(p)
-  +((DESC[i]||p.d)?'<p>'+(DESC[i]||p.d)+'</p>':'')
+ pjEl.innerHTML='<div class="pj fig"><h2 class="pjt">'+num(i)+'  '+p.t+'</h2>'+figHTML(i,esc,DESC[i]||p.d)+(SUB[i]?'<p class="sub">'+SUB[i]+'</p>':'')
+  +'<div class="fgcols">'+((DESC[i]||p.d)?'<p class="fgd">'+(DESC[i]||p.d)+'</p>':'<p class="fgd"></p>')
+  +'<div>'+metaDl(p)+'</div></div>'
   +(ENL[i]?'<p><a href="'+esc(ENL[i])+'" target="_blank" rel="noopener">ver la pieza ↗</a></p>':'')+credHTML(CRED[i])+'</div>';
  info.hidden=true;pjEl.hidden=false;pjEl.scrollTop=0;document.body.classList.toggle('arch',p.gr.length>0);encajaCollage();edita(i);
  if(MOV.matches){if(!document.body.classList.contains('enpj'))yLista=window.scrollY;document.body.classList.add('enpj');document.getElementById('mVolver').hidden=false;document.getElementById('mInfo').hidden=true;window.scrollTo(0,0)}
@@ -1244,8 +1292,8 @@ document.addEventListener('keydown',function(e){if(e.key!=='Enter'&&e.key!==' ')
  var tt=null,ult=-1;
  window.fichaInfo=function(i){if(i===ult)return;ult=i;var p=P[i];fa.classList.add('fuera');clearTimeout(tt);tt=setTimeout(function(){
   var d=DESC[i]||p.d||'',cr=cortos(CRED[i]);
-  fa.innerHTML='<div class="g">'+num(i)+'  ·  '+(CAT[p.c]||p.c)+'</div><h3>'+esc(p.t)+'</h3>'+(d?'<p>'+d+'</p>':'')
-   +metaDl(p,esc)
+  fa.classList.add('fig');fa.innerHTML=figHTML(i,esc,d)+'<h3>'+esc(p.t)+'</h3><div class="fgcols">'+(d?'<p class="fgd">'+d+'</p>':'<p class="fgd"></p>')
+   +'<div>'+metaDl(p,esc)+'</div></div>'
    +(cr.length?'<dl class="cr">'+cr.map(function(x){return '<dt>'+x[0]+'</dt><dd>'+esc(x[1])+'</dd>'}).join('')+'</dl>':'')
    +'<button class="ver">→</button>';
   fa.querySelector('.ver').onclick=function(){ficha(i)};fa.classList.remove('fuera')},160)};
