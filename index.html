@@ -630,47 +630,50 @@ html.escOn #proy{overflow:hidden!important}
 #mMenuL .mcto{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:22px 0 0;font-size:15px}#mMenuL .mcto button{color:var(--gris);border-bottom:1px solid var(--linea)}body.enpj .mlema{display:none}}
 #fil.f2 button.on{color:var(--tinta)}#fil.f2 button.on::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor}
 
-/* ===== textos en ficha técnica (mono en mayúsculas, bloques en columnas, titular grande desenfocado) ===== */
-:root{--mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,"Courier New",monospace;--dot:"VT323",ui-monospace,Menlo,monospace}
-.fig,#info .yo{font:400 10.5px/1.32 var(--mono);text-transform:uppercase;letter-spacing:.015em}
-.fig{position:relative;overflow:hidden;padding-bottom:30px}
-.fig>*{position:relative;z-index:1}
-.fig .fgh{position:relative;z-index:1;display:grid;grid-template-columns:1fr auto auto;gap:0 22px;align-items:start;margin:0 0 6px}
-.fig .fgh .fgc{color:var(--gris)}
-.fig .fgh .fgk{letter-spacing:.18em}
-.fig h3,#info .fa.fig h3{display:none}
-.fig .fgb{position:absolute;z-index:0;top:34px;left:-2px;right:0;margin:0;pointer-events:none;user-select:none}
-.fig .fgb span{display:block;font:400 clamp(40px,4.1vw,62px)/.86 var(--dot);text-transform:uppercase;letter-spacing:-.01em;
- color:transparent;background:radial-gradient(circle,var(--tinta) .95px,transparent 1.35px) 0 0/3px 3px;-webkit-background-clip:text;background-clip:text;
- filter:blur(1.6px);opacity:.1;word-break:break-word;overflow-wrap:anywhere}
-.fig .fgm{position:absolute;z-index:0;left:6%;bottom:2px;white-space:nowrap;font:400 clamp(30px,3vw,46px)/1 var(--dot);text-transform:uppercase;
- transform:scale(-1,1);transform-origin:center;color:var(--tinta);filter:blur(3.2px);opacity:.06;pointer-events:none;user-select:none}
-.fig .fgcols{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 18px;margin:18px 0 14px;align-items:start}
-.fig .fgcols p{max-width:none}
-.fig .fgd{margin:0}
-.fig .fmt,#info .fa.fig .fmt{display:block;font-size:inherit;margin:0;color:var(--gris);max-width:none}
+/* ===== ficha de la derecha: bloques pequeños en mono repartidos por una rejilla de 12, como un encarte de disco ===== */
+:root{--mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,"Courier New",monospace}
+.fig{position:relative;font:400 9.5px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.035em;padding:0 0 48px;color:var(--tinta)}
+.fig .pjt,.fig h3,#info .fa.fig h3{display:none!important}
+.fig .g12,.fig .fgh,.fig .fgcols,.fig .crx{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:8px}
+.fig .fgh{align-items:start;margin:2px 0 0}
+.fig .fgh>span:first-child{grid-column:1/4}
+.fig .fgh .fgt{grid-column:5/11}
+.fig .fgh .fgk{grid-column:11/13;text-align:right;letter-spacing:.22em}
+.fig .fgh .fgc{display:block;color:var(--gris)}
+.fig .fgx{margin:30px 0 0 41.6%;font-size:13px;letter-spacing:.24em;color:var(--tinta)}
+.fig .sub{margin:14px 0 0;color:var(--gris)}
+.fig .fgcols{margin:26px 0 0;align-items:start}
+.fig .fgd{grid-column:1/7;margin:0;max-width:none}
+.fig .fgd:empty{display:none}
+.fig .fgcols>div{grid-column:8/13;margin-top:4.2em}
+.fig .fgd:empty+div{grid-column:1/7;margin-top:0}
+.fig .fmt,#info .fa.fig .fmt{display:block;margin:0;font:inherit;color:var(--gris);max-width:none}
 .fig .fmt span{display:block}
-.fig .fmt.rol,#info .fa.fig .fmt.rol{font-size:inherit;line-height:inherit;margin:8px 0 0;color:var(--tinta);max-width:none}
+.fig .fmt.rol,#info .fa.fig .fmt.rol{margin:1.2em 0 0;color:var(--tinta);font:inherit}
 .fig .fmt.rol i{font-style:normal}
 .fig .fmt.rol i::before{content:"( "}.fig .fmt.rol i::after{content:" )"}
-.fig .sub{font-style:normal;color:var(--gris);margin:0 0 10px}
-.fig a,.fig .ver{letter-spacing:.06em}
-.fig .ver{font-size:inherit!important}
-.fig .pjt{display:none!important}
-.fig .crx{font-size:inherit;margin:18px 0 0}
-.fig .crx{display:grid;grid-template-columns:1fr 1fr;gap:9px 18px}
-.fig .crx header{grid-column:1/-1;padding:7px 0 4px}
+.fig p{max-width:none}
+.fig p a{display:inline-block;margin:30px 0 0;letter-spacing:.12em}
+/* créditos: dos columnas, la derecha cae un poco más abajo */
+.fig .crx{margin:44px 0 0;font:inherit;row-gap:0}
+.fig .crx header{grid-column:1/13;display:flex;justify-content:space-between;border:0;padding:0 0 16px;color:var(--gris)}
+.fig .crx header span:first-child::before{content:"fig " attr(data-n) " · "}
 .fig .crx .ct{font-size:inherit}
-.fig .crx .f{display:block;margin:0;padding:0;line-height:1.32}
-.fig .crx .r{display:block}
-.fig .crx .hh{font-size:inherit;margin-left:4px}
-#info .fa.fig dl.cr{grid-template-columns:auto 1fr;gap:1px 14px;border-top:1px solid var(--linea);padding-top:8px;margin-top:16px}
-#info .fa.fig{margin-top:30px}
-#info .fa.fig dl.cr,#info .fa.fig dt,#info .fa.fig dd{font:inherit}
-.fig button,#info .yo button{text-transform:inherit;font:inherit;letter-spacing:.06em}
-#info .yo p{max-width:none}
-#info .yo .cvl button{font:inherit;letter-spacing:.06em}
-@media(max-width:820px){.fig .fgb span{font-size:clamp(34px,11vw,52px)}.fig .fgcols{grid-template-columns:1fr;gap:10px 0}.fig .crx{grid-template-columns:1fr 1fr}}
+.fig .crx .f{display:block;margin:0 0 1.15em;padding:0;line-height:1.4}
+.fig .crx .f:nth-of-type(odd){grid-column:1/6}
+.fig .crx .f:nth-of-type(even){grid-column:7/13;transform:translateY(2.8em)}
+.fig .crx .r{display:block;color:var(--gris)}
+.fig .crx .v{display:block}
+.fig .crx .at,.fig .crx .sep{color:var(--gris)}
+.fig .crx .hh{margin-left:4px;font-size:inherit}
+.fig .crx .f.yo .r,.fig .crx .f.yo .v,.fig .crx .f.yo .at{color:var(--rec)}
+.fig .fgpie{display:flex;justify-content:space-between;margin:64px 0 0;color:var(--gris);letter-spacing:.2em}
+/* ficha al pasar por el índice */
+#info .fa.fig{margin-top:34px}
+#info .fa.fig dl.cr{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:8px;row-gap:2px;margin:30px 0 0;padding:0;border:0;font:inherit}
+#info .fa.fig dt{grid-column:1/5;color:var(--gris);font:inherit}
+#info .fa.fig dd{grid-column:5/13;margin:0;font:inherit}
+#info .fa.fig .ver{display:block;margin:26px 0 0;color:var(--gris);font:inherit}
 
 /* ===== textos con aspecto de imprenta: tinta que sangra un poco, bordes irregulares y poro del papel ===== */
 :root{--sangra:rgba(26,26,24,.2)}:root.sala{--sangra:rgba(232,230,223,.16)}
@@ -678,82 +681,6 @@ html.escOn #proy{overflow:hidden!important}
 body{text-shadow:0 0 .45px currentColor,0 .25px 1.6px var(--sangra)}
 .esc,.esc *{text-shadow:none}
 
-/* ===== ficha de la derecha: colofón de cine =====
-   título en cursiva, datos en una línea discreta, descripción en serif
-   y créditos como los de final de película: rol a la derecha, nombre a la izquierda, sobre un mismo eje */
-.fig{font:400 14px/1.3 var(--serif);text-transform:none;letter-spacing:0;padding-bottom:20px}
-.fig .fgb,.fig .fgm,.fig .fgh .fgk{display:none}
-.fig .fgh{display:flex;justify-content:space-between;font:400 9.5px/1 var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--gris);margin:2px 0 14px}
-.fig .fgh .fgc{color:var(--gris)}
-.fig .fgt{margin:0 0 10px}
-.fig .fgt .br{display:none}
-.fig .fgt i{font:italic 400 30px/1.02 var(--serif);letter-spacing:-.01em}
-.fig .fgcols{display:block;margin:0 0 18px}
-.fig .fgcols>div{order:-1}
-.fig .fgcols{display:flex;flex-direction:column;gap:12px}
-.fig .fmt,#info .fa.fig .fmt{display:block;font:400 13px/1.3 var(--serif);color:var(--gris);text-transform:none;letter-spacing:0}
-.fig .fmt span{display:inline}
-.fig .fmt span+span::before{content:"  ·  ";white-space:pre;color:var(--linea)}
-.fig .fmt.rol,#info .fa.fig .fmt.rol{font:italic 400 13px/1.3 var(--serif);color:var(--tinta);margin:3px 0 0}
-.fig .fmt.rol i::before,.fig .fmt.rol i::after{content:none}
-.fig .fmt.rol i{font-style:italic}
-.fig .fgd,#info .yo p:first-child{font:400 15px/1.32 var(--serif);text-transform:none;letter-spacing:0;max-width:36ch}
-.fig .fgd:empty{display:none}
-.fig p a,.fig .ver{font:400 9.5px/1 var(--mono);text-transform:uppercase;letter-spacing:.14em}
-/* créditos */
-.fig .crx{display:block;margin:30px 0 0;padding-top:22px;border-top:1px solid var(--linea)}
-.fig .crx header{display:none}
-.fig .crx .f{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);column-gap:16px;margin:0 0 9px;padding:0;border:0;align-items:baseline}
-.fig .crx .r{display:block;text-align:right;font:400 9px/1.25 var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--gris);margin:0}
-.fig .crx .v{font:400 14.5px/1.22 var(--serif);text-transform:none;letter-spacing:0;color:var(--tinta)}
-.fig .crx .at{display:none}
-.fig .crx .sep{display:block;height:0;overflow:hidden}
-.fig .crx .hh{display:block;font:italic 400 12px/1.2 var(--serif);color:var(--gris);margin:0}
-.fig .crx .f.yo .r,.fig .crx .f.yo .v{color:var(--rec)}
-/* ficha al pasar por el índice: mismo eje */
-#info .fa.fig dl.cr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:7px 16px;border-top:1px solid var(--linea);padding-top:18px;margin-top:24px}
-#info .fa.fig dt{text-align:right;font:400 9px/1.25 var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--gris)}
-#info .fa.fig dd{font:400 14.5px/1.22 var(--serif);text-transform:none;letter-spacing:0;margin:0}
-#info .fa.fig .ver{margin-top:16px;color:var(--gris)}
-#info .yo{font:400 14px/1.3 var(--serif);text-transform:none;letter-spacing:0}
-#info .yo p:not(:first-child),#info .yo .cvl button{font:400 9.5px/1.5 var(--mono);text-transform:uppercase;letter-spacing:.14em}
-
-/* ===== juego tipográfico en la ficha (menos lectura, más composición) ===== */
-.fig{padding-right:30px}
-.fig .fgh{margin-bottom:6px}
-.fig .fgt{margin:0 0 22px}
-.fig .fgt i{display:block;font:italic 400 clamp(54px,5.6vw,88px)/.8 var(--serif);letter-spacing:-.045em;margin-left:-.04em}
-.fig .fgt i span{display:block;margin-left:calc(var(--k)*18%);overflow-wrap:anywhere}
-/* datos técnicos en vertical, pegados al borde */
-.fig .fmt:not(.rol),#info .fa.fig .fmt:not(.rol){position:absolute;top:22px;right:0;writing-mode:vertical-rl;font:400 8.5px/1 var(--mono)!important;text-transform:uppercase;letter-spacing:.22em;color:var(--gris);white-space:nowrap}
-.fig .fmt:not(.rol) span+span::before{content:"  —  ";color:var(--gris)}
-/* descripción con sangría profunda */
-.fig .fgd{text-indent:38%;max-width:none;font-size:15.5px;line-height:1.28;hyphens:auto}
-.fig .fmt.rol,#info .fa.fig .fmt.rol{text-align:right;font-size:15px;margin:2px 0 0}
-.fig .fgcols{gap:6px}
-.fig .fgcols>div{order:1}
-/* créditos: un solo bloque justificado de nombres, con el rol como volado en mono */
-.fig .crx{text-align:justify;text-align-last:left;hyphens:none;border-top:0;padding-top:6px;margin-top:34px;line-height:1.12}
-.fig .crx .f{display:inline;margin:0}
-.fig .crx .r{display:inline;vertical-align:.95em;font-size:7.5px;letter-spacing:.2em;margin:0 .45em 0 0;text-align:left}
-.fig .crx .v{display:inline;font:400 21px/1.12 var(--serif);letter-spacing:-.01em;margin-right:.55em}
-.fig .crx .sep{display:inline;height:auto;overflow:visible;color:var(--gris)}
-.fig .crx .sep::after{content:""}
-.fig .crx .f:nth-child(3n+2) .v{font-style:italic}
-.fig .crx .hh{display:inline;font-size:12px;margin-left:.3em}
-#info .fa.fig dl.cr{display:block;text-align:justify;text-align-last:left;border-top:0;padding-top:4px;margin-top:26px;line-height:1.12}
-#info .fa.fig dt,#info .fa.fig dd{display:inline;text-align:left}
-#info .fa.fig dt{vertical-align:.9em;font-size:7.5px;letter-spacing:.2em;margin-right:.45em}
-#info .fa.fig dd{font-size:19px;margin-right:.55em}
-#info .fa.fig dd br{display:none}
-#info .fa.fig dd:nth-of-type(2n) {font-style:italic}
-@media(max-width:820px){.fig .fgt i{font-size:clamp(48px,15vw,76px)}}
-
-.fig .crx,#info .fa.fig dl.cr{text-align:left}
-.fig .crx .r,#info .fa.fig dt{white-space:nowrap}
-.fig .crx .v,#info .fa.fig dd{-webkit-box-decoration-break:clone}
-.fig{padding-right:34px}
-.fig .crx .f::after{content:" ";white-space:normal}
 </style><link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=VT323&display=swap" rel="stylesheet"></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="imprenta" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="r"/><feDisplacementMap in="SourceGraphic" in2="r" scale=".9" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="1" seed="3" result="p"/><feColorMatrix in="p" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.72" result="poro"/><feComposite in="d" in2="poro" operator="in"/></filter></svg>
 <div id="cur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="mbar"><a href="#" id="mHome" class="logo">mateo sanz román</a><span><button id="mVolver" hidden title="volver" aria-label="volver"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button><button id="mInfo" class="tx">cv</button><button id="mMenu" title="proyectos" aria-label="proyectos"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.5 3.5h11M1.5 7h11M1.5 10.5h11" stroke="currentColor" fill="none"/></svg></button><button id="mSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
@@ -781,9 +708,9 @@ var ROLC={dop:'dirección de fotografía',dir:'dirección',foto:'fotografía',ob
 function rolUtil(p){var r=String(p.r||'').trim();return r&&r.toLowerCase()!==ROLC[p.c]?r:''}
 /* maquetación de los textos en ficha: FIG nnn · [ título ] · código, texto grande desenfocado detrás */
 function figN(i){var n=P[i].n||0;return String(n).padStart(3,'0')}
-function figHTML(i,e,d){e=e||function(t){return t};var p=P[i],t=e(p.t),big='[ '+t+' ]';
- return '<div class="fgh"><span>fig '+figN(i)+'</span><span class="fgc">'+(CAT[p.c]||p.c)+'</span><span class="fgk">a'+(P[i].n?pad(P[i].n):'--')+'</span></div>'
-  +'<div class="fgt"><i>'+String(p.t).split(/\s+/).map(function(w,k){return '<span style="--k:'+(k%3)+'">'+e(w)+'</span>'}).join(' ')+'</i></div>'+'<div class="fgb" aria-hidden="true"><span>'+big+'</span></div><div class="fgm" aria-hidden="true">]  '+t+'  [</div>'}
+function figHTML(i,e,d){e=e||function(t){return t};var p=P[i],t=e(p.t),nn=P[i].n?pad(P[i].n):'--';
+ return '<div class="fgh"><span>fig '+figN(i)+'<span class="fgc">'+(CAT[p.c]||p.c)+'</span></span><span class="fgt">[ '+t+' ]</span><span class="fgk">a'+nn+'</span></div>'
+  +'<div class="fgx" aria-hidden="true">[ '+nn+' ]</div>'}
 function metaDl(p,e){e=e||function(t){return t};var r=rolUtil(p);return (p.f?'<p class="fmt">'+String(p.f).split(/\s+·\s+/).map(function(x){return '<span>'+e(x)+'</span>'}).join('')+'</p>':'')+(r?'<p class="fmt rol"><i>'+e(r)+'</i></p>':'')}
 /* créditos compuestos: rol en mono a la derecha, nombres en serif */
 var MONO='ui-monospace,SFMono-Regular,Menlo,monospace';
@@ -989,7 +916,7 @@ function ficha(i){var p=P[i];document.body.classList.remove('ancho');document.bo
  pjEl.innerHTML='<div class="pj fig"><h2 class="pjt">'+num(i)+'  '+p.t+'</h2>'+figHTML(i,esc,DESC[i]||p.d)+(SUB[i]?'<p class="sub">'+SUB[i]+'</p>':'')
   +'<div class="fgcols">'+((DESC[i]||p.d)?'<p class="fgd">'+(DESC[i]||p.d)+'</p>':'<p class="fgd"></p>')
   +'<div>'+metaDl(p)+'</div></div>'
-  +(ENL[i]?'<p><a href="'+esc(ENL[i])+'" target="_blank" rel="noopener">ver la pieza ↗</a></p>':'')+credHTML(CRED[i])+'</div>';
+  +(ENL[i]?'<p><a href="'+esc(ENL[i])+'" target="_blank" rel="noopener">ver la pieza ↗</a></p>':'')+credHTML(CRED[i]).replace('<header><span>','<header><span data-n="'+figN(i)+'.b">')+'<div class="fgpie"><span>( '+(CAT[p.c]||p.c)+' )</span><span>'+(P[i].n?pad(P[i].n):'--')+' · '+pad(nP)+'</span><span>/ m.s.r</span></div></div>';
  info.hidden=true;pjEl.hidden=false;pjEl.scrollTop=0;document.body.classList.toggle('arch',p.gr.length>0);encajaCollage();edita(i);
  if(MOV.matches){if(!document.body.classList.contains('enpj'))yLista=window.scrollY;document.body.classList.add('enpj');document.getElementById('mVolver').hidden=false;document.getElementById('mInfo').hidden=true;window.scrollTo(0,0)}
  rows.forEach(function(r,k){r.classList.toggle('ab-pj',k===i)})}
