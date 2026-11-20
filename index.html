@@ -1,4 +1,4 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><script>if(location.protocol==="http:"&&location.hostname!=="localhost")location.replace("https:"+location.href.slice(5))</script><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script>/* vista previa del índice con el estilo de las fichas: mateosanzr.com/?ix */if(/[?&]ix\b/.test(location.search))document.documentElement.classList.add("ix")</script><script>if(location.protocol==="http:"&&location.hostname!=="localhost")location.replace("https:"+location.href.slice(5))</script><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>mateo sanz román</title>
 <meta name="description" content="Mateo Sanz Román, fotógrafo y artista visual en Barcelona. Dirección, dirección de fotografía, fotografía, instalaciones y live a/v.">
 <meta property="og:type" content="website"><meta property="og:url" content="https://mateosanzr.com/">
@@ -763,6 +763,19 @@ body{text-shadow:0 0 .45px currentColor,0 .25px 1.6px var(--sangra)}
 #info .yo.fx .arbol{grid-template-columns:minmax(0,.42fr) minmax(0,2fr)}
 #info .yo.fx .xrs>li{grid-template-columns:minmax(0,1fr) minmax(0,1.55fr)}
 .cvx .cab2{z-index:5}
+
+/* ===== índice tipo playlist (vista previa ?ix) ===== */
+html.ix .fil{font:400 9.5px/1 var(--mono);text-transform:uppercase;letter-spacing:.12em;margin:0 0 22px}
+html.ix .fil sup{font-size:8px;letter-spacing:0}
+html.ix .ixh{display:flex;justify-content:space-between;font:400 9.5px/1 var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--gris);margin:2px 0 18px}
+html.ix #idx .row{border-bottom:0}
+html.ix #idx .row .l{grid-template-columns:6.5ch minmax(0,1fr) 9.5em 4ch;gap:1.4ch;padding:0;font:400 10.5px/1.95 var(--mono);letter-spacing:.01em}
+html.ix #idx .row .n{text-align:right;color:var(--gris)}
+html.ix #idx .row .a{text-align:left;color:var(--gris)}
+html.ix #idx .row .y{color:var(--gris);text-align:right}
+html.ix #idx .row.act .t,html.ix #idx .row.si .t{font-style:normal;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+html.ix #idx .row.act .n{color:var(--tinta)}
+html.ix #idx .row:nth-child(5n) .l{margin-bottom:1.95em}
 </style><link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=VT323&display=swap" rel="stylesheet"></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="imprenta" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="r"/><feDisplacementMap in="SourceGraphic" in2="r" scale=".9" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="1" seed="3" result="p"/><feColorMatrix in="p" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.72" result="poro"/><feComposite in="d" in2="poro" operator="in"/></filter></svg>
 <div id="cur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="mbar"><a href="#" id="mHome" class="logo">mateo sanz román</a><span><button id="mVolver" hidden title="volver" aria-label="volver"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button><button id="mInfo" class="tx">cv</button><button id="mMenu" title="proyectos" aria-label="proyectos"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.5 3.5h11M1.5 7h11M1.5 10.5h11" stroke="currentColor" fill="none"/></svg></button><button id="mSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
@@ -1967,5 +1980,13 @@ var pie=document.querySelector('footer span');if(pie&&S.lema)pie.textContent=S.l
  var yo=info.querySelector('.yo');if(yo){var b=yo.querySelector('.acv');if(b)b.onclick=function(){window.abreCV&&abreCV()};
   var F={'dop':'dop','dirección':'dirección','obra / instalación':'otros','fotografía':'otros'};
   yo.querySelectorAll('.prac .xrs>li').forEach(function(li){var l=li.querySelector('.xn>span').textContent.trim(),f=F[l];if(!f)return;li.classList.add('lk');li.onclick=function(){var bt=[].find.call(document.querySelectorAll('#fil button'),function(x){return x.textContent.trim().indexOf(f)===0});if(bt)bt.click()}})}
+})();
+</script><script>
+/* índice tipo playlist (solo con html.ix): romanos, título, disciplina y año */
+(function(){if(!document.documentElement.classList.contains('ix'))return;
+ var h=document.createElement('div');h.className='ixh';h.innerHTML='<span>idx--'+pad(nP)+'</span><span>1.0</span><span>ed. m.s.r</span>';
+ var f=document.getElementById('fil');if(f)f.parentNode.insertBefore(h,f);
+ rows.forEach(function(r,i){var p=P[i],n=r.querySelector('.n'),y=(String(p.f||'').match(/\b(19|20)\d\d\b/)||[''])[0];
+  if(n&&p.n)n.textContent=romC(p.n);var a=r.querySelector('.a');if(a){var s=document.createElement('span');s.className='y';s.textContent=y;a.parentNode.insertBefore(s,a.nextSibling)}});
 })();
 </script></body></html>
