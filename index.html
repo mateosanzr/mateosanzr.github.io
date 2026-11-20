@@ -677,6 +677,21 @@ html.escOn #proy{overflow:hidden!important}
 .cab,.fil,.row .l,#info .yo,#info .fa,.pj,.luz,.cvx .cvg,.cvx .cvhead,.cab2,#mMenuL .mml,.mcto{filter:url(#imprenta)}
 body{text-shadow:0 0 .45px currentColor,0 .25px 1.6px var(--sangra)}
 .esc,.esc *{text-shadow:none}
+
+/* puente con el índice: título, descripción, nombres y bio en la serif del índice; la mono queda para etiquetas y datos */
+.fig .fgt{position:relative;z-index:1;display:flex;align-items:baseline;gap:.45em;margin:2px 0 4px;text-transform:none;letter-spacing:0}
+.fig .fgt i{font:italic 400 24px/1.1 var(--serif)}
+.fig .fgt .br{color:var(--gris);font-size:13px}
+.fig .fgd,#info .yo p:first-child{font:400 14px/1.25 var(--serif);text-transform:none;letter-spacing:0}
+.fig .fgd{max-width:34ch}
+.fig .crx{gap:0 18px}
+.fig .crx .f{border-bottom:1px solid var(--linea);padding:5px 0 6px}
+.fig .crx .v{font:400 14px/1.2 var(--serif);text-transform:none;letter-spacing:0}
+.fig .crx .r{margin-bottom:2px}
+.fig .crx .at,.fig .crx .sep{color:var(--gris)}
+.fig .crx header{border-top:0;padding:0 0 4px;border-bottom:1px solid var(--linea)}
+#info .fa.fig dd{font:400 14px/1.25 var(--serif);text-transform:none;letter-spacing:0}
+#info .fa.fig dl.cr{align-items:baseline}
 </style><link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=VT323&display=swap" rel="stylesheet"></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="imprenta" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="r"/><feDisplacementMap in="SourceGraphic" in2="r" scale=".9" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="1" seed="3" result="p"/><feColorMatrix in="p" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.72" result="poro"/><feComposite in="d" in2="poro" operator="in"/></filter></svg>
 <div id="cur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="mbar"><a href="#" id="mHome" class="logo">mateo sanz román</a><span><button id="mVolver" hidden title="volver" aria-label="volver"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button><button id="mInfo" class="tx">cv</button><button id="mMenu" title="proyectos" aria-label="proyectos"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.5 3.5h11M1.5 7h11M1.5 10.5h11" stroke="currentColor" fill="none"/></svg></button><button id="mSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
@@ -705,8 +720,8 @@ function rolUtil(p){var r=String(p.r||'').trim();return r&&r.toLowerCase()!==ROL
 /* maquetación de los textos en ficha: FIG nnn · [ título ] · código, texto grande desenfocado detrás */
 function figN(i){var n=P[i].n||0;return String(n).padStart(3,'0')}
 function figHTML(i,e,d){e=e||function(t){return t};var p=P[i],t=e(p.t),big='[ '+t+' ]';
- return '<div class="fgh"><span>fig '+figN(i)+'<br>[ '+t+' ]</span><span class="fgc">'+(CAT[p.c]||p.c)+'</span><span class="fgk">a'+(P[i].n?pad(P[i].n):'--')+'</span></div>'
-  +'<div class="fgb" aria-hidden="true"><span>'+big+'</span></div><div class="fgm" aria-hidden="true">]  '+t+'  [</div>'}
+ return '<div class="fgh"><span>fig '+figN(i)+'</span><span class="fgc">'+(CAT[p.c]||p.c)+'</span><span class="fgk">a'+(P[i].n?pad(P[i].n):'--')+'</span></div>'
+  +'<div class="fgt"><span class="br">[</span><i>'+t+'</i><span class="br">]</span></div>'+'<div class="fgb" aria-hidden="true"><span>'+big+'</span></div><div class="fgm" aria-hidden="true">]  '+t+'  [</div>'}
 function metaDl(p,e){e=e||function(t){return t};var r=rolUtil(p);return (p.f?'<p class="fmt">'+String(p.f).split(/\s+·\s+/).map(function(x){return '<span>'+e(x)+'</span>'}).join('')+'</p>':'')+(r?'<p class="fmt rol"><i>'+e(r)+'</i></p>':'')}
 /* créditos compuestos: rol en mono a la derecha, nombres en serif */
 var MONO='ui-monospace,SFMono-Regular,Menlo,monospace';
