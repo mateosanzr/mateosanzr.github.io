@@ -914,6 +914,22 @@ html.ix .hzg button{text-transform:none;letter-spacing:.02em}
 .fx .xrs>li>.xn{min-width:0}
 .cvp .cvs{border-bottom:1px solid var(--linea)!important}
 .cvp .cvi.lk .ti{text-decoration-color:var(--linea)}
+
+/* ===== índice idéntico en móvil y escritorio ===== */
+html.ix .fil button sup{text-decoration:none;display:inline-block;color:var(--gris)}
+html.ix .fil button.on{text-decoration:none}
+html.ix .fil button.on .fw{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+@media(max-width:820px){.fx .xrs>li>.xn>span{white-space:nowrap!important}}
+@media(max-width:820px){
+ body:not(.enpj) .zona.k1{display:block!important;order:1;padding:18px 0 26px;border-bottom:1px solid var(--linea);margin-bottom:18px}
+ html.ix #idx{display:block}
+ html.ix #idx .row .l{grid-template-columns:5.5ch minmax(0,1fr) 13ch 4ch;gap:1.2ch;font:400 12px/2.15 var(--mono)}
+ html.ix #idx .row .a{padding-left:calc(var(--ci)*2ch)}
+ html.ix .fil{display:flex!important;padding-left:calc(5.5ch + 1.2ch);margin:0 0 16px;gap:0 2.4ch!important;overflow:visible}
+ html.ix #idx .row:not(.act) {opacity:1}
+ html.ix #idx .row.off{opacity:.18}
+ #fotos .fr figcaption .nn{min-width:4ch}
+}
 </style><link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=VT323&display=swap" rel="stylesheet"></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="imprenta" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="r"/><feDisplacementMap in="SourceGraphic" in2="r" scale=".9" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="1" seed="3" result="p"/><feColorMatrix in="p" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.72" result="poro"/><feComposite in="d" in2="poro" operator="in"/></filter></svg>
 <div id="cur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="mbar"><a href="#" id="mHome" class="logo">mateo sanz román</a><span><button id="mVolver" hidden title="volver" aria-label="volver"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button><button id="mInfo" class="tx">cv</button><button id="mMenu" title="proyectos" aria-label="proyectos"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.5 3.5h11M1.5 7h11M1.5 10.5h11" stroke="currentColor" fill="none"/></svg></button><button id="mSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
@@ -1029,7 +1045,7 @@ P.forEach(function(p,i){
  idx.appendChild(r);rows.push(r);
  var f=document.createElement('figure');f.className='fr';f.dataset.c=p.c;f.dataset.i=i;if(p.gr&&p.gr.length)f.classList.add('a43');if(!p.pt){f.hidden=true;f.dataset.fuera=1}
  var cv=VID[i]&&VID[i][0]==='f'?VID[i].slice(2):null;
- f.innerHTML='<div class="pl">'+'<img class="mv" src="'+F(p.cub||p.fr[0],1000)+'" alt="'+p.t+'">'+(cv?'<video class="vh" muted loop playsinline preload="none" src="'+cv+'"></video>':'')+'</div><figcaption><span class="nn">'+num(i)+'</span> <span class="tt">'+p.t+'</span>  <span class="g">'+p.r+'</span></figcaption>';
+ f.innerHTML='<div class="pl">'+'<img class="mv" src="'+F(p.cub||p.fr[0],1000)+'" alt="'+p.t+'">'+(cv?'<video class="vh" muted loop playsinline preload="none" src="'+cv+'"></video>':'')+'</div><figcaption><span class="nn">'+(P[i].n?romC(P[i].n):'—')+'</span> <span class="tt">'+p.t+'</span>  <span class="g">'+p.r+'</span></figcaption>';
  f.onmouseenter=function(){activa(i,true);arranca(i)};f.onmouseleave=para;f.onclick=function(){ficha(i)};
  if(p.al){var vv=f.querySelector('video.vh');if(vv)quitaNegro(vv)}
  col.appendChild(f);frs.push(f);
@@ -2124,6 +2140,7 @@ var pie=document.querySelector('footer span');if(pie&&S.lema)pie.textContent=S.l
 </script><script>
 /* índice tipo playlist (solo con html.ix): romanos, título, disciplina y año */
 (function(){if(!document.documentElement.classList.contains('ix'))return;
+ document.querySelectorAll('#fil button').forEach(function(b){var t=b.firstChild;if(t&&t.nodeType===3){var w=document.createElement('span');w.className='fw';w.textContent=t.textContent;b.replaceChild(w,t)}});
  rows.forEach(function(r,i){var p=P[i],n=r.querySelector('.n'),y=(String(p.f||'').match(/\b(19|20)\d\d\b/)||[''])[0];
   if(n&&p.n)n.textContent=romC(p.n);r.style.setProperty('--ci',{dop:0,dir:1,obra:2,foto:3}[p.c]||0);var a=r.querySelector('.a');if(a){var s=document.createElement('span');s.className='y';s.textContent=y||'····';a.parentNode.insertBefore(s,a.nextSibling)}});
 })();
