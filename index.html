@@ -722,8 +722,7 @@ var ROLC={dop:'dirección de fotografía',dir:'dirección',foto:'fotografía',ob
 function rolUtil(p){var r=String(p.r||'').trim();return r&&r.toLowerCase()!==ROLC[p.c]?r:''}
 /* maquetación de los textos en ficha: FIG nnn · [ título ] · código, texto grande desenfocado detrás */
 function figN(i){var n=P[i].n||0;return String(n).padStart(3,'0')}
-function figHTML(i,e,d){e=e||function(t){return t};var p=P[i],t=e(p.t),big=(d?String(d).replace(/<[^>]+>/g,''):p.t);
- var w=big.split(/\s+/),corte=Math.max(3,Math.ceil(w.length*.62));big=e(w.slice(0,corte).join(' '))+' [';
+function figHTML(i,e,d){e=e||function(t){return t};var p=P[i],t=e(p.t),big='[ '+t+' ]';
  return '<div class="fgh"><span>fig '+figN(i)+'<br>[ '+t+' ]</span><span class="fgc">'+(CAT[p.c]||p.c)+'</span><span class="fgk">a'+(P[i].n?pad(P[i].n):'--')+'</span></div>'
   +'<div class="fgb" aria-hidden="true"><span>'+big+'</span></div><div class="fgm" aria-hidden="true">]  '+t+'  [</div>'}
 function metaDl(p,e){e=e||function(t){return t};var r=rolUtil(p);return (p.f?'<p class="fmt">'+String(p.f).split(/\s+·\s+/).map(function(x){return '<span>'+e(x)+'</span>'}).join('')+'</p>':'')+(r?'<p class="fmt rol"><i>'+e(r)+'</i></p>':'')}
