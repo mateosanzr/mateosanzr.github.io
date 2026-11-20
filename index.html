@@ -829,6 +829,45 @@ html.ix #mMenuL .mcto{font:400 10.5px/1.6 var(--mono)}
 .fx .lin .acv{font:inherit;letter-spacing:inherit;text-transform:none;color:var(--tinta);padding:0}
 .fx .lin .acv:hover{color:var(--rec)}
 html.ix #mMenuL .mcto button{border-bottom:0;color:var(--tinta);font:inherit;letter-spacing:.12em;text-transform:uppercase}
+
+/* ===== limpieza: rojo reservado para tu línea en los créditos ===== */
+.fx .fxl a,.fx .fxl a:hover{color:var(--tinta)}
+.fx a{color:inherit}.fx a:hover{color:inherit;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.fx .lin .acv:hover,.fx .lin a:hover{color:var(--tinta);text-decoration:underline;text-underline-offset:3px}
+html.ix #idx .row .l:hover .t{color:var(--tinta);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+html.ix .fil button.on::before{content:none}
+html.ix .fil button.on{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+html.ix #mMenuL .mcto a{color:var(--tinta)}
+.fx .lin.prac .li:hover,.fx .lin.prac .li:hover span{color:var(--tinta)}
+.fx .lin.prac .li:hover span:first-child{text-decoration:underline;text-underline-offset:3px}
+svg.ar{width:.82em;height:.82em;vertical-align:-.05em;margin-left:.25em;overflow:visible}
+/* ===== créditos: nombres escalonados por departamento, como la disciplina en el índice ===== */
+.pj.fx .xrs>li{grid-template-columns:calc(25ch + var(--d,0)*4ch) minmax(0,1fr)}
+.pj.fx .arbol{grid-template-columns:minmax(0,.42fr) minmax(0,2fr)}
+.fx .xhj a{color:inherit}
+.fx .xrs>li.yo a{color:var(--rec)}
+.fx .xrs>li>.xn>span{white-space:nowrap}
+@media(max-width:820px){.pj.fx .xrs>li{grid-template-columns:calc(25.5ch + var(--d,0)*1.4ch) minmax(0,1fr)}}
+/* ===== fotografía: columna de texto de la galería con el sistema de las fichas ===== */
+.hzt{flex-basis:calc(var(--c)*3);justify-content:flex-end;overflow-y:auto;scrollbar-width:none}
+.hzt .fx{padding-bottom:6px}
+.hzt .fx .fxt{grid-template-columns:5.5ch minmax(0,1fr)}
+.hzt .fx .fxt .xpa{grid-column:2;margin-bottom:2px}
+.hzt .fx .fxt .xrm:empty,.hzt .fx .fxt .xpa:empty{display:none}
+.hzt .fx .fxd{margin-top:20px}
+.hzt .fx .arbol{margin-top:24px}
+.hzt .fx .xrs>li{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+.hzt .fx .xraiz{display:none}
+.hzt .fx .arbol{display:block}
+.hzt .hzn{margin:22px 0 0;color:var(--gris);font:400 10.5px/1 var(--mono)}
+html.ix .hzb,html.ix .hzb button,html.ix .hzfin,html.ix .hzfin button,html.ix .hzg button{font:400 10px/1 var(--mono);text-transform:uppercase;letter-spacing:.12em}
+html.ix .hzg button{text-transform:none;letter-spacing:.02em}
+/* ===== archivo: mismo tono, sin píxel ===== */
+.esc{--px:var(--mono);--vt:var(--mono);font-size:11px!important;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Crect width='1' height='1' fill='%23a9a69d'/%3E%3C/svg%3E")!important;background-size:6px 6px!important}
+.esc .win{box-shadow:none!important}
+
+.fx .fxd{text-align-last:left}
 </style><link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=VT323&display=swap" rel="stylesheet"></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="imprenta" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="r"/><feDisplacementMap in="SourceGraphic" in2="r" scale=".9" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="1" seed="3" result="p"/><feColorMatrix in="p" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.72" result="poro"/><feComposite in="d" in2="poro" operator="in"/></filter></svg>
 <div id="cur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="mbar"><a href="#" id="mHome" class="logo">mateo sanz román</a><span><button id="mVolver" hidden title="volver" aria-label="volver"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button><button id="mInfo" class="tx">cv</button><button id="mMenu" title="proyectos" aria-label="proyectos"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.5 3.5h11M1.5 7h11M1.5 10.5h11" stroke="currentColor" fill="none"/></svg></button><button id="mSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
@@ -864,21 +903,23 @@ function romC(n){var v=[[50,'L'],[40,'XL'],[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1
 function rom(n){if(!n)return '—';var v=[[50,'L'],[40,'XL'],[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']],r='';v.forEach(function(x){while(n>=x[0]){r+=x[1];n-=x[0]}});return r.split('').join(' ')}
 function credPares(t){var out=[];String(t||'').split(/\n/).forEach(function(l){l=l.trim();if(!l)return;var ci=l.indexOf(':');var r=ci>0?l.slice(0,ci).trim():'',v=ci>0?l.slice(ci+1).trim():l;out.push([r,v.split(/\s*,\s*/).filter(Boolean)])});return out}
 function arbolHTML(raiz,pares,e,sinYo){if(!pares.length)return '';
- var hoja=function(n){n=n.trim();var m=n.match(/^(.*?)\s*\((@[^)]+)\)$/);if(m&&m[1])n=m[1];return e(n.replace(/^@/,''))};
+ var hoja=function(n){n=n.trim();var h='',m=n.match(/^(.*?)\s*\(@([^)]+)\)$/);if(m&&m[1]){n=m[1];h=m[2]}else if(n.charAt(0)==='@'){h=n.slice(1);n=h}
+  h=h.replace(/[^A-Za-z0-9._]/g,'');return h?'<a href="https://instagram.com/'+h+'" target="_blank" rel="noopener">'+e(n)+'</a>':e(n)};
+ var dep=function(r){r=String(r||'').toLowerCase();return /direcci[oó]n de fotograf|c[aá]mara|foquista|steady|dop|operador|fotograf/.test(r)?1:/gaffer|el[eé]ctric|iluminaci|best boy|grip|luz/.test(r)?2:/arte|vestuario|maquillaje|peluquer|estilis|casting|attrezz/.test(r)?3:/montaje|edici|color|sonido|m[uú]sica|vfx|post|mezcla/.test(r)?4:0};
  var rama=function(lista,cls){return '<ul class="'+cls+(lista.length===1?' xuno':'')+'">'+lista.join('')+'</ul>'};
  var roles=pares.map(function(x){var yo=!sinYo&&x[1].some(function(n){return /@?mateosanzr\b|mateo sanz/i.test(n)});
-  return '<li class="xro'+(yo?' yo':'')+'"><span class="xn"><span>'+e(x[0]||'—')+'</span><i class="xl"></i></span>'+rama(x[1].map(function(n){return '<li><span class="xn"><span>'+hoja(n)+'</span></span></li>'}),'xhj')+'</li>'});
+  return '<li class="xro'+(yo?' yo':'')+'" style="--d:'+dep(x[0])+'"><span class="xn"><span>'+e(x[0]||'—')+'</span><i class="xl"></i></span>'+rama(x[1].map(function(n){return '<li><span class="xn"><span>'+hoja(n)+'</span></span></li>'}),'xhj')+'</li>'});
  return '<div class="arbol"><span class="xn xraiz"><span>'+raiz+'</span><i class="xl"></i></span>'+rama(roles,'xrs')+'</div>'}
 function fxHTML(i,e,d,pares,corto){var p=P[i],n=P[i].n||0,partes=String(p.f||'').split(/\s+·\s+/).filter(Boolean),r=rolUtil(p);
- var h='<div class="fxh"><span>fig--'+figN(i)+'</span><span>1.0</span><span>'+e(CAT[p.c]||p.c)+'</span><span>ed. m.s.r</span></div>';
- h+='<div class="fxt"><span class="xrm">'+rom(n)+'</span><span class="xtt">'+e(p.t)+'</span><span class="xpa">'+(partes[0]?e(partes[0]):'')+'</span>';
+ var h='<div class="fxh"><span>fig--'+figN(i)+'</span><span>'+e(CAT[p.c]||p.c)+'</span></div>';
+ h+='<div class="fxt"><span class="xrm">'+romC(n)+'</span><span class="xtt">'+e(p.t)+'</span><span class="xpa">'+(partes[0]?e(partes[0]):'')+'</span>';
  partes.slice(1).forEach(function(x,k){h+='<span class="xrm"></span><span class="xtt xst" style="--k:'+(k+1)+'">'+e(x)+'</span><span class="xpa"></span>'});
  if(r)h+='<span class="xrm"></span><span class="xtt xst" style="--k:'+(partes.length)+'">('+e(r)+')</span><span class="xpa"></span>';
  h+='</div>';
  if(d)h+='<p class="fxd">'+d+'</p>';
- if(!corto&&ENL[i])h+='<p class="fxl"><a href="'+e(ENL[i])+'" target="_blank" rel="noopener">ver la pieza ↗</a></p>';
+ if(!corto&&ENL[i])h+='<p class="fxl"><a href="'+e(ENL[i])+'" target="_blank" rel="noopener">ver la pieza <svg class="ar" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5l5-5M3.5 2.5h4v4" stroke="currentColor" fill="none"/></svg></a></p>';
  h+=arbolHTML(corto?'resumen':'créditos',pares,e);
- if(!corto)h+='<div class="fxp"><span>( '+e(CAT[p.c]||p.c)+' )</span><span>'+(n?pad(n):'--')+' · '+pad(nP)+'</span><span>mateosanzr.com</span></div>';
+ 
  return h}
 function metaDl(p,e){e=e||function(t){return t};var r=rolUtil(p);return (p.f?'<p class="fmt">'+String(p.f).split(/\s+·\s+/).map(function(x){return '<span>'+e(x)+'</span>'}).join('')+'</p>':'')+(r?'<p class="fmt rol"><i>'+e(r)+'</i></p>':'')}
 /* créditos compuestos: rol en mono a la derecha, nombres en serif */
@@ -914,13 +955,12 @@ var esc0=function(t){return String(t||'').replace(/&/g,'&amp;').replace(/</g,'&l
 var ig=(S.instagram||'').replace(/^@/,''),tt=(S.tiktok||'').replace(/^@/,'');
 function lineasHTML(t,f,cls){return '<div class="lin'+(cls?' '+cls:'')+'"><div class="lt">'+t+'</div>'+f.map(function(x){return '<div class="li"><span>'+x[0]+'</span><span>'+x[1].join(', ')+'</span></div>'}).join('')+'</div>'}
 function infoYo(){var e=esc0,cnt={};P.forEach(function(p){if(p.pt)cnt[p.c]=(cnt[p.c]||0)+1});
- var h='<div class="yo fx"><div class="fxh"><span>info--000</span><span>1.0</span><span>'+e(S.ciudad||'')+'</span><span>ed. m.s.r</span></div>';
- h+='<div class="fxt"><span class="xrm">—</span><span class="xtt">'+e(S.nombre||'')+'</span><span class="xpa">'+e(S.lema||'')+'</span></div>';
+ var h='<div class="yo fx">';
  if(S.bio)h+='<p class="fxd">'+e(S.bio)+'</p>';
  var c=[];if(S.correo)c.push(['correo',['<a href="mailto:'+e(S.correo)+'">'+e(S.correo)+'</a>']]);
  if(ig)c.push(['instagram',['<a href="https://instagram.com/'+e(ig)+'" target="_blank" rel="noopener">'+e(ig)+'</a>']]);
  if(tt)c.push(['tiktok',['<a href="https://www.tiktok.com/@'+e(tt)+'" target="_blank" rel="noopener">'+e(tt)+'</a>']]);
- var nCV=CV.reduce(function(a,x){return a+x[1].length},0);c.push(['cv',['<button type="button" class="acv">cv--'+new Date().getFullYear()+' · '+nCV+' entradas ↗</button>']]);
+ var nCV=CV.reduce(function(a,x){return a+x[1].length},0);c.push(['cv',['<button type="button" class="acv">cv--'+new Date().getFullYear()+' · '+nCV+' entradas <svg class="ar" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5l5-5M3.5 2.5h4v4" stroke="currentColor" fill="none"/></svg></button>']]);
  h+=lineasHTML('contacto',c);
  var pr=[['dop','dop'],['dir','dirección'],['obra','obra / instalación'],['foto','fotografía']].filter(function(x){return cnt[x[0]]}).map(function(x){return [x[1],[pad(cnt[x[0]])+(cnt[x[0]]===1?' proyecto':' proyectos')]]});
  h+=lineasHTML('práctica',pr,'prac');
@@ -1069,9 +1109,9 @@ var ioE=null;
 function moda(i,p,fs){document.body.classList.remove('ed');document.body.classList.add('hz');
  var n=fs.length,pd=function(x){return (x<10?'0':'')+x},cur=0;
  var w=document.createElement('div');w.className='hz';proyEl.insertBefore(w,fs[0]);
- var t=document.createElement('div');t.className='hzt';t.innerHTML='<h1>'+p.t+'</h1>'+(p.r?'<p><i>'+p.r+'</i></p>':'')+(p.f?'<p class="g">'+p.f+'</p>':'')+((DESC[i]||p.d)?'<p>'+(DESC[i]||p.d)+'</p>':'')+'<p class="g" style="margin-top:14px">'+n+' fotografías →</p>';w.appendChild(t);
+ var t=document.createElement('div');t.className='hzt';var e0=function(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;')};t.innerHTML='<div class="fx">'+fxHTML(i,e0,DESC[i]||p.d,credPares(CRED[i]),false)+'<p class="hzn">'+pd(n)+' fotografías →</p></div>';w.appendChild(t);
  fs.forEach(function(f,k){f.className='fr hzf';var im=f.querySelector('img');if(im){im.removeAttribute('loading');if(im.complete)im.classList.add('ok');else im.onload=function(){im.classList.add('ok')}}f.onclick=function(){ir(k===cur?k+1:k)};w.appendChild(f)});
- var fin=document.createElement('div');fin.className='hzfin';fin.innerHTML='<button>↺ volver al principio</button>';fin.querySelector('button').onclick=function(){ir(-1)};w.appendChild(fin);
+ var fin=document.createElement('div');fin.className='hzfin';fin.innerHTML='<button>← volver al principio</button>';fin.querySelector('button').onclick=function(){ir(-1)};w.appendChild(fin);
  var bar=document.createElement('div');bar.className='hzb';bar.innerHTML='<span class="ct">01 / '+pd(n)+'</span><span class="ln"><i></i></span><button class="ix">índice</button>';proyEl.appendChild(bar);
  var g=document.createElement('div');g.className='hzg';g.hidden=true;g.innerHTML=fs.map(function(f,k){var im=f.querySelector('img');return '<button data-k="'+k+'"><img src="'+(im?im.src:'')+'" alt="" loading="lazy">'+pd(k+1)+'</button>'}).join('');proyEl.appendChild(g);
  var ix=bar.querySelector('.ix');ix.onclick=function(){g.hidden=!g.hidden;ix.classList.toggle('on',!g.hidden);ix.textContent=g.hidden?'índice':'cerrar'};
@@ -1452,7 +1492,7 @@ document.addEventListener('keydown',function(e){if(e.key!=='Enter'&&e.key!==' ')
 /* móvil: quién eres arriba y contacto en el menú */
 (function(){var esc=function(t){return String(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')},ig=(S.instagram||'').replace(/^@/,'');
  var M=document.getElementById('mMenuL');if(!M)return;var c=document.createElement('div');c.className='mcto';
- c.innerHTML=(S.correo?'<a href="mailto:'+esc(S.correo)+'">'+esc(S.correo)+'</a>':'')+(ig?'<a href="https://instagram.com/'+esc(ig)+'" target="_blank" rel="noopener">@'+esc(ig)+'</a>':'')+'<button type="button">cv--'+new Date().getFullYear()+' ↗</button>';
+ c.innerHTML=(S.correo?'<a href="mailto:'+esc(S.correo)+'">'+esc(S.correo)+'</a>':'')+(ig?'<a href="https://instagram.com/'+esc(ig)+'" target="_blank" rel="noopener">@'+esc(ig)+'</a>':'')+'<button type="button">cv--'+new Date().getFullYear()+' <svg class="ar" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5l5-5M3.5 2.5h4v4" stroke="currentColor" fill="none"/></svg></button>';
  c.querySelector('button').onclick=function(){M.hidden=true;document.body.classList.remove('menu');if(window.abreCV)window.abreCV()};M.appendChild(c)})();
 /* info contextual */
 (function(){var esc=function(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;')};
@@ -1829,7 +1869,7 @@ var pie=document.querySelector('footer span');if(pie&&S.lema)pie.textContent=S.l
    else if(v&&v[0]==='y')h+='<div class="emb"><iframe src="https://www.youtube-nocookie.com/embed/'+v.slice(2)+'?autoplay=1&mute=1&loop=1&playlist='+v.slice(2)+'" allow="autoplay; fullscreen" allowfullscreen></iframe></div>';
    (p.ex||[]).forEach(function(u){h+='<video src="'+u+'" muted loop autoplay playsinline></video>'});
    p.fr.forEach(function(u,q){if(u===p.cub&&p.gr&&p.gr.length)return;var cl=p.cl&&p.cl[u];h+='<figure'+(cl?' data-clip="'+cl+'"':'')+'><img src="'+F(u,1200)+'" alt="" loading="lazy"></figure>'});h+='</div>';
-   var W=ventana('pj'+j,'pjv',(typeof num==='function'?num(j)+' ':'')+p.t,h+'<div class="est"><span>'+p.fr.length+(p.fr.length===1?' imagen':' imágenes')+'</span><span>'+(en?'<button class="ve">vídeo ↗</button>':'')+'<button class="ab">abrir en la web →</button></span></div>',{left:(30+k*3)+'%',top:(36+k*22)+'px',width:'min(620px,calc(64% - 90px))',height:'calc(100% - '+(56+k*22)+'px)'});
+   var W=ventana('pj'+j,'pjv',(typeof num==='function'?num(j)+' ':'')+p.t,h+'<div class="est"><span>'+p.fr.length+(p.fr.length===1?' imagen':' imágenes')+'</span><span>'+(en?'<button class="ve">vídeo <svg class="ar" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5l5-5M3.5 2.5h4v4" stroke="currentColor" fill="none"/></svg></button>':'')+'<button class="ab">abrir en la web →</button></span></div>',{left:(30+k*3)+'%',top:(36+k*22)+'px',width:'min(620px,calc(64% - 90px))',height:'calc(100% - '+(56+k*22)+'px)'});
    if(!W._ok){W._ok=1;W.querySelectorAll('figure[data-clip]').forEach(function(fg){function on(){if(fg._v)return;var vv=document.createElement('video');vv.src=fg.dataset.clip;vv.muted=true;vv.loop=true;vv.autoplay=true;vv.playsInline=true;fg.appendChild(vv);fg._v=vv;var pr=vv.play();if(pr&&pr.catch)pr.catch(function(){})}function off(){if(fg._v){fg._v.remove();fg._v=null}}fg.addEventListener('mouseenter',on);fg.addEventListener('mouseleave',off);fg.addEventListener('click',function(){fg._v?off():on()})});
     W.querySelector('.ab').onclick=function(){abre('web'+j)};var ve=W.querySelector('.ve');if(ve)ve.onclick=function(){window.open(en,'_blank','noopener')}}}
   /* snake: tres bolitas y la solicitud */
@@ -2022,13 +2062,13 @@ var pie=document.querySelector('footer span');if(pie&&S.lema)pie.textContent=S.l
  var h=cvx.querySelector('.cvhead');if(h){h.className='cvhead fx';
   var c=[];if(S.ciudad)c.push(['ciudad',[e(S.ciudad)]]);if(S.correo)c.push(['correo',['<a href="mailto:'+e(S.correo)+'">'+e(S.correo)+'</a>']]);
   if(ig)c.push(['instagram',['<a href="https://instagram.com/'+e(ig)+'" target="_blank" rel="noopener">'+e(ig)+'</a>']]);c.push(['web',['mateosanzr.com']]);
-  h.innerHTML='<div class="fxh"><span>cv--'+new Date().getFullYear()+'</span><span>1.0</span><span>'+e(S.nombre)+'</span><span>'+pad(CV.length)+' secciones · '+total+' entradas</span></div>'
+  h.innerHTML='<div class="fxh"><span>cv--'+new Date().getFullYear()+'</span><span>'+pad(CV.length)+' secciones · '+total+' entradas</span></div>'
    +'<div class="cvh2"><div><div class="fxt"><span class="xrm">—</span><span class="xtt">'+e(S.nombre)+'</span><span class="xpa">'+e(S.lema||'')+'</span></div>'+(S.bio?'<p class="fxd">'+e(S.bio)+'</p>':'')+'</div>'
    +lineasHTML('contacto',c)+'</div>'}
  var g=document.getElementById('cvg');if(!g)return;g.className='cvg cvp fx';
  g.innerHTML=CV.map(function(s,a){return '<section><div class="cvs"><span class="xrm">'+romC(a+1)+'</span><span>'+s[0]+'</span><span>['+pad(s[1].length)+']</span></div>'
   +s[1].map(function(x,b){var k=CVP[a+'.'+b],pt=String(x[1]).split(/\s+·\s+/);return '<div class="cvi'+(k>=0?' lk':'')+'"'+(k>=0?' data-p="'+k+'" tabindex="0" role="button"':'')+'><span class="xrm">'+romC(b+1)+'</span><span class="ti">'+x[0]+'</span><span class="de">'+pt.join('<br>')+'</span></div>'}).join('')+'</section>'}).join('')
-  +'<div class="fxp"><span>( cv )</span><span>'+total+' · '+pad(CV.length)+'</span><span>mateosanzr.com</span></div>';
+  +'';
  var t=cvx.querySelector('.cab2>span');if(t)t.textContent='mateosanzr.com';
  /* info: botón del cv y práctica que filtra el índice */
  var yo=info.querySelector('.yo');if(yo){var b=yo.querySelector('.acv');if(b)b.onclick=function(){window.abreCV&&abreCV()};
