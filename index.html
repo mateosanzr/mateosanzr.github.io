@@ -972,6 +972,22 @@ html.ix .fil button.on .fw{text-decoration:underline;text-underline-offset:4px;t
  html.ix #mMenuL .row .a{padding-left:calc(var(--ci)*1.6ch)}
  html.ix #mMenuL .mcto{font-size:10.5px;letter-spacing:.1em}
 }
+
+/* ===== móvil: portada = foto + título a todo el ancho del frame ===== */
+.fr figcaption .ca,.fr figcaption .yy{display:none}
+@media(max-width:820px){
+ body:not(.enpj) .zona.k1{display:none!important}
+ #fotos .fr .pl::after{content:"";position:absolute;left:0;right:0;bottom:0;height:55%;background:linear-gradient(transparent,rgba(0,0,0,.42));pointer-events:none;z-index:1}
+ #fotos .fr figcaption{display:grid!important;grid-template-columns:auto 1fr auto;grid-template-areas:"n c y" "t t t";align-items:end;column-gap:1.2ch;
+  left:12px!important;right:12px!important;bottom:10px!important;color:#fff;text-shadow:none!important;font:400 10px/1 var(--mono)!important;letter-spacing:.1em;text-transform:uppercase}
+ #fotos .fr figcaption .nn{grid-area:n;color:#fff!important;opacity:.75}
+ #fotos .fr figcaption .ca{display:block;grid-area:c;opacity:.75}
+ #fotos .fr figcaption .yy{display:block;grid-area:y;opacity:.75}
+ #fotos .fr figcaption .tt{grid-area:t;display:block;margin-top:6px;white-space:nowrap;text-transform:none;letter-spacing:-.02em;
+  font:400 min(calc((100vw - 2*max(16px,env(safe-area-inset-left,0px)) - 24px) / (var(--n) * .58)),17vw) / .82 var(--mono)!important;max-height:none}
+ #fotos .fr figcaption .g{display:none!important}
+ #fotos .fr figcaption{border-top:1px solid rgba(255,255,255,.55);padding-top:7px}
+}
 </style><link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=VT323&display=swap" rel="stylesheet"></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="imprenta" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="r"/><feDisplacementMap in="SourceGraphic" in2="r" scale=".9" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="1" seed="3" result="p"/><feColorMatrix in="p" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.72" result="poro"/><feComposite in="d" in2="poro" operator="in"/></filter></svg>
 <div id="cur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="mbar"><a href="#" id="mHome" class="logo">mateo sanz román</a><span><button id="mVolver" hidden title="volver" aria-label="volver"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button><button id="mInfo" class="tx">cv</button><button id="mMenu" title="proyectos" aria-label="proyectos"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.5 3.5h11M1.5 7h11M1.5 10.5h11" stroke="currentColor" fill="none"/></svg></button><button id="mSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
@@ -1087,7 +1103,7 @@ P.forEach(function(p,i){
  idx.appendChild(r);rows.push(r);
  var f=document.createElement('figure');f.className='fr';f.dataset.c=p.c;f.dataset.i=i;if(p.gr&&p.gr.length)f.classList.add('a43');if(!p.pt){f.hidden=true;f.dataset.fuera=1}
  var cv=VID[i]&&VID[i][0]==='f'?VID[i].slice(2):null;
- f.innerHTML='<div class="pl">'+'<img class="mv" src="'+F(p.cub||p.fr[0],1000)+'" alt="'+p.t+'">'+(cv?'<video class="vh" muted loop playsinline preload="none" src="'+cv+'"></video>':'')+'</div><figcaption><span class="nn">'+(P[i].n?romC(P[i].n):'—')+'</span> <span class="tt">'+p.t+'</span>  <span class="g">'+p.r+'</span></figcaption>';
+ f.innerHTML='<div class="pl">'+'<img class="mv" src="'+F(p.cub||p.fr[0],1000)+'" alt="'+p.t+'">'+(cv?'<video class="vh" muted loop playsinline preload="none" src="'+cv+'"></video>':'')+'</div><figcaption style="--n:'+Math.max(String(p.t).length,5)+'"><span class="nn">'+(P[i].n?romC(P[i].n):'—')+'</span> <span class="ca">'+(p.c==='obra'?'obra':CAT[p.c])+'</span><span class="yy">'+((String(p.f||'').match(/\b(19|20)\d\d\b/)||['····'])[0])+'</span><span class="tt">'+p.t+'</span>  <span class="g">'+p.r+'</span></figcaption>';
  f.onmouseenter=function(){activa(i,true);arranca(i)};f.onmouseleave=para;f.onclick=function(){ficha(i)};
  if(p.al){var vv=f.querySelector('video.vh');if(vv)quitaNegro(vv)}
  col.appendChild(f);frs.push(f);
