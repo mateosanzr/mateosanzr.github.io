@@ -259,7 +259,7 @@ body:not(.enpj) .zona.k1{display:none}
 /* archivo siempre en 4:3 */
 .fr.a43 .pl{aspect-ratio:4/3;overflow:hidden;position:relative}
 .fr.a43 .pl img,.fr.a43 .pl video,.fr.a43 .pl canvas{width:100%!important;height:100%!important;object-fit:cover!important}
-.fr.a43 .pl img.mv{filter:blur(1.6px);transform:scale(1.02)}
+.fr.a43 .pl img.mv{filter:none;transform:none}
 /* piezas en vivo en móvil */
 #mVivos{display:none}
 @media(max-width:820px){#mVivos{display:block;order:4;padding:0 0 30px}#fotos[hidden]+#mVivos,body.enpj #mVivos{display:none}#mVivos .fr{position:relative;margin:0 0 14px;cursor:pointer}#mVivos .fr figcaption{position:absolute;left:10px;right:10px;bottom:8px;margin:0;font-size:14px;color:#fff;text-shadow:0 0 6px rgba(0,0,0,.55);pointer-events:none}#mVivos .fr figcaption.sol{position:static;color:inherit;text-shadow:none;font-size:16px;padding:6px 0;border-top:1px solid currentColor;opacity:.8}#mVivos .pl img{filter:grayscale(1) contrast(1.15)}}
@@ -962,6 +962,20 @@ html.ix .fil button.on .fw{text-decoration:underline;text-underline-offset:4px;t
  body.enpj #proy .sigue{display:none}
  html.ix #idx .row .t{font-size:min(calc((100vw - 2*max(16px,env(safe-area-inset-left,0px)) - 2px) / (var(--n) * .6)),21vw)}
 }
+
+/* ===== pie de proyecto en móvil: anterior / siguiente ===== */
+.piem{display:none}
+@media(max-width:820px){
+ body.enpj .zona.k1{display:none!important}
+ .piem{display:block;margin:34px 0 40px;border-top:1px solid var(--linea)}
+ .piem .pmi{display:block;width:100%;padding:10px 0 12px;border-bottom:1px solid var(--linea);text-align:left}
+ .piem .pm-m{display:flex;justify-content:space-between;font:400 10.5px/1 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--gris)}
+ .piem .sig .pm-m{flex-direction:row-reverse}
+ .piem .pm-t{display:block;margin-top:8px;font:400 min(calc((100vw - 2*max(16px,env(safe-area-inset-left,0px)) - 2px) / (var(--n) * .6)),14vw)/.95 var(--mono);white-space:nowrap;color:var(--tinta)}
+ .piem .sig .pm-t{text-align:right}
+ .piem .pm-ix{display:block;margin:16px 0 0;font:400 10.5px/1 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--tinta)}
+ .piem .pm-ix::before{content:"↑ "}
+}
 </style><link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=VT323&display=swap" rel="stylesheet"></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="imprenta" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="r"/><feDisplacementMap in="SourceGraphic" in2="r" scale=".9" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="1" seed="3" result="p"/><feColorMatrix in="p" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.72" result="poro"/><feComposite in="d" in2="poro" operator="in"/></filter></svg>
 <div id="cur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="mbar"><a href="#" id="mHome" class="logo">mateo sanz román</a><span><button id="mVolver" hidden title="volver" aria-label="volver"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button><button id="mInfo" class="tx">cv</button><button id="mMenu" title="proyectos" aria-label="proyectos"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.5 3.5h11M1.5 7h11M1.5 10.5h11" stroke="currentColor" fill="none"/></svg></button><button id="mSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
@@ -980,7 +994,7 @@ html.ix .fil button.on .fw{text-decoration:underline;text-underline-offset:4px;t
 <script>
 /* La web se rellena con datos.js, que se genera con «actualizar-web.command» a partir de las carpetas. */
 var D=window.DATOS||{sitio:{},cv:[],proyectos:[]},S=D.sitio||{};
-var PEQ={"media/03-nuria-roman/01.jpg":1,"media/02-ego-arthropods/01.jpg":1,"media/14-leandro-cano/07.jpg":1,"media/01-paco-te-quiero/01.jpg":1,"media/04-holics/01.jpg":1,"media/05-loaddata/01.jpg":1,"media/06-tenemos-patria/01.jpg":1,"media/07-conciertos/01.jpg":1,"media/08-ben-yart/01.jpg":1,"media/09-paco-te-quiero-foto-fija/01.jpg":1,"media/10-catalepsi/01.jpg":1,"media/11-solo/01.jpg":1,"media/12-irieix/01.jpg":1,"media/13-quinto-cuarta/01.jpg":1,"media/16-this-is-an-autopsy/01.jpg":1,"media/17-ultimamente/01.jpg":1,"media/18-archivo/01.jpg":1,"media/18-archivo/02.jpg":1,"media/18-archivo/09.jpg":1,"media/18-archivo/20.jpg":1,"media/18-archivo/34.jpg":1,"media/18-archivo/44.jpg":1,"media/18-archivo/53.jpg":1,"media/18-archivo/61.jpg":1,"media/18-archivo/69.jpg":1,"media/18-archivo/76.jpg":1,"media/18-archivo/83.jpg":1,"media/18-archivo/92.jpg":1,"media/18-archivo/102.jpg":1,"media/18-archivo/109.jpg":1,"media/18-archivo/115.jpg":1,"media/18-archivo/126.jpg":1,"media/18-archivo/133.jpg":1,"media/18-archivo/138.jpg":1,"media/18-archivo/143.jpg":1,"media/18-archivo/151.jpg":1,"media/18-archivo/162.jpg":1,"media/18-archivo/168.jpg":1,"media/18-archivo/170.jpg":1,"media/18-archivo/178.jpg":1,"media/18-archivo/180.jpg":1,"media/18-archivo/185.jpg":1,"media/18-archivo/187.jpg":1,"media/18-archivo/189.jpg":1,"media/18-archivo/193.jpg":1};
+var PEQ={"media/03-nuria-roman/01.jpg":1,"media/02-ego-arthropods/01.jpg":1,"media/14-leandro-cano/07.jpg":1,"media/01-paco-te-quiero/01.jpg":1,"media/04-holics/01.jpg":1,"media/05-loaddata/01.jpg":1,"media/06-tenemos-patria/01.jpg":1,"media/07-conciertos/01.jpg":1,"media/08-ben-yart/01.jpg":1,"media/09-paco-te-quiero-foto-fija/01.jpg":1,"media/10-catalepsi/01.jpg":1,"media/11-solo/01.jpg":1,"media/12-irieix/01.jpg":1,"media/13-quinto-cuarta/01.jpg":1,"media/16-this-is-an-autopsy/01.jpg":1,"media/17-ultimamente/01.jpg":1,"media/18-archivo/01.jpg":1,"media/18-archivo/cubierta.jpg":1,"media/18-archivo/02.jpg":1,"media/18-archivo/09.jpg":1,"media/18-archivo/20.jpg":1,"media/18-archivo/34.jpg":1,"media/18-archivo/44.jpg":1,"media/18-archivo/53.jpg":1,"media/18-archivo/61.jpg":1,"media/18-archivo/69.jpg":1,"media/18-archivo/76.jpg":1,"media/18-archivo/83.jpg":1,"media/18-archivo/92.jpg":1,"media/18-archivo/102.jpg":1,"media/18-archivo/109.jpg":1,"media/18-archivo/115.jpg":1,"media/18-archivo/126.jpg":1,"media/18-archivo/133.jpg":1,"media/18-archivo/138.jpg":1,"media/18-archivo/143.jpg":1,"media/18-archivo/151.jpg":1,"media/18-archivo/162.jpg":1,"media/18-archivo/168.jpg":1,"media/18-archivo/170.jpg":1,"media/18-archivo/178.jpg":1,"media/18-archivo/180.jpg":1,"media/18-archivo/185.jpg":1,"media/18-archivo/187.jpg":1,"media/18-archivo/189.jpg":1,"media/18-archivo/193.jpg":1};
 /* portadas en versión ligera (media/…/s/) cuando se muestran pequeñas */
 var F=function(u,w){return w&&w<=1000&&PEQ[u]?u.replace(/([^/]+)$/,'s/$1'):u};
 var CAT={dop:'dop',dir:'dirección',obra:'obra / instalación',foto:'foto'};
@@ -1159,6 +1173,13 @@ function rapida(t){var L=GAL[+t.dataset.g],im=t.querySelector('img');t._sig=Infi
 function sigue(i){var L=[];P.forEach(function(p,j){if(j!==i&&p.pt&&p.fr.length)L.push(j)});L=L.filter(function(j){return j>i}).concat(L.filter(function(j){return j<i}));
  var y=function(p){return (String(p.f||'').match(/\b(19|20)\d\d\b/)||['····'])[0]};
  return '<nav class="sigue"><div class="sgh"><span>siguiente</span><span>'+pad(L.length)+'</span></div><div class="sg">'+L.map(function(j){var p=P[j];return '<button data-j="'+j+'"><img src="'+F(p.cub||p.fr[0],600)+'" alt="'+p.t+'" loading="lazy"><span class="sm"><span class="n">'+(p.n?romC(p.n):'—')+'</span><span class="st">'+p.t+'</span></span><span class="sd"><span>'+(p.c==='obra'?'obra':CAT[p.c])+'</span><span>'+y(p)+'</span></span></button>'}).join('')+'</div></nav>'}
+/* pie de proyecto en móvil: anterior y siguiente, a todo el ancho */
+function pieMov(i){var L=[];P.forEach(function(p,j){if(p.pt)L.push(j)});var k=L.indexOf(i);if(k<0)return '';
+ var a=L[(k-1+L.length)%L.length],b=L[(k+1)%L.length];
+ var it=function(j,cls,lab){var p=P[j];return '<button class="pmi '+cls+'" data-j="'+j+'" style="--n:'+Math.max(String(p.t).length,4)+'"><span class="pm-m"><span>'+lab+'</span><span>'+romC(p.n)+' · '+(p.c==='obra'?'obra':CAT[p.c])+'</span></span><span class="pm-t">'+p.t+'</span></button>'};
+ return '<nav class="piem">'+it(a,'ant','← anterior')+it(b,'sig','siguiente →')+'<button class="pm-ix" type="button">índice · '+pad(L.length)+'</button></nav>'}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.piem .pm-ix');if(!b)return;var v=document.getElementById('mVolver');if(v)v.click()});
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.piem .pmi');if(!b)return;var r=rows[+b.dataset.j];if(r){window.scrollTo(0,0);r.querySelector('.l').click()}});
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.sigue button');if(!b)return;var r=rows[+b.dataset.j];if(r)r.querySelector('.l').click()});
 /* Vista de proyecto: al hacer clic, sus imágenes sustituyen la columna de fotos */
 var proyEl=document.getElementById('proy'),scrollLista=0;
@@ -1171,7 +1192,7 @@ function verProyecto(i){var p=P[i];para();if(!col.hidden)scrollLista=col.scrollT
    if(p.gl==='rapida'&&sueltas.length>1){GAL.push(sueltas.map(function(h){return F(h,1200)}));return '<figure class="fr ct rap" data-g="'+(GAL.length-1)+'"><div class="pl"><img src="'+F(sueltas[0],1200)+'" alt="'+p.t+'"></div></figure>'}
    return sueltas.map(function(h,k){return '<figure class="fr'+(p.gr.length?' a43':'')+'"'+(p.cl[h]?' data-clip="'+p.cl[h]+'"':'')+'><div class="pl"><img src="'+F(h,1200)+'" alt="'+p.t+' · '+(k+1)+'"'+(k>1?' loading="lazy"':'')+'></div></figure>'}).join('')
    +(p.gr.length?'<button class="vivoBtn sg" title="ver en vivo" aria-label="ver en vivo">▶</button><div class="clg">'+p.gr.map(function(g){GAL.push(g.fotos.map(function(h){return F(h,1200)}));return '<figure class="ct'+(g.fotos.length>=10?' g2':'')+'" data-g="'+(GAL.length-1)+'"><img src="'+F(g.fotos[0],1200)+'" alt="" loading="lazy"></figure>'}).join('')+'</div>':'')})();
- proyEl.insertAdjacentHTML('beforeend',sigue(i));if(p.al)proyEl.querySelectorAll('video').forEach(quitaNegro);
+ proyEl.insertAdjacentHTML('beforeend',sigue(i)+pieMov(i));if(p.al)proyEl.querySelectorAll('video').forEach(quitaNegro);
  var sg=proyEl.querySelector('.sg');if(sg)sg.addEventListener('wheel',function(e){if(Math.abs(e.deltaY)>Math.abs(e.deltaX)&&sg.scrollWidth>sg.clientWidth){var a=sg.scrollLeft;sg.scrollLeft+=e.deltaY;if(sg.scrollLeft!==a)e.preventDefault()}},{passive:false});
  col.hidden=true;proyEl.hidden=false;proyEl.scrollTop=0;galerias();
  proyEl.querySelectorAll('figure[data-clip]').forEach(clipFrame);proyEl.querySelectorAll('.ct.rap').forEach(rapida);

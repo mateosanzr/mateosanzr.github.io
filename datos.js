@@ -1692,7 +1692,7 @@ window.DATOS={
      ]
     }
    ],
-   "cubierta": "media/18-archivo/01.jpg",
+   "cubierta": "media/18-archivo/cubierta.jpg",
    "clips": {},
    "galeria": "",
    "video": null,
