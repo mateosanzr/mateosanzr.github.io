@@ -930,6 +930,38 @@ html.ix .fil button.on .fw{text-decoration:underline;text-underline-offset:4px;t
  html.ix #idx .row.off{opacity:.18}
  #fotos .fr figcaption .nn{min-width:4ch}
 }
+
+/* ===== siguiente (final de cada proyecto): con el código del índice ===== */
+.sigue{border-top:1px solid var(--linea);padding-top:10px}
+.sigue .sgh{display:flex;justify-content:space-between;font:400 9.5px/1 var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--gris);margin:0 0 12px}
+.sg{gap:14px;scrollbar-width:none}.sg::-webkit-scrollbar{display:none}
+.sg button{width:180px}
+.sg img{height:auto!important;width:100%;aspect-ratio:3/2;object-fit:cover;opacity:.85}
+.sg button>span{width:auto;min-width:0;padding-top:0;font:400 10.5px/1.6 var(--mono)}
+.sg .sm{display:grid!important;grid-template-columns:5ch minmax(0,1fr);gap:1ch;margin-top:6px}
+.sg .sm .n{color:var(--gris);text-align:right}
+.sg .sm .st{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sg .sd{display:flex!important;justify-content:space-between;padding-left:6ch;color:var(--gris)}
+.sg button:hover .st{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+@media(max-width:820px){.sg button{width:62vw}}
+/* ===== índice en móvil: cada título ocupa todo el ancho ===== */
+@media(max-width:820px){
+ html.ix #idx .row{border-bottom:1px solid var(--linea)}
+ html.ix #idx .row .l{display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:"n a y" "t t t";column-gap:1.2ch;padding:9px 0 4px;font:400 10.5px/1.2 var(--mono)}
+ html.ix #idx .row .n{grid-area:n;text-align:left}
+ html.ix #idx .row .a{grid-area:a;padding-left:0;text-align:left}
+ html.ix #idx .row .y{grid-area:y}
+ html.ix #idx .row .t{grid-area:t;display:block;white-space:nowrap;overflow:visible;text-overflow:clip;margin-top:4px;
+  font-size:min(calc((100vw - 2*max(16px,env(safe-area-inset-left,0px)) - 2px) / (var(--n) * .6)),24vw);line-height:.95;letter-spacing:0;text-transform:none}
+ html.ix #idx .row.act .t,html.ix #idx .row.si .t{text-decoration:none}
+ html.ix #idx .row.act .n,html.ix #idx .row.act .a,html.ix #idx .row.act .y{color:var(--tinta)}
+ html.ix .fil{padding-left:0}
+}
+@media(max-width:820px){
+ body.enpj .zona.k1{display:block!important;order:5;padding:22px 0 60px;border-top:1px solid var(--linea);margin-top:24px}
+ body.enpj #proy .sigue{display:none}
+ html.ix #idx .row .t{font-size:min(calc((100vw - 2*max(16px,env(safe-area-inset-left,0px)) - 2px) / (var(--n) * .6)),21vw)}
+}
 </style><link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=VT323&display=swap" rel="stylesheet"></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="imprenta" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="r"/><feDisplacementMap in="SourceGraphic" in2="r" scale=".9" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="1" seed="3" result="p"/><feColorMatrix in="p" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.72" result="poro"/><feComposite in="d" in2="poro" operator="in"/></filter></svg>
 <div id="cur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="mbar"><a href="#" id="mHome" class="logo">mateo sanz román</a><span><button id="mVolver" hidden title="volver" aria-label="volver"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button><button id="mInfo" class="tx">cv</button><button id="mMenu" title="proyectos" aria-label="proyectos"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.5 3.5h11M1.5 7h11M1.5 10.5h11" stroke="currentColor" fill="none"/></svg></button><button id="mSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
@@ -1125,7 +1157,8 @@ function rapida(t){var L=GAL[+t.dataset.g],im=t.querySelector('img');t._sig=Infi
  var iv=setInterval(function(){if(!t.isConnected){clearInterval(iv);return}if(t._hold||!lb.hidden)return;t._k=(t._k+1)%L.length;im.src=L[t._k]},150)}
 /* al final de cada proyecto: índice con imágenes para seguir navegando */
 function sigue(i){var L=[];P.forEach(function(p,j){if(j!==i&&p.pt&&p.fr.length)L.push(j)});L=L.filter(function(j){return j>i}).concat(L.filter(function(j){return j<i}));
- return '<nav class="sigue"><div class="sg">'+L.map(function(j){var p=P[j];return '<button data-j="'+j+'"><img src="'+F(p.cub||p.fr[0],600)+'" alt="'+p.t+'" loading="lazy"><span><span class="n">'+num(j)+'</span>  '+p.t+'</span></button>'}).join('')+'</div></nav>'}
+ var y=function(p){return (String(p.f||'').match(/\b(19|20)\d\d\b/)||['····'])[0]};
+ return '<nav class="sigue"><div class="sgh"><span>siguiente</span><span>'+pad(L.length)+'</span></div><div class="sg">'+L.map(function(j){var p=P[j];return '<button data-j="'+j+'"><img src="'+F(p.cub||p.fr[0],600)+'" alt="'+p.t+'" loading="lazy"><span class="sm"><span class="n">'+(p.n?romC(p.n):'—')+'</span><span class="st">'+p.t+'</span></span><span class="sd"><span>'+(p.c==='obra'?'obra':CAT[p.c])+'</span><span>'+y(p)+'</span></span></button>'}).join('')+'</div></nav>'}
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.sigue button');if(!b)return;var r=rows[+b.dataset.j];if(r)r.querySelector('.l').click()});
 /* Vista de proyecto: al hacer clic, sus imágenes sustituyen la columna de fotos */
 var proyEl=document.getElementById('proy'),scrollLista=0;
@@ -2142,6 +2175,6 @@ var pie=document.querySelector('footer span');if(pie&&S.lema)pie.textContent=S.l
 (function(){if(!document.documentElement.classList.contains('ix'))return;
  document.querySelectorAll('#fil button').forEach(function(b){var t=b.firstChild;if(t&&t.nodeType===3){var w=document.createElement('span');w.className='fw';w.textContent=t.textContent;b.replaceChild(w,t)}});
  rows.forEach(function(r,i){var p=P[i],n=r.querySelector('.n'),y=(String(p.f||'').match(/\b(19|20)\d\d\b/)||[''])[0];
-  if(n&&p.n)n.textContent=romC(p.n);r.style.setProperty('--ci',{dop:0,dir:1,obra:2,foto:3}[p.c]||0);var a=r.querySelector('.a');if(a){var s=document.createElement('span');s.className='y';s.textContent=y||'····';a.parentNode.insertBefore(s,a.nextSibling)}});
+  if(n&&p.n)n.textContent=romC(p.n);r.style.setProperty('--n',Math.max(String(p.t).length,4));r.style.setProperty('--ci',{dop:0,dir:1,obra:2,foto:3}[p.c]||0);var a=r.querySelector('.a');if(a){var s=document.createElement('span');s.className='y';s.textContent=y||'····';a.parentNode.insertBefore(s,a.nextSibling)}});
 })();
 </script></body></html>
