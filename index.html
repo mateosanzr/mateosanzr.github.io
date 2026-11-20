@@ -1,4 +1,4 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><script>/* vista previa del índice con el estilo de las fichas: mateosanzr.com/?ix */if(/[?&]ix\b/.test(location.search))document.documentElement.classList.add("ix")</script><script>if(location.protocol==="http:"&&location.hostname!=="localhost")location.replace("https:"+location.href.slice(5))</script><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script>document.documentElement.classList.add("ix")</script><script>if(location.protocol==="http:"&&location.hostname!=="localhost")location.replace("https:"+location.href.slice(5))</script><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>mateo sanz román</title>
 <meta name="description" content="Mateo Sanz Román, fotógrafo y artista visual en Barcelona. Dirección, dirección de fotografía, fotografía, instalaciones y live a/v.">
 <meta property="og:type" content="website"><meta property="og:url" content="https://mateosanzr.com/">
@@ -769,13 +769,28 @@ html.ix .fil{font:400 9.5px/1 var(--mono);text-transform:uppercase;letter-spacin
 html.ix .fil sup{font-size:8px;letter-spacing:0}
 html.ix .ixh{display:flex;justify-content:space-between;font:400 9.5px/1 var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--gris);margin:2px 0 18px}
 html.ix #idx .row{border-bottom:0}
-html.ix #idx .row .l{grid-template-columns:6.5ch minmax(0,1fr) 9.5em 4ch;gap:1.4ch;padding:0;font:400 10.5px/1.95 var(--mono);letter-spacing:.01em}
+html.ix #idx .row .l{grid-template-columns:6.5ch minmax(0,1fr) auto;gap:1.4ch;padding:0;font:400 10.5px/1.95 var(--mono);letter-spacing:.01em}
 html.ix #idx .row .n{text-align:right;color:var(--gris)}
-html.ix #idx .row .a{text-align:left;color:var(--gris)}
+html.ix #idx .row .a{text-align:right;color:var(--gris)}
 html.ix #idx .row .y{color:var(--gris);text-align:right}
 html.ix #idx .row.act .t,html.ix #idx .row.si .t{font-style:normal;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
 html.ix #idx .row.act .n{color:var(--tinta)}
-html.ix #idx .row:nth-child(5n) .l{margin-bottom:1.95em}
+
+/* contacto / práctica: líneas simples, sin árbol */
+.fx .lin{margin:28px 0 0;font:400 10.5px/1.95 var(--mono)}
+.fx .lin .lt{color:var(--gris);text-transform:uppercase;letter-spacing:.12em;font-size:9.5px;margin-bottom:4px}
+.fx .lin .li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:1.4ch}
+.fx .lin .li>span:first-child{color:var(--gris)}
+.fx .lin a{color:inherit}.fx .lin a:hover{color:var(--rec);text-decoration:none}
+.fx .lin.prac .li{cursor:pointer}.fx .lin.prac .li:hover{color:var(--rec)}.fx .lin.prac .li:hover span{color:var(--rec)}
+.cvx .cvh2 .lin{margin-top:0}
+/* títulos de cabecera en el mismo estilo */
+html.ix .cab,html.ix .cab a,html.ix .cab .g,html.ix .mbar,html.ix .mbar a{font:400 10.5px/1 var(--mono);text-transform:uppercase;letter-spacing:.12em}
+html.ix .cab #home,html.ix .mbar .logo{letter-spacing:.2em;color:var(--tinta)}
+html.ix .cab button.sg{font-size:15px!important}
+html.ix .mbar{font-size:11px}
+.fx .xhj .xn>span{overflow-wrap:normal;white-space:nowrap}
+.pj.fx .xrs>li{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
 </style><link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=VT323&display=swap" rel="stylesheet"></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="imprenta" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="r"/><feDisplacementMap in="SourceGraphic" in2="r" scale=".9" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="1" seed="3" result="p"/><feColorMatrix in="p" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.72" result="poro"/><feComposite in="d" in2="poro" operator="in"/></filter></svg>
 <div id="cur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="mbar"><a href="#" id="mHome" class="logo">mateo sanz román</a><span><button id="mVolver" hidden title="volver" aria-label="volver"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button><button id="mInfo" class="tx">cv</button><button id="mMenu" title="proyectos" aria-label="proyectos"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.5 3.5h11M1.5 7h11M1.5 10.5h11" stroke="currentColor" fill="none"/></svg></button><button id="mSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
@@ -859,6 +874,7 @@ function ve(i){col.scrollTo({top:frs[i].offsetTop-52,behavior:'smooth'})}
 function item(x,a,b){var k=CVP[a+'.'+b];return '<li class="it'+(k>=0?' lk':'')+'"'+(k>=0?' data-p="'+k+'" tabindex="0" role="button"':'')+'><span>'+x[0]+'</span> <i>· '+x[1]+'</i></li>'}
 var esc0=function(t){return String(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')};
 var ig=(S.instagram||'').replace(/^@/,''),tt=(S.tiktok||'').replace(/^@/,'');
+function lineasHTML(t,f,cls){return '<div class="lin'+(cls?' '+cls:'')+'"><div class="lt">'+t+'</div>'+f.map(function(x){return '<div class="li"><span>'+x[0]+'</span><span>'+x[1].join(', ')+'</span></div>'}).join('')+'</div>'}
 function infoYo(){var e=esc0,cnt={};P.forEach(function(p){if(p.pt)cnt[p.c]=(cnt[p.c]||0)+1});
  var h='<div class="yo fx"><div class="fxh"><span>info--000</span><span>1.0</span><span>'+e(S.ciudad||'')+'</span><span>ed. m.s.r</span></div>';
  h+='<div class="fxt"><span class="xrm">—</span><span class="xtt">'+e(S.nombre||'')+'</span><span class="xpa">'+e(S.lema||'')+'</span></div>';
@@ -867,9 +883,9 @@ function infoYo(){var e=esc0,cnt={};P.forEach(function(p){if(p.pt)cnt[p.c]=(cnt[
  if(ig)c.push(['instagram',['<a href="https://instagram.com/'+e(ig)+'" target="_blank" rel="noopener">'+e(ig)+'</a>']]);
  if(tt)c.push(['tiktok',['<a href="https://www.tiktok.com/@'+e(tt)+'" target="_blank" rel="noopener">'+e(tt)+'</a>']]);
  c.push(['cv',['<button type="button" class="acv">currículum completo ↗</button>']]);
- h+=arbolHTML('contacto',c,function(x){return x},1);
+ h+=lineasHTML('contacto',c);
  var pr=[['dop','dop'],['dir','dirección'],['obra','obra / instalación'],['foto','fotografía']].filter(function(x){return cnt[x[0]]}).map(function(x){return [x[1],[pad(cnt[x[0]])+(cnt[x[0]]===1?' proyecto':' proyectos')]]});
- h+=arbolHTML('práctica',pr,function(x){return x},1).replace('class="arbol"','class="arbol prac"');
+ h+=lineasHTML('práctica',pr,'prac');
  return h+'</div>'}
 info.innerHTML=infoYo()
  +CV.map(function(s,a){return '<section class="cv"><button class="e"><span>'+s[0]+'</span><span class="g">'+s[1].length+'</span></button><ul>'+s[1].map(function(x,b){return item(x,a,b)}).join('')+(s[1].length>3?'<li class="mas"><button>+ '+(s[1].length-3)+' más</button></li>':'')+'</ul></section>'}).join('');
@@ -1970,7 +1986,7 @@ var pie=document.querySelector('footer span');if(pie&&S.lema)pie.textContent=S.l
   if(ig)c.push(['instagram',['<a href="https://instagram.com/'+e(ig)+'" target="_blank" rel="noopener">'+e(ig)+'</a>']]);c.push(['web',['mateosanzr.com']]);
   h.innerHTML='<div class="fxh"><span>cv--'+new Date().getFullYear()+'</span><span>1.0</span><span>'+e(S.nombre)+'</span><span>'+pad(CV.length)+' secciones · '+total+' entradas</span></div>'
    +'<div class="cvh2"><div><div class="fxt"><span class="xrm">—</span><span class="xtt">'+e(S.nombre)+'</span><span class="xpa">'+e(S.lema||'')+'</span></div>'+(S.bio?'<p class="fxd">'+e(S.bio)+'</p>':'')+'</div>'
-   +arbolHTML('contacto',c,function(x){return x},1)+'</div>'}
+   +lineasHTML('contacto',c)+'</div>'}
  var g=document.getElementById('cvg');if(!g)return;g.className='cvg cvp fx';
  g.innerHTML=CV.map(function(s,a){return '<section><div class="cvs"><span class="xrm">'+romC(a+1)+'</span><span>'+s[0]+'</span><span>['+pad(s[1].length)+']</span></div>'
   +s[1].map(function(x,b){var k=CVP[a+'.'+b],pt=String(x[1]).split(/\s+·\s+/);return '<div class="cvi'+(k>=0?' lk':'')+'"'+(k>=0?' data-p="'+k+'" tabindex="0" role="button"':'')+'><span class="xrm">'+romC(b+1)+'</span><span class="ti">'+x[0]+'</span><span class="de">'+pt.join('<br>')+'</span></div>'}).join('')+'</section>'}).join('')
@@ -1979,14 +1995,12 @@ var pie=document.querySelector('footer span');if(pie&&S.lema)pie.textContent=S.l
  /* info: botón del cv y práctica que filtra el índice */
  var yo=info.querySelector('.yo');if(yo){var b=yo.querySelector('.acv');if(b)b.onclick=function(){window.abreCV&&abreCV()};
   var F={'dop':'dop','dirección':'dirección','obra / instalación':'otros','fotografía':'otros'};
-  yo.querySelectorAll('.prac .xrs>li').forEach(function(li){var l=li.querySelector('.xn>span').textContent.trim(),f=F[l];if(!f)return;li.classList.add('lk');li.onclick=function(){var bt=[].find.call(document.querySelectorAll('#fil button'),function(x){return x.textContent.trim().indexOf(f)===0});if(bt)bt.click()}})}
+  yo.querySelectorAll('.prac .li').forEach(function(li){var l=li.querySelector('span').textContent.trim(),f=F[l];if(!f)return;li.classList.add('lk');li.onclick=function(){var bt=[].find.call(document.querySelectorAll('#fil button'),function(x){return x.textContent.trim().indexOf(f)===0});if(bt)bt.click()}})}
 })();
 </script><script>
 /* índice tipo playlist (solo con html.ix): romanos, título, disciplina y año */
 (function(){if(!document.documentElement.classList.contains('ix'))return;
- var h=document.createElement('div');h.className='ixh';h.innerHTML='<span>idx--'+pad(nP)+'</span><span>1.0</span><span>ed. m.s.r</span>';
- var f=document.getElementById('fil');if(f)f.parentNode.insertBefore(h,f);
  rows.forEach(function(r,i){var p=P[i],n=r.querySelector('.n'),y=(String(p.f||'').match(/\b(19|20)\d\d\b/)||[''])[0];
-  if(n&&p.n)n.textContent=romC(p.n);var a=r.querySelector('.a');if(a){var s=document.createElement('span');s.className='y';s.textContent=y;a.parentNode.insertBefore(s,a.nextSibling)}});
+  if(n&&p.n)n.textContent=romC(p.n);});
 })();
 </script></body></html>
