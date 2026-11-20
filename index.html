@@ -825,6 +825,10 @@ html.ix #mMenuL .row .a{padding-left:calc(var(--ci)*2ch);white-space:nowrap;text
 html.ix #mMenuL .row .t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 html.ix #mMenuL .mml{padding-top:14px}
 html.ix #mMenuL .mcto{font:400 10.5px/1.6 var(--mono)}
+
+.fx .lin .acv{font:inherit;letter-spacing:inherit;text-transform:none;color:var(--tinta);padding:0}
+.fx .lin .acv:hover{color:var(--rec)}
+html.ix #mMenuL .mcto button{border-bottom:0;color:var(--tinta);font:inherit;letter-spacing:.12em;text-transform:uppercase}
 </style><link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=VT323&display=swap" rel="stylesheet"></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="imprenta" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="r"/><feDisplacementMap in="SourceGraphic" in2="r" scale=".9" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="1" seed="3" result="p"/><feColorMatrix in="p" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.72" result="poro"/><feComposite in="d" in2="poro" operator="in"/></filter></svg>
 <div id="cur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="mbar"><a href="#" id="mHome" class="logo">mateo sanz román</a><span><button id="mVolver" hidden title="volver" aria-label="volver"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button><button id="mInfo" class="tx">cv</button><button id="mMenu" title="proyectos" aria-label="proyectos"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.5 3.5h11M1.5 7h11M1.5 10.5h11" stroke="currentColor" fill="none"/></svg></button><button id="mSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
@@ -916,7 +920,7 @@ function infoYo(){var e=esc0,cnt={};P.forEach(function(p){if(p.pt)cnt[p.c]=(cnt[
  var c=[];if(S.correo)c.push(['correo',['<a href="mailto:'+e(S.correo)+'">'+e(S.correo)+'</a>']]);
  if(ig)c.push(['instagram',['<a href="https://instagram.com/'+e(ig)+'" target="_blank" rel="noopener">'+e(ig)+'</a>']]);
  if(tt)c.push(['tiktok',['<a href="https://www.tiktok.com/@'+e(tt)+'" target="_blank" rel="noopener">'+e(tt)+'</a>']]);
- c.push(['cv',['<button type="button" class="acv">currículum completo ↗</button>']]);
+ var nCV=CV.reduce(function(a,x){return a+x[1].length},0);c.push(['cv',['<button type="button" class="acv">cv--'+new Date().getFullYear()+' · '+nCV+' entradas ↗</button>']]);
  h+=lineasHTML('contacto',c);
  var pr=[['dop','dop'],['dir','dirección'],['obra','obra / instalación'],['foto','fotografía']].filter(function(x){return cnt[x[0]]}).map(function(x){return [x[1],[pad(cnt[x[0]])+(cnt[x[0]]===1?' proyecto':' proyectos')]]});
  h+=lineasHTML('práctica',pr,'prac');
@@ -1448,7 +1452,7 @@ document.addEventListener('keydown',function(e){if(e.key!=='Enter'&&e.key!==' ')
 /* móvil: quién eres arriba y contacto en el menú */
 (function(){var esc=function(t){return String(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')},ig=(S.instagram||'').replace(/^@/,'');
  var M=document.getElementById('mMenuL');if(!M)return;var c=document.createElement('div');c.className='mcto';
- c.innerHTML=(S.correo?'<a href="mailto:'+esc(S.correo)+'">'+esc(S.correo)+'</a>':'')+(ig?'<a href="https://instagram.com/'+esc(ig)+'" target="_blank" rel="noopener">@'+esc(ig)+'</a>':'')+'<button type="button">currículum completo →</button>';
+ c.innerHTML=(S.correo?'<a href="mailto:'+esc(S.correo)+'">'+esc(S.correo)+'</a>':'')+(ig?'<a href="https://instagram.com/'+esc(ig)+'" target="_blank" rel="noopener">@'+esc(ig)+'</a>':'')+'<button type="button">cv--'+new Date().getFullYear()+' ↗</button>';
  c.querySelector('button').onclick=function(){M.hidden=true;document.body.classList.remove('menu');if(window.abreCV)window.abreCV()};M.appendChild(c)})();
 /* info contextual */
 (function(){var esc=function(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;')};
