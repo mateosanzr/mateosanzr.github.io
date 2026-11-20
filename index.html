@@ -678,20 +678,45 @@ html.escOn #proy{overflow:hidden!important}
 body{text-shadow:0 0 .45px currentColor,0 .25px 1.6px var(--sangra)}
 .esc,.esc *{text-shadow:none}
 
-/* puente con el índice: título, descripción, nombres y bio en la serif del índice; la mono queda para etiquetas y datos */
-.fig .fgt{position:relative;z-index:1;display:flex;align-items:baseline;gap:.45em;margin:2px 0 4px;text-transform:none;letter-spacing:0}
-.fig .fgt i{font:italic 400 24px/1.1 var(--serif)}
-.fig .fgt .br{color:var(--gris);font-size:13px}
-.fig .fgd,#info .yo p:first-child{font:400 14px/1.25 var(--serif);text-transform:none;letter-spacing:0}
-.fig .fgd{max-width:34ch}
-.fig .crx{gap:0 18px}
-.fig .crx .f{border-bottom:1px solid var(--linea);padding:5px 0 6px}
-.fig .crx .v{font:400 14px/1.2 var(--serif);text-transform:none;letter-spacing:0}
-.fig .crx .r{margin-bottom:2px}
-.fig .crx .at,.fig .crx .sep{color:var(--gris)}
-.fig .crx header{border-top:0;padding:0 0 4px;border-bottom:1px solid var(--linea)}
-#info .fa.fig dd{font:400 14px/1.25 var(--serif);text-transform:none;letter-spacing:0}
-#info .fa.fig dl.cr{align-items:baseline}
+/* ===== ficha de la derecha: colofón de cine =====
+   título en cursiva, datos en una línea discreta, descripción en serif
+   y créditos como los de final de película: rol a la derecha, nombre a la izquierda, sobre un mismo eje */
+.fig{font:400 14px/1.3 var(--serif);text-transform:none;letter-spacing:0;padding-bottom:20px}
+.fig .fgb,.fig .fgm,.fig .fgh .fgk{display:none}
+.fig .fgh{display:flex;justify-content:space-between;font:400 9.5px/1 var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--gris);margin:2px 0 14px}
+.fig .fgh .fgc{color:var(--gris)}
+.fig .fgt{margin:0 0 10px}
+.fig .fgt .br{display:none}
+.fig .fgt i{font:italic 400 30px/1.02 var(--serif);letter-spacing:-.01em}
+.fig .fgcols{display:block;margin:0 0 18px}
+.fig .fgcols>div{order:-1}
+.fig .fgcols{display:flex;flex-direction:column;gap:12px}
+.fig .fmt,#info .fa.fig .fmt{display:block;font:400 13px/1.3 var(--serif);color:var(--gris);text-transform:none;letter-spacing:0}
+.fig .fmt span{display:inline}
+.fig .fmt span+span::before{content:"  ·  ";white-space:pre;color:var(--linea)}
+.fig .fmt.rol,#info .fa.fig .fmt.rol{font:italic 400 13px/1.3 var(--serif);color:var(--tinta);margin:3px 0 0}
+.fig .fmt.rol i::before,.fig .fmt.rol i::after{content:none}
+.fig .fmt.rol i{font-style:italic}
+.fig .fgd,#info .yo p:first-child{font:400 15px/1.32 var(--serif);text-transform:none;letter-spacing:0;max-width:36ch}
+.fig .fgd:empty{display:none}
+.fig p a,.fig .ver{font:400 9.5px/1 var(--mono);text-transform:uppercase;letter-spacing:.14em}
+/* créditos */
+.fig .crx{display:block;margin:30px 0 0;padding-top:22px;border-top:1px solid var(--linea)}
+.fig .crx header{display:none}
+.fig .crx .f{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);column-gap:16px;margin:0 0 9px;padding:0;border:0;align-items:baseline}
+.fig .crx .r{display:block;text-align:right;font:400 9px/1.25 var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--gris);margin:0}
+.fig .crx .v{font:400 14.5px/1.22 var(--serif);text-transform:none;letter-spacing:0;color:var(--tinta)}
+.fig .crx .at{display:none}
+.fig .crx .sep{display:block;height:0;overflow:hidden}
+.fig .crx .hh{display:block;font:italic 400 12px/1.2 var(--serif);color:var(--gris);margin:0}
+.fig .crx .f.yo .r,.fig .crx .f.yo .v{color:var(--rec)}
+/* ficha al pasar por el índice: mismo eje */
+#info .fa.fig dl.cr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:7px 16px;border-top:1px solid var(--linea);padding-top:18px;margin-top:24px}
+#info .fa.fig dt{text-align:right;font:400 9px/1.25 var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--gris)}
+#info .fa.fig dd{font:400 14.5px/1.22 var(--serif);text-transform:none;letter-spacing:0;margin:0}
+#info .fa.fig .ver{margin-top:16px;color:var(--gris)}
+#info .yo{font:400 14px/1.3 var(--serif);text-transform:none;letter-spacing:0}
+#info .yo p:not(:first-child),#info .yo .cvl button{font:400 9.5px/1.5 var(--mono);text-transform:uppercase;letter-spacing:.14em}
 </style><link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=VT323&display=swap" rel="stylesheet"></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="imprenta" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="r"/><feDisplacementMap in="SourceGraphic" in2="r" scale=".9" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="1" seed="3" result="p"/><feColorMatrix in="p" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.72" result="poro"/><feComposite in="d" in2="poro" operator="in"/></filter></svg>
 <div id="cur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="mbar"><a href="#" id="mHome" class="logo">mateo sanz román</a><span><button id="mVolver" hidden title="volver" aria-label="volver"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button><button id="mInfo" class="tx">cv</button><button id="mMenu" title="proyectos" aria-label="proyectos"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.5 3.5h11M1.5 7h11M1.5 10.5h11" stroke="currentColor" fill="none"/></svg></button><button id="mSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
@@ -1314,7 +1339,7 @@ document.addEventListener('keydown',function(e){if(e.key!=='Enter'&&e.key!==' ')
   var d=DESC[i]||p.d||'',cr=cortos(CRED[i]);
   fa.classList.add('fig');fa.innerHTML=figHTML(i,esc,d)+'<h3>'+esc(p.t)+'</h3><div class="fgcols">'+(d?'<p class="fgd">'+d+'</p>':'<p class="fgd"></p>')
    +'<div>'+metaDl(p,esc)+'</div></div>'
-   +(cr.length?'<dl class="cr">'+cr.map(function(x){return '<dt>'+x[0]+'</dt><dd>'+esc(x[1])+'</dd>'}).join('')+'</dl>':'')
+   +(cr.length?'<dl class="cr">'+cr.map(function(x){return '<dt>'+x[0]+'</dt><dd>'+esc(x[1]).replace(/(^|[\s,])@/g,'$1').split(/\s*,\s*/).join('<br>')+'</dd>'}).join('')+'</dl>':'')
    +'<button class="ver">→</button>';
   fa.querySelector('.ver').onclick=function(){ficha(i)};fa.classList.remove('fuera')},160)};
  setTimeout(function(){if(act>=0){ult=-1;fichaInfo(act)}},260)
