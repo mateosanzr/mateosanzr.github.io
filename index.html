@@ -973,20 +973,23 @@ html.ix .fil button.on .fw{text-decoration:underline;text-underline-offset:4px;t
  html.ix #mMenuL .mcto{font-size:10.5px;letter-spacing:.1em}
 }
 
-/* ===== móvil: portada = foto + título a todo el ancho del frame ===== */
+/* ===== móvil: portada = foto + una línea de índice a lo ancho del frame ===== */
 .fr figcaption .ca,.fr figcaption .yy{display:none}
 @media(max-width:820px){
  body:not(.enpj) .zona.k1{display:none!important}
- #fotos .fr .pl::after{content:"";position:absolute;left:0;right:0;bottom:0;height:55%;background:linear-gradient(transparent,rgba(0,0,0,.42));pointer-events:none;z-index:1}
- #fotos .fr figcaption{display:grid!important;grid-template-columns:auto 1fr auto;grid-template-areas:"n c y" "t t t";align-items:end;column-gap:1.2ch;
-  left:12px!important;right:12px!important;bottom:10px!important;color:#fff;text-shadow:none!important;font:400 10px/1 var(--mono)!important;letter-spacing:.1em;text-transform:uppercase}
- #fotos .fr figcaption .nn{grid-area:n;color:#fff!important;opacity:.75}
- #fotos .fr figcaption .ca{display:block;grid-area:c;opacity:.75}
- #fotos .fr figcaption .yy{display:block;grid-area:y;opacity:.75}
- #fotos .fr figcaption .tt{grid-area:t;display:block;margin-top:6px;white-space:nowrap;text-transform:none;letter-spacing:-.02em;
-  font:400 min(calc((100vw - 2*max(16px,env(safe-area-inset-left,0px)) - 24px) / (var(--n) * .58)),17vw) / .82 var(--mono)!important;max-height:none}
+ #fotos .fr .pl::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;background:linear-gradient(transparent,rgba(0,0,0,.28));pointer-events:none;z-index:1}
+ #fotos .fr figcaption{display:grid!important;grid-template-columns:5ch minmax(0,1fr) auto 4ch;column-gap:1.2ch;align-items:baseline;
+  left:10px!important;right:10px!important;bottom:8px!important;padding-top:6px;border-top:1px solid rgba(255,255,255,.45);
+  color:#fff;text-shadow:0 0 6px rgba(0,0,0,.35)!important;font:400 11px/1.2 var(--mono)!important;letter-spacing:.01em}
+ #fotos .fr figcaption .nn{color:rgba(255,255,255,.7)!important;font:inherit!important}
+ #fotos .fr figcaption .tt{font:inherit!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ #fotos .fr figcaption .ca,#fotos .fr figcaption .yy{display:block;color:rgba(255,255,255,.7)}
+ #fotos .fr figcaption .yy{text-align:right}
  #fotos .fr figcaption .g{display:none!important}
- #fotos .fr figcaption{border-top:1px solid rgba(255,255,255,.55);padding-top:7px}
+}
+@media(max-width:820px){
+ #fotos .fr figcaption{grid-template-areas:"n t c y"}
+ #fotos .fr figcaption .nn{grid-area:n}#fotos .fr figcaption .tt{grid-area:t}#fotos .fr figcaption .ca{grid-area:c}#fotos .fr figcaption .yy{grid-area:y}
 }
 </style><link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=VT323&display=swap" rel="stylesheet"></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="imprenta" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="r"/><feDisplacementMap in="SourceGraphic" in2="r" scale=".9" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="1" seed="3" result="p"/><feColorMatrix in="p" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.72" result="poro"/><feComposite in="d" in2="poro" operator="in"/></filter></svg>
 <div id="cur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
