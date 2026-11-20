@@ -1024,6 +1024,32 @@ html.ix .fil button.on .fw{text-decoration:underline;text-underline-offset:4px;t
 .hoy,.rt0{font:400 9.5px/1 var(--mono)!important;text-transform:uppercase;letter-spacing:.12em;filter:url(#imprenta)}
 @media(max-width:820px){.hoy.m{margin-top:36px}}
 .mbar>span{filter:none!important}
+
+/* ===== info compuesta ===== */
+#info .yo.ix2{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:8px;font:400 10.5px/1.6 var(--mono);padding-bottom:30px}
+.ix2>*{grid-column:1/-1}
+.ix2 .vs{margin:6px 0 0}
+.ix2 .vs span{display:block;padding-left:calc(var(--x) / 12 * 100%);font-size:13px;line-height:1.55;letter-spacing:.01em}
+.ix2 .cu{grid-column:5/13;margin:34px 0 0;text-transform:uppercase;letter-spacing:.06em;line-height:1.65;text-align:justify;hyphens:auto;max-width:none}
+.ix2 .ah{grid-column:1/10;margin:38px 0 0}
+.ix2 .ah .lt,.ix2 .lin .lt{display:block;color:var(--gris);text-transform:uppercase;letter-spacing:.12em;font-size:9.5px;margin:0 0 6px}
+.ix2 .ai{display:grid;grid-template-columns:8ch 1fr;gap:1.2ch;padding-left:calc(var(--k) * 2.2ch);line-height:1.9}
+.ix2 .ai span:first-child{color:var(--gris)}
+.ix2 .nt{grid-column:7/13;margin:36px 0 0;color:var(--gris);font-style:normal;line-height:1.6;max-width:none}
+.ix2 .nt::before{content:"— "}
+.ix2 .lin{grid-column:1/-1;margin:40px 0 0}
+@media(max-width:820px){
+ .ix2 .cu{grid-column:3/13}
+ .ix2 .ah{grid-column:1/13}
+ .ix2 .nt{grid-column:4/13}
+ .ix2 .vs span{font-size:14px}
+}
+#info .ix2 .cu{margin:30px 0 0}
+#info .ix2 .ah{margin:44px 0 0}
+#info .ix2 .nt{margin:40px 0 0}
+#info .ix2 .lin{margin:48px 0 0}
+#info .ix2 .vs{margin:4px 0 0}
+.ix2 .ai span:first-child{text-align:left}
 </style><link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=VT323&display=swap" rel="stylesheet"></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="imprenta" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="r"/><feDisplacementMap in="SourceGraphic" in2="r" scale=".9" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="1" seed="3" result="p"/><feColorMatrix in="p" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.72" result="poro"/><feComposite in="d" in2="poro" operator="in"/></filter></svg>
 <div id="cur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="mbar"><a href="#" id="mHome" class="logo">mateo sanz román</a><span><button id="mVolver" hidden title="volver" aria-label="volver"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button><button id="mInfo" class="tx">cv</button><button id="mMenu" title="proyectos" aria-label="proyectos"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.5 3.5h11M1.5 7h11M1.5 10.5h11" stroke="currentColor" fill="none"/></svg></button><button id="mSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
@@ -1110,16 +1136,23 @@ function item(x,a,b){var k=CVP[a+'.'+b];return '<li class="it'+(k>=0?' lk':'')+'
 var esc0=function(t){return String(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')};
 var ig=(S.instagram||'').replace(/^@/,''),tt=(S.tiktok||'').replace(/^@/,'');
 function lineasHTML(t,f,cls){return '<div class="lin'+(cls?' '+cls:'')+'"><div class="lt">'+t+'</div>'+f.map(function(x){return '<div class="li"><span>'+x[0]+'</span><span>'+x[1].join(', ')+'</span></div>'}).join('')+'</div>'}
-function infoYo(){var e=esc0,cnt={};P.forEach(function(p){if(p.pt)cnt[p.c]=(cnt[p.c]||0)+1});
- var h='<div class="yo fx">';
- if(S.bio)h+='<p class="fxd">'+e(S.bio)+'</p>';
+/* texto de info: se edita aquí. Cada línea de VERSO lleva su sangría (en columnas de 12). */
+var INFOTXT={
+ verso:[['trabajo con la luz',0],['en el cine,',3],['en la sala',6],['y en el código.',2]],
+ cuerpo:'Director de fotografía formado en la ESCAC y con un máster en innovación audiovisual y entornos interactivos (BAU). Rueda cortometrajes, videoclips y publicidad, y en paralelo construye instalaciones, directos audiovisuales y piezas generativas.',
+ ahora:[['luz','instalación lumínica · llum bcn'],['directo','visuales, láser y sonido en vivo'],['sala','estructuras con luz y sensores'],['red','esta web, que también es obra']],
+ nota:'le interesa lo que queda debajo de la imagen: la infraestructura física de internet, la inteligencia artificial y el coste material de lo digital.'};
+function infoYo(){var e=esc0,T=INFOTXT;
+ var h='<div class="yo fx ix2">';
+ h+='<div class="vs">'+T.verso.map(function(v){return '<span style="--x:'+v[1]+'">'+e(v[0])+'</span>'}).join('')+'</div>';
+ h+='<p class="cu">'+e(T.cuerpo)+'</p>';
+ h+='<div class="ah"><span class="lt">ahora</span>'+T.ahora.map(function(a,k){return '<div class="ai" style="--k:'+k+'"><span>'+e(a[0])+'</span><span>'+e(a[1])+'</span></div>'}).join('')+'</div>';
+ h+='<p class="nt">'+e(T.nota)+'</p>';
  var c=[];if(S.correo)c.push(['correo',['<a href="mailto:'+e(S.correo)+'">'+e(S.correo)+'</a>']]);
  if(ig)c.push(['instagram',['<a href="https://instagram.com/'+e(ig)+'" target="_blank" rel="noopener">@'+e(ig)+'</a>']]);
  if(tt)c.push(['tiktok',['<a href="https://www.tiktok.com/@'+e(tt)+'" target="_blank" rel="noopener">'+e(tt)+'</a>']]);
  var nCV=CV.reduce(function(a,x){return a+x[1].length},0);c.push(['cv',['<button type="button" class="acv">cv--'+new Date().getFullYear()+' · '+nCV+' entradas <svg class="ar" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5l5-5M3.5 2.5h4v4" stroke="currentColor" fill="none"/></svg></button>']]);
  h+=lineasHTML('contacto',c);
- var pr=[['dop','dop'],['dir','dirección'],['obra','obra / instalación'],['foto','fotografía']].filter(function(x){return cnt[x[0]]}).map(function(x){return [x[1],[pad(cnt[x[0]])+(cnt[x[0]]===1?' proyecto':' proyectos')]]});
- h+=lineasHTML('práctica',pr,'prac');
  return h+'</div>'}
 info.innerHTML=infoYo()
  +CV.map(function(s,a){return '<section class="cv"><button class="e"><span>'+s[0]+'</span><span class="g">'+s[1].length+'</span></button><ul>'+s[1].map(function(x,b){return item(x,a,b)}).join('')+(s[1].length>3?'<li class="mas"><button>+ '+(s[1].length-3)+' más</button></li>':'')+'</ul></section>'}).join('');
