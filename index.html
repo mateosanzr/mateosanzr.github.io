@@ -677,10 +677,55 @@ html.escOn #proy{overflow:hidden!important}
 
 /* ===== textos con aspecto de imprenta: tinta que sangra un poco, bordes irregulares y poro del papel ===== */
 :root{--sangra:rgba(26,26,24,.2)}:root.sala{--sangra:rgba(232,230,223,.16)}
-.cab,.fil,.row .l,#info .yo,#info .fa,.pj,.luz,.cvx .cvg,.cvx .cvhead,.cab2,#mMenuL .mml,.mcto{filter:url(#imprenta)}
+.cab,.fil,.row .l,#info .yo,#info .fa,.pj,.fx,.luz,.cvx .cvg,.cvx .cvhead,.cab2,#mMenuL .mml,.mcto{filter:url(#imprenta)}
 body{text-shadow:0 0 .45px currentColor,0 .25px 1.6px var(--sangra)}
 .esc,.esc *{text-shadow:none}
 
+
+/* ===== ficha fx ===== */
+.fx{position:relative;font:400 10.5px/1.75 var(--mono);letter-spacing:.01em;color:var(--tinta);padding:0 0 40px}
+.fx .pjt{display:none!important}
+.fx p{margin:0;max-width:none}
+.fx .fxh{display:flex;justify-content:space-between;text-transform:uppercase;letter-spacing:.06em;margin:2px 0 30px}
+.fx .fxt{display:grid;grid-template-columns:5.5ch minmax(0,1fr) minmax(0,1fr);column-gap:1.4ch;align-items:baseline}
+.fx .fxt .xrm{text-align:right;white-space:pre}
+.fx .fxt .xtt{min-width:0}
+.fx .fxt .xst{padding-left:calc(var(--k)*2.5ch);color:var(--gris)}
+.fx .fxt .xpa{color:var(--gris)}
+.fx .fxd{margin:30px 0 0;text-transform:uppercase;text-align:justify;text-align-last:justify;letter-spacing:.05em;line-height:1.75;hyphens:none}
+.fx .fxl{margin:22px 0 0;text-align:right}
+.fx .fxl a{letter-spacing:.06em}
+/* árbol de créditos */
+.fx .arbol{display:grid;grid-template-columns:minmax(0,.62fr) minmax(0,2fr);margin:40px 0 0;line-height:2}
+.fx .arbol ul{list-style:none;margin:0;padding:0}
+.fx .xn{display:flex;align-items:flex-start;min-width:0}
+.fx .xn>span{flex:none;max-width:100%}
+.fx .xl{flex:1;min-width:10px;height:1px;background:var(--tinta);margin:1em 6px 0;opacity:.85}
+.fx .xrs>li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
+.fx .xrs li,.fx .xhj li{position:relative;padding-left:14px}
+.fx ul.xrs>li::before,.fx ul.xhj>li::before{content:"";position:absolute;left:0;top:0;bottom:0;border-left:1px solid var(--tinta);opacity:.85}
+.fx ul.xrs>li::after,.fx ul.xhj>li::after{content:"";position:absolute;left:0;top:1em;width:9px;border-top:1px solid var(--tinta);opacity:.85}
+.fx ul>li:first-child::before{top:1em}
+.fx ul>li:last-child::before{bottom:auto;height:1em}
+.fx ul>li:first-child:last-child::before{display:none}
+.fx ul.xuno>li{padding-left:0}.fx ul.xuno>li::after{display:none}
+.fx ul.xuno>li>.xn::before{content:"";flex:none;width:0}
+.fx .xrs>li>.xn{padding-right:0}
+.fx .xrs>li.yo,.fx .xrs>li.yo .xl{color:var(--rec)}
+.fx .xrs>li.yo .xl{background:var(--rec)}
+.fx .fxp{display:flex;justify-content:space-between;margin:56px 0 0;text-transform:uppercase;letter-spacing:.06em;color:var(--gris)}
+#info .fa.fx{margin-top:34px}
+#info .fa.fx .ver{display:block;margin:20px 0 0;color:var(--gris)}
+
+.fx .xrs>li{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}
+.fx .xrs>li>.xn>span{flex:0 1 auto;max-width:calc(100% - 22px)}
+.fx .xl{min-width:12px}
+#info .fa.fx p{margin:0;max-width:none}
+#info .fa.fx .fxd{margin:24px 0 0}
+#info .fa.fx ul,#info .fa.fx li{border:0;margin:0}
+#info .fa.fx ul{padding:0}
+#info .fa.fx .arbol{margin-top:28px}
+@media(max-width:820px){.fx .arbol{display:block}.fx .xraiz{margin-bottom:6px}.fx .xraiz .xl{display:none}.fx .xrs>li{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}.fx .xhj span{overflow-wrap:anywhere}.fx{font-size:10px}}
 </style><link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=VT323&display=swap" rel="stylesheet"></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="imprenta" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="r"/><feDisplacementMap in="SourceGraphic" in2="r" scale=".9" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="1" seed="3" result="p"/><feColorMatrix in="p" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.72" result="poro"/><feComposite in="d" in2="poro" operator="in"/></filter></svg>
 <div id="cur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="mbar"><a href="#" id="mHome" class="logo">mateo sanz román</a><span><button id="mVolver" hidden title="volver" aria-label="volver"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button><button id="mInfo" class="tx">cv</button><button id="mMenu" title="proyectos" aria-label="proyectos"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.5 3.5h11M1.5 7h11M1.5 10.5h11" stroke="currentColor" fill="none"/></svg></button><button id="mSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
@@ -711,6 +756,26 @@ function figN(i){var n=P[i].n||0;return String(n).padStart(3,'0')}
 function figHTML(i,e,d){e=e||function(t){return t};var p=P[i],t=e(p.t),nn=P[i].n?pad(P[i].n):'--';
  return '<div class="fgh"><span>fig '+figN(i)+'<span class="fgc">'+(CAT[p.c]||p.c)+'</span></span><span class="fgt">[ '+t+' ]</span><span class="fgk">a'+nn+'</span></div>'
   +'<div class="fgx" aria-hidden="true">[ '+nn+' ]</div>'}
+/* ===== ficha (columna derecha): cabecera tipo playlist, número romano, descripción justificada a todo el ancho y créditos en árbol ===== */
+function rom(n){if(!n)return '—';var v=[[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']],r='';v.forEach(function(x){while(n>=x[0]){r+=x[1];n-=x[0]}});return r.split('').join(' ')}
+function credPares(t){var out=[];String(t||'').split(/\n/).forEach(function(l){l=l.trim();if(!l)return;var ci=l.indexOf(':');var r=ci>0?l.slice(0,ci).trim():'',v=ci>0?l.slice(ci+1).trim():l;out.push([r,v.split(/\s*,\s*/).filter(Boolean)])});return out}
+function arbolHTML(raiz,pares,e){if(!pares.length)return '';
+ var hoja=function(n){n=n.trim();var m=n.match(/^(.*?)\s*\((@[^)]+)\)$/);if(m&&m[1])n=m[1];return e(n.replace(/^@/,''))};
+ var rama=function(lista,cls){return '<ul class="'+cls+(lista.length===1?' xuno':'')+'">'+lista.join('')+'</ul>'};
+ var roles=pares.map(function(x){var yo=x[1].some(function(n){return /@?mateosanzr\b|mateo sanz/i.test(n)});
+  return '<li class="xro'+(yo?' yo':'')+'"><span class="xn"><span>'+e(x[0]||'—')+'</span><i class="xl"></i></span>'+rama(x[1].map(function(n){return '<li><span class="xn"><span>'+hoja(n)+'</span></span></li>'}),'xhj')+'</li>'});
+ return '<div class="arbol"><span class="xn xraiz"><span>'+raiz+'</span><i class="xl"></i></span>'+rama(roles,'xrs')+'</div>'}
+function fxHTML(i,e,d,pares,corto){var p=P[i],n=P[i].n||0,partes=String(p.f||'').split(/\s+·\s+/).filter(Boolean),r=rolUtil(p);
+ var h='<div class="fxh"><span>fig--'+figN(i)+'</span><span>1.0</span><span>'+e(CAT[p.c]||p.c)+'</span><span>ed. m.s.r</span></div>';
+ h+='<div class="fxt"><span class="xrm">'+rom(n)+'</span><span class="xtt">'+e(p.t)+'</span><span class="xpa">'+(partes[0]?e(partes[0]):'')+'</span>';
+ partes.slice(1).forEach(function(x,k){h+='<span class="xrm"></span><span class="xtt xst" style="--k:'+(k+1)+'">'+e(x)+'</span><span class="xpa"></span>'});
+ if(r)h+='<span class="xrm"></span><span class="xtt xst" style="--k:'+(partes.length)+'">('+e(r)+')</span><span class="xpa"></span>';
+ h+='</div>';
+ if(d)h+='<p class="fxd">'+d+'</p>';
+ if(!corto&&ENL[i])h+='<p class="fxl"><a href="'+e(ENL[i])+'" target="_blank" rel="noopener">ver la pieza ↗</a></p>';
+ h+=arbolHTML(corto?'resumen':'créditos',pares,e);
+ if(!corto)h+='<div class="fxp"><span>( '+e(CAT[p.c]||p.c)+' )</span><span>'+(n?pad(n):'--')+' · '+pad(nP)+'</span><span>mateosanzr.com</span></div>';
+ return h}
 function metaDl(p,e){e=e||function(t){return t};var r=rolUtil(p);return (p.f?'<p class="fmt">'+String(p.f).split(/\s+·\s+/).map(function(x){return '<span>'+e(x)+'</span>'}).join('')+'</p>':'')+(r?'<p class="fmt rol"><i>'+e(r)+'</i></p>':'')}
 /* créditos compuestos: rol en mono a la derecha, nombres en serif */
 var MONO='ui-monospace,SFMono-Regular,Menlo,monospace';
@@ -913,10 +978,7 @@ function ficha(i){var p=P[i];document.body.classList.remove('ancho');document.bo
  document.getElementById('hT').textContent=num(i)+'  '+p.t;
  document.getElementById('hInfo').hidden=true;document.getElementById('hPj').hidden=false;
  var esc=function(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;')};
- pjEl.innerHTML='<div class="pj fig"><h2 class="pjt">'+num(i)+'  '+p.t+'</h2>'+figHTML(i,esc,DESC[i]||p.d)+(SUB[i]?'<p class="sub">'+SUB[i]+'</p>':'')
-  +'<div class="fgcols">'+((DESC[i]||p.d)?'<p class="fgd">'+(DESC[i]||p.d)+'</p>':'<p class="fgd"></p>')
-  +'<div>'+metaDl(p)+'</div></div>'
-  +(ENL[i]?'<p><a href="'+esc(ENL[i])+'" target="_blank" rel="noopener">ver la pieza ↗</a></p>':'')+credHTML(CRED[i]).replace('<header><span>','<header><span data-n="'+figN(i)+'.b">')+'<div class="fgpie"><span>( '+(CAT[p.c]||p.c)+' )</span><span>'+(P[i].n?pad(P[i].n):'--')+' · '+pad(nP)+'</span><span>/ m.s.r</span></div></div>';
+ pjEl.innerHTML='<div class="pj fx"><h2 class="pjt">'+num(i)+'  '+p.t+'</h2>'+fxHTML(i,esc,DESC[i]||p.d,credPares(CRED[i]),false)+'</div>';
  info.hidden=true;pjEl.hidden=false;pjEl.scrollTop=0;document.body.classList.toggle('arch',p.gr.length>0);encajaCollage();edita(i);
  if(MOV.matches){if(!document.body.classList.contains('enpj'))yLista=window.scrollY;document.body.classList.add('enpj');document.getElementById('mVolver').hidden=false;document.getElementById('mInfo').hidden=true;window.scrollTo(0,0)}
  rows.forEach(function(r,k){r.classList.toggle('ab-pj',k===i)})}
@@ -1301,10 +1363,7 @@ document.addEventListener('keydown',function(e){if(e.key!=='Enter'&&e.key!==' ')
  var tt=null,ult=-1;
  window.fichaInfo=function(i){if(i===ult)return;ult=i;var p=P[i];fa.classList.add('fuera');clearTimeout(tt);tt=setTimeout(function(){
   var d=DESC[i]||p.d||'',cr=cortos(CRED[i]);
-  fa.classList.add('fig');fa.innerHTML=figHTML(i,esc,d)+'<h3>'+esc(p.t)+'</h3><div class="fgcols">'+(d?'<p class="fgd">'+d+'</p>':'<p class="fgd"></p>')
-   +'<div>'+metaDl(p,esc)+'</div></div>'
-   +(cr.length?'<dl class="cr">'+cr.map(function(x){return '<dt>'+x[0]+'</dt><dd>'+esc(x[1]).replace(/(^|[\s,])@/g,'$1').split(/\s*,\s*/).join('<br>')+'</dd>'}).join('')+'</dl>':'')
-   +'<button class="ver">→</button>';
+  fa.classList.remove('fig');fa.classList.add('fx');fa.innerHTML=fxHTML(i,esc,d,cr.map(function(x){return [x[0],x[1].split(/\s*,\s*/)]}),true)+'<button class="ver">→</button>';
   fa.querySelector('.ver').onclick=function(){ficha(i)};fa.classList.remove('fuera')},160)};
  setTimeout(function(){if(act>=0){ult=-1;fichaInfo(act)}},260)
 })();
