@@ -1138,16 +1138,16 @@ var ig=(S.instagram||'').replace(/^@/,''),tt=(S.tiktok||'').replace(/^@/,'');
 function lineasHTML(t,f,cls){return '<div class="lin'+(cls?' '+cls:'')+'"><div class="lt">'+t+'</div>'+f.map(function(x){return '<div class="li"><span>'+x[0]+'</span><span>'+x[1].join(', ')+'</span></div>'}).join('')+'</div>'}
 /* texto de info: se edita aquí. Cada línea de VERSO lleva su sangría (en columnas de 12). */
 var INFOTXT={
- verso:[['trabajo con la luz',0],['en el cine,',3],['en la sala',6],['y en el código.',2]],
- cuerpo:'Director de fotografía formado en la ESCAC y con un máster en innovación audiovisual y entornos interactivos (BAU). Rueda cortometrajes, videoclips y publicidad, y en paralelo construye instalaciones, directos audiovisuales y piezas generativas.',
- ahora:[['luz','instalación lumínica · llum bcn'],['directo','visuales, láser y sonido en vivo'],['sala','estructuras con luz y sensores'],['red','esta web, que también es obra']],
- nota:'le interesa lo que queda debajo de la imagen: la infraestructura física de internet, la inteligencia artificial y el coste material de lo digital.'};
+ verso:[['dirección de fotografía',0],['instalación',3],['live a/v',6],['interactivo',2]],
+ cuerpo:'Barcelona. Grado en cine en la ESCAC, especialidad en dirección de fotografía. Máster en innovación audiovisual y entornos interactivos en BAU. Cortometraje, videoclip y publicidad. Instalaciones de luz, directos audiovisuales y piezas interactivas con Resolume, TouchDesigner y Arduino.',
+ ahora:[['luz','clàvia · llum bcn 2026'],['directo','meteoro · la oculta · sinuosa club'],['sala','loadData() · instalación interactiva'],['cámara','cortometraje · videoclip · publicidad']],
+ nota:''};
 function infoYo(){var e=esc0,T=INFOTXT;
  var h='<div class="yo fx ix2">';
  h+='<div class="vs">'+T.verso.map(function(v){return '<span style="--x:'+v[1]+'">'+e(v[0])+'</span>'}).join('')+'</div>';
  h+='<p class="cu">'+e(T.cuerpo)+'</p>';
  h+='<div class="ah"><span class="lt">ahora</span>'+T.ahora.map(function(a,k){return '<div class="ai" style="--k:'+k+'"><span>'+e(a[0])+'</span><span>'+e(a[1])+'</span></div>'}).join('')+'</div>';
- h+='<p class="nt">'+e(T.nota)+'</p>';
+ if(T.nota)h+='<p class="nt">'+e(T.nota)+'</p>';
  var c=[];if(S.correo)c.push(['correo',['<a href="mailto:'+e(S.correo)+'">'+e(S.correo)+'</a>']]);
  if(ig)c.push(['instagram',['<a href="https://instagram.com/'+e(ig)+'" target="_blank" rel="noopener">@'+e(ig)+'</a>']]);
  if(tt)c.push(['tiktok',['<a href="https://www.tiktok.com/@'+e(tt)+'" target="_blank" rel="noopener">'+e(tt)+'</a>']]);
