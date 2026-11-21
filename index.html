@@ -1071,6 +1071,21 @@ html.ix .fil button.on .fw{text-decoration:underline;text-underline-offset:4px;t
  .ix2 .tp:nth-of-type(3){grid-column:1/11}
  .ix2 .tp:nth-of-type(4){grid-column:6/13}
 }
+
+/* info: nada más grande que el nombre; todo en el mismo cuerpo pequeño */
+.ix2 .tp,.ix2 .tp.t0{font-size:8px!important}
+.ix2 .lin,.ix2 .lin *,.ix2 .lin .acv{font:400 8px/1.9 var(--mono)!important;text-transform:uppercase;letter-spacing:.16em}
+.ix2 .lin .lt{color:var(--gris)}
+.ix2 .lin{grid-column:1/8!important}
+.ix2 .lin .li{grid-template-columns:12ch 1fr}
+@media(max-width:820px){
+ .ix2 .tp,.ix2 .tp.t0{font-size:8.5px!important}
+ .ix2 .lin,.ix2 .lin *,.ix2 .lin .acv{font-size:8.5px!important}
+ .ix2 .lin{grid-column:1/11!important}
+ .hoy,.rt0{font-size:8.5px!important}
+}
+#info .ix2 .lin .lt{font-size:8px!important}
+@media(max-width:820px){#info .ix2 .lin .lt{font-size:8.5px!important}}
 </style><link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=VT323&display=swap" rel="stylesheet"></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="imprenta" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="r"/><feDisplacementMap in="SourceGraphic" in2="r" scale=".9" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="1" seed="3" result="p"/><feColorMatrix in="p" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.72" result="poro"/><feComposite in="d" in2="poro" operator="in"/></filter></svg>
 <div id="cur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="mbar"><a href="#" id="mHome" class="logo">mateo sanz román</a><span><button id="mVolver" hidden title="volver" aria-label="volver"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button><button id="mInfo" class="tx">cv</button><button id="mMenu" title="proyectos" aria-label="proyectos"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.5 3.5h11M1.5 7h11M1.5 10.5h11" stroke="currentColor" fill="none"/></svg></button><button id="mSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
