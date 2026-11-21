@@ -1050,6 +1050,11 @@ html.ix .fil button.on .fw{text-decoration:underline;text-underline-offset:4px;t
 #info .ix2 .lin{margin:48px 0 0}
 #info .ix2 .vs{margin:4px 0 0}
 .ix2 .ai span:first-child{text-align:left}
+
+/* info: texto corrido */
+.ix2 .tp{grid-column:1/-1;margin:0 0 1.1em;max-width:none;font:400 11px/1.7 var(--mono);text-transform:none;letter-spacing:.01em;text-indent:4ch}
+.ix2 .tp.t0{font-size:13px;line-height:1.55;text-indent:0;margin:4px 0 1.4em}
+@media(max-width:820px){.ix2 .tp{font-size:12px}.ix2 .tp.t0{font-size:14px}}
 </style><link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=VT323&display=swap" rel="stylesheet"></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="imprenta" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="r"/><feDisplacementMap in="SourceGraphic" in2="r" scale=".9" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="1" seed="3" result="p"/><feColorMatrix in="p" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.72" result="poro"/><feComposite in="d" in2="poro" operator="in"/></filter></svg>
 <div id="cur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="mbar"><a href="#" id="mHome" class="logo">mateo sanz román</a><span><button id="mVolver" hidden title="volver" aria-label="volver"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" stroke="currentColor" fill="none"/></svg></button><button id="mInfo" class="tx">cv</button><button id="mMenu" title="proyectos" aria-label="proyectos"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.5 3.5h11M1.5 7h11M1.5 10.5h11" stroke="currentColor" fill="none"/></svg></button><button id="mSala" title="sala" aria-label="sala"><svg class="ic" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor"/><path d="M7 1.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg></button></span></div>
@@ -1138,16 +1143,12 @@ var ig=(S.instagram||'').replace(/^@/,''),tt=(S.tiktok||'').replace(/^@/,'');
 function lineasHTML(t,f,cls){return '<div class="lin'+(cls?' '+cls:'')+'"><div class="lt">'+t+'</div>'+f.map(function(x){return '<div class="li"><span>'+x[0]+'</span><span>'+x[1].join(', ')+'</span></div>'}).join('')+'</div>'}
 /* texto de info: se edita aquí. Cada línea de VERSO lleva su sangría (en columnas de 12). */
 var INFOTXT={
- verso:[['dirección de fotografía',0],['instalación',3],['live a/v',6],['interactivo',2]],
- cuerpo:'Barcelona. Grado en cine en la ESCAC, especialidad en dirección de fotografía. Máster en innovación audiovisual y entornos interactivos en BAU. Cortometraje, videoclip y publicidad. Instalaciones de luz, directos audiovisuales y piezas interactivas con Resolume, TouchDesigner y Arduino.',
- ahora:[['luz','clàvia · llum bcn 2026'],['directo','meteoro · la oculta · sinuosa club'],['sala','loadData() · instalación interactiva'],['cámara','cortometraje · videoclip · publicidad']],
- nota:''};
+ texto:[
+  'Mateo Sanz Román es director de fotografía y artista visual. Vive y trabaja en Barcelona.',
+  'Se formó en la ESCAC, donde se especializó en dirección de fotografía, y después cursó el máster en innovación audiovisual y entornos interactivos de BAU. Desde entonces rueda cortometrajes, videoclips y publicidad; Tenemos patria recibió el premio a la mejor dirección de fotografía en el Festival de Cine Venezolano.',
+  'En paralelo desarrolla instalaciones de luz, directos audiovisuales y piezas interactivas, en las que la imagen sale de la pantalla y pasa a ocupar el espacio. Entre sus trabajos recientes están clàvia, en el festival Llum BCN 2026, y loadData(), una instalación audiovisual interactiva.']};
 function infoYo(){var e=esc0,T=INFOTXT;
- var h='<div class="yo fx ix2">';
- h+='<div class="vs">'+T.verso.map(function(v){return '<span style="--x:'+v[1]+'">'+e(v[0])+'</span>'}).join('')+'</div>';
- h+='<p class="cu">'+e(T.cuerpo)+'</p>';
- h+='<div class="ah"><span class="lt">ahora</span>'+T.ahora.map(function(a,k){return '<div class="ai" style="--k:'+k+'"><span>'+e(a[0])+'</span><span>'+e(a[1])+'</span></div>'}).join('')+'</div>';
- if(T.nota)h+='<p class="nt">'+e(T.nota)+'</p>';
+ var h='<div class="yo fx ix2">'+T.texto.map(function(p,k){return '<p class="tp'+(k?'':' t0')+'">'+e(p)+'</p>'}).join('');
  var c=[];if(S.correo)c.push(['correo',['<a href="mailto:'+e(S.correo)+'">'+e(S.correo)+'</a>']]);
  if(ig)c.push(['instagram',['<a href="https://instagram.com/'+e(ig)+'" target="_blank" rel="noopener">@'+e(ig)+'</a>']]);
  if(tt)c.push(['tiktok',['<a href="https://www.tiktok.com/@'+e(tt)+'" target="_blank" rel="noopener">'+e(tt)+'</a>']]);
